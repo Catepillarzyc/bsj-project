@@ -1,0 +1,155 @@
+.main-part-l {
+    width: 241px;
+    float: left;
+    display: inline;
+    margin-right:15px;
+}
+.zngg .mod-bd {
+    min-height: 100px;
+    overflow:hidden;
+}
+.zngg .zngg-text {
+    margin-top:10px;
+    line-height: 20px;
+    color: #3c3c3c;
+    text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
+    overflow:hidden;
+
+}
+.mod {
+    border-color:#c8e1a9 !important;
+}
+.wlzb,.grdl {
+    background-color:#f1fcee;
+
+}
+.wlzb #wlzbLink {
+    position: relative;
+    display: block;
+    text-align:center;
+    color: #74b249;
+    font-size:18px;
+    text-decoration: underline;
+    margin:20px auto;
+    background:url("../img/wlzb.png") no-repeat 10px 0px;
+}
+
+.mod-m {
+    position: relative;
+    width:748px;
+}
+.mod-hb {
+    padding:0 15px;
+    background-color:#e3eedc;
+}
+.list-a {
+    padding:20px 10px;
+    min-height: 450px;
+    overflow:hidden;
+}
+.list-a li {
+    height: 30px;
+    overflow: hidden;
+    line-height: 30px;
+    display: block;
+    border-bottom:1px dotted #ccc;
+}
+.list-a a {
+    display:inline-block;
+    max-width:620px;
+    text-overflow:ellipsis;
+    -ms-text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color:#3c3c3c;
+}
+.list-a span {
+    display:inline-block;
+    float:right;
+    color:#666;
+    font-size:12px;
+}
+.list-a a:hover {
+    color:#999;
+    text-decoration: none;
+}
+.pagenation {
+    clear: both;
+    overflow: hidden;
+    margin: 25px 0 0;
+    display: block;
+}
+.pagenation ul {
+    float: right;
+    display: inline-block;
+    margin-bottom:20px;
+    margin-right: 10px;
+}
+.pagenation ul li {
+    float: left;
+}
+
+.pagenation ul .current{
+	 color:#fff;
+    background-color:#74b249;
+}
+
+.pagenation ul>li {
+    display: inline;
+}
+.pagenation ul >li >a,.pagenation ul > li > span {
+    float: left;
+    padding: 4px 12px;
+    line-height: 20px;
+    text-decoration: none;
+    border: 1px solid #DDDDDD;
+    border-left-width: 0;
+    color:#333;
+    background-color:#f5f5f5;
+
+}
+
+
+.pagenation ul > li > a:hover, .pagenation ul > li > a:focus, .pagenation ul > .pagenow > a, .pagenation ul > .pagenow > span {
+    color:#fff;
+    background-color:#74b249;
+}
+.pagenation ul > .disabled > span,.pagenation ul > .disabled >a,.pagenation ul > .disabled > a:hover,.pagenation ul > .disabled >a:focus {
+    color:#aaa;
+    cursor: default;
+    background-color: #f5f5f5;
+}
+.pagenation ul > li:first-child > a,.pagenation ul >li:first-child>span {
+    border-left-width: 1px;
+}
+.pagenation ul > .pagenow > a,.pagenation ul > .pagenow >span {
+    color:#fff;
+    cursor: default;
+}
+
+.zxdt_on {
+    background:url("../img/zxdt2.png") no-repeat 11px 11px !important;
+    background-color:#76b24d !important;
+    color:#FFF !important;
+}
+.tzgg_on {
+    background:url("../img/tzgg2.png") no-repeat 11px 11px !important;
+    background-color:#76b24d !important;
+    color:#FFF !important;
+}
+.zkgf_on {
+    background:url("../img/zkgf2.png") no-repeat 11px 11px !important;
+    background-color:#76b24d !important;
+    color:#FFF !important;
+}
+.jkzt_on {
+    background:url("../img/jkzt2.png") no-repeat 11px 11px !important;
+    background-color:#76b24d !important;
+    color:#FFF !important;
+}
+.zxjj_on {
+    background:url("../img/jj2.png") no-repeat 11px 11px !important;
+    background-color:#76b24d !important;
+    color:#FFF !important;
+}

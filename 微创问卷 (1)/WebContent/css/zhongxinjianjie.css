@@ -1,0 +1,53 @@
+.main-part-content .mod-m {
+	display:none;
+}
+.mod-bd{
+    width:100% !important;
+    min-height: 150px;
+}
+.zxjj .mod-bd ul > li {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+    text-indent:2em;
+}
+.zxjj .mod-bd ul > li >a {
+    display: block;
+    text-decoration: none;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background: url("../img/jt2.png") no-repeat 200px 9px;
+    background-color:#f1fcee;
+}
+.zxjj .mod-bd ul > li > a:hover {
+    background-color:#e6f5dd;
+}
+.zxjj .mod-bd {
+    background-color:#f1fcee;
+}
+.mod-bd p {
+    float: left;
+    width:400px;
+    line-height: 30px;
+    font-size:14px;
+    text-indent: 2em;
+    padding:10px;
+}
+.mod-bd img {
+    float: left;
+    margin-top: 18px;
+
+}
+.main-part-content .mod-bd {
+    padding-bottom: 10px;
+}
+.abled_mod{
+    background: url("../img/jt.png") no-repeat 200px 9px;
+    background-color:#74b249;
+}
+.main-part-l .zxjj .mod-bd  .abled_mod{
+    background: url("../img/jt.png") no-repeat 200px 9px;
+    background-color:#74b249;
+}

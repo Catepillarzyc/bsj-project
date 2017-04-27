@@ -1,0 +1,41 @@
+.main-part-l {
+    width: 241px;
+    float: left;
+    display: inline;
+    margin-right:15px;
+}
+.mod {
+    background-color:#f1fcee;
+    border-color:#c8e1a9 !important;
+}
+.mod-bd {
+    width:100% !important;
+    text-indent:1em;
+}
+.mod-bd li{
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    cursor: pointer;
+}
+.mod-bd li a {
+    display: block;
+    text-decoration: none;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    white-space: nowrap;
+
+}
+.mod-bd li:hover{
+    background-color:#e4f9da;
+}
+.bzfg_on {
+    background:url("../img/bzfg2.png") no-repeat 11px 11px !important;
+    background-color:#76b24d !important;
+    color:#FFF !important;
+}
+.flfg_itemon {
+    background-color: #74b249;
+    color:#FFF;
+}
