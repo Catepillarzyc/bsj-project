@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>首页</title>
+    <link href="#printUrl()/css/index.css" rel="stylesheet" type="text/css" >
+    <link href="#printUrl()/css/newcss.css" rel="stylesheet" type="text/css" >
+    <script type="text/javascript" src="#printUrl()/js/jquery-1.12.2.js"></script>
+</head>
+<body>
+</body>
+</html>

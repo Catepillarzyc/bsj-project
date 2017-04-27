@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>医院情况</title>
+    <link href="#printUrl()/css/yyqk.css" rel="stylesheet" type="text/css" >
+    <link href="#printUrl()/css/textset.css" rel="stylesheet" type="text/css" >
+    <link href="#printUrl()/css/newcss.css" rel="stylesheet" type="text/css" >
+    <script type="text/javascript" src="#printUrl()/js/jquery-1.12.2.js"></script>
+</head>	
+<body>
+<div class="text-main">
+    <div class="question question-first">
+        <div class="fill-short"><span class="num"> Q1.</span>医院名称<span style="color:red;vertical-align:sub">*</span></div><div><span class="error" style="display:none;">* 账号不存在，请检查  </span></div>
+		<div class="fill-short-input"><input maxlength="30" value="$!{hospital.hospitalName}" name="hospitalName" type="text" style="width:50%;height: 30px;font-size: 14px" /></div>
+    </div>
+    <div class="question">
+        <div class="fill-short"><span class="num"> Q2.</span>医院地址</div><div class="fill-short-input"><input maxlength="50" value="$!{hospital.hospitalAddress}" name="hospitalAddress" type="text" style="width:50%;height: 30px;font-size: 14px" /></div>
+    </div>
+    <div class="question">
+        <div class="fill-short"><span class="num"> Q3.</span>法人代表</div><div class="fill-short-input"><input maxlength="12" value="$!{hospital.legalRepresentative}" name="legalRepresentative" type="text" style="width:50%;height: 30px;font-size: 14px" /></div>
+    </div>
+    <div class="question">
+        <div class="fill-short"><span class="num"> Q4.</span>电话传真</div><div class="fill-short-input"><input maxlength="30" value="$!{hospital.telephoneFax}" name="telephoneFax" type="text" style="width:30%;height: 30px;font-size: 14px" /></div>
+    </div>
+    <div class="question">
+        <div class="fill-short"><span class="num"> Q5.</span>电子邮箱</div><div class="fill-short-input"><input maxlength="30" value="$!{hospital.email}" name="email" type="text" style="width:30%;height: 30px;font-size: 14px" /></div>
+    </div>
+    <div class="question">
+        <div class="fill-short"><span class="num"> Q6.</span>联系人</div><div class="fill-short-input"><input maxlength="12" value="$!{hospital.contact}" name="contact" type="text" style="width:30%;height: 30px;font-size: 14px" /></div>
+    </div>
+    <div class="question">
+        <div class="fill-short"><span class="num"> Q7.</span>科室职位</div><div class="fill-short-input"><input maxlength="20" value="$!{hospital.ksPosition}" name="ksPosition" type="text" style="width:30%;height: 30px;font-size: 14px" /></div>
+    </div>
+    <div class="question">
+        <div class="fill-short"><span class="num"> Q8.</span>联系电话</div><div class="fill-short-input"><input maxlength="30" value="$!{hospital.contactPhone}" name="contactPhone" type="text" style="width:30%;height: 30px;font-size: 14px" /></div>
+    </div>
+    <div class="question" >
+        <div class="check-text"><span class="num"> Q9.</span>医院等级：</div>
+        <div class="check-item">
+            <div class="item2"><input type="radio" name="Grade" #if($!{hospital.hospitalLevel} == "三甲医院") checked #end value="三甲医院"/><label>三甲医院</label></div>
+            <div class="item2"><input type="radio" name="Grade" #if($!{hospital.hospitalLevel} == "三乙医院") checked #end value="三乙医院"/><label>三乙医院</label></div>
+            <div class="item2"><input type="radio" name="Grade" #if($!{hospital.hospitalLevel} == "二甲医院") checked #end value="二甲医院"/><label>二甲医院</label></div>
+            <div class="item2"><input type="radio" name="Grade" #if($!{hospital.hospitalLevel} == "二乙医院") checked #end value="二乙医院"/><label>二乙医院</label></div>
+        </div>
+    </div>
+    <div class="question">
+        <div class="check-text"><span class="num">Q10.</span>医院性质：</div>
+        <div class="check-item">
+            <div class="item2"><input type="radio" name="property" #if($!{hospital.hospitalNature} == "部属综合医院") checked #end value="部属综合医院"/><label>部属综合医院</label></div>
+            <div class="item2"><input type="radio" name="property" #if($!{hospital.hospitalNature} == "省级/教学医院") checked #end value="省级/教学医院"/><label>省级/教学医院</label></div>
+            <div class="item2"><input type="radio" name="property" #if($!{hospital.hospitalNature} == "地市级医院") checked #end value="地市级医院"/><label>地市级医院</label></div>
+            <div class="item2"><input type="radio" name="property" #if($!{hospital.hospitalNature} == "区县级医院") checked #end value="区县级医院"/><label>区县级医院</label></div>
+            <div class="item2"><input type="radio" name="property" #if($!{hospital.hospitalNature} == "军队系统") checked #end value="军队系统"/><label>军队系统</label></div>
+            <div class="item2"><input type="radio" name="property" #if($!{hospital.hospitalNature} == "中医医院") checked #end value="中医医院"/><label>中医医院</label></div>
+            <div class="item2"><input type="radio" name="property" #if($!{hospital.hospitalNature} == "企业医院") checked #end value="企业医院"/><label>企业医院</label></div>
+            <div class="item2"><input type="radio" name="property" #if($!{hospital.hospitalNature} == "民营医院") checked #end value="民营医院"/><label>民营医院</label></div>
+            <div class="itemfree"><input type="radio" name="property" #if($!{hospital.hospitalNature} == "专科医院（二甲以上）") checked #end value="专科医院（二甲以上）"/><label>专科医院（二甲以上）</label></div>
+        </div>
+    </div>
+    <div class="question">
+        <div class="check-text"><span class="num">Q11.</span>床位数：</div>
+        <div class="check-item">		
+            <div class="item2 itemvc"><input type="radio" name="bed" #if($!{hospital.beds} == "200张以下") checked #end value="200张以下"/><label>200张以下</label></div>
+            <div class="item2 itemvc"><input type="radio" name="bed" #if($!{hospital.beds} == "200-399张") checked #end value="200-399张"/><label>200-399张</label></div>
+            <div class="item2 itemvc"><input type="radio" name="bed" #if($!{hospital.beds} == "400-599张") checked #end value="400-599张"/><label>400-599张</label></div>
+            <div class="item2 itemvc"><input type="radio" name="bed" #if($!{hospital.beds} == "600-999张") checked #end value="600-1000张"/><label>600-999张</label></div>
+            <div class="item2 itemvc"><input type="radio"  name="bed" #if($!{hospital.beds} == "大于等于1000") checked #end value="大于等于1000"/><label>大于等于1000</label></div>
+        </div>
+    </div>
+    <div class="foot"><a href="#" class="go">下一组</a></div>
+</div>
+</body>
+<script>
+       
+    var webRoot = '${link.contextPath}';
+	
+	$("input[name=email]").blur(function(){
+	   var email = $(this).val();
+	   var reg = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 	   
+	   var flag = reg.test(email);
+	   if(flag == false && email != ""){
+	       alert("邮箱不合法");
+		   return false;
+	   }
+	});
+	$("input[name=telephoneFax]").blur(function(){
+	   var telephoneFax = $(this).val();
+	   var reg = /^(\d|-|\/)+$/; 
+	   var flag = reg.test(telephoneFax);
+	   if(flag == false && telephoneFax != ""){
+	       alert("电话传真输入不合法，只能输入数字 或特殊符号  - 或 /");
+		   return false;
+	   }
+	});
+	$("input[name=contactPhone]").blur(function(){
+	   var contactPhone = $(this).val();
+	   var reg = /^(\d|-|\/)+$/;  
+	   var flag = reg.test(contactPhone);
+	   if(flag == false && contactPhone != ""){
+	       alert("联系电话输入不合法，只能输入数字 或特殊符号  - 或 /");
+		   return false;
+	   }
+	});
+	
+	//$("#hospital", window.parent.document).click(function(){
+		 //$("#hospital", window.parent.document).unbind("click");
+	//});
+	
+	
+    $(document).delegate(".check-item label","click",function(){
+        $(this).parent().find("input").click();
+    })
+    $(".question").click(function(){
+        $(".question").removeClass("on")
+        $(this).addClass("on")
+    })
+	
+	$(".foot").click(function(){	
+		 var hospitalName = $("input[name=hospitalName]").val();		 		 
+		 if(hospitalName==""){
+		     alert("医院名称不能为空");			 
+			 return false;
+		 }		 		 
+         var hospitalAddress = $("input[name=hospitalAddress]").val();
+		 var legalRepresentative = $("input[name=legalRepresentative]").val();
+		 var telephoneFax = $("input[name=telephoneFax]").val();
+         var reg = /^(\d|-|\/)+$/;
+	     var flag = reg.test(telephoneFax);
+	     if(flag == false && telephoneFax != ""){
+	          alert("电话传真输入不合法，只能输入数字 或特殊符号  - 或 /");
+		      return false;
+	     }
+		 var email = $("input[name=email]").val();
+	     var reg1 = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+	     var flag1 = reg1.test(email);
+	     if(flag1 == false && email != ""){
+	          alert("邮箱不合法");
+		      return false;
+	     }
+		 var contact = $("input[name=contact]").val();
+		 var ksPosition = $("input[name=ksPosition]").val();
+		
+		 var contactPhone = $("input[name=contactPhone]").val();
+	     var reg2 = /^(\d|-|\/)+$/; 
+	     var flag2 = reg2.test(contactPhone);
+	     if(flag2 == false && contactPhone != ""){
+	          alert("联系电话输入不合法，只能输入数字 或特殊符号  - 或 /");
+		      return false;
+	     }
+		 var hospitalLevel = $('input:radio[name="Grade"]:checked').val();
+		 var hospitalNature = $('input:radio[name="property"]:checked').val();
+		 var beds = $('input:radio[name="bed"]:checked').val();
+		 
+		 $(self.parent.document).find("#ksStaff").click();
+		 
+	     jQuery.ajax({
+    			url:webRoot + "/saveHospital.html",
+    			type:"POST",
+    			cache:false, 
+    			async:false, 
+    			data:{
+				"hospitalName":hospitalName,
+				"hospitalAddress":hospitalAddress,
+				"legalRepresentative":legalRepresentative,
+				"telephoneFax":telephoneFax,
+				"email":email,
+				"contact":contact,
+				"ksPosition":ksPosition,
+				"contactPhone":contactPhone,
+				"hospitalLevel":hospitalLevel,
+				"hospitalNature":hospitalNature,
+				"beds":beds},
+    			dataType:"json",
+    			success:function(data,text){					    
+					//parent.location.reload();    
+        	  }
+         });
+	});
+</script>
+</html>

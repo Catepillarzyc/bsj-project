@@ -1,0 +1,8 @@
+package com.questionnaire.service;
+
+import com.questionnaire.pojo.User;
+
+public interface UserService {
+	public User  queryUserByUserName(String userName);
+	
+}

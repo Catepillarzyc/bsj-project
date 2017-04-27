@@ -1,0 +1,22 @@
+.foot{
+    width: 100%;
+    text-align: center;
+    margin: 40px 0;
+}
+.go{
+    display: block;
+    line-height: 30px;
+    text-align: center;
+    color: #303030;
+    font-size: 12px;
+    background: #BEDCFC;
+    width:50%;
+    height: 30px;
+    margin: 5px auto;
+    -moz-box-shadow:2px 2px 2px #949494;
+    -webkit-box-shadow:2px 2px 2px #949494;
+    box-shadow:2px 2px 2px #949494;
+}
+.fill-short-input{
+    display: inline;
+}

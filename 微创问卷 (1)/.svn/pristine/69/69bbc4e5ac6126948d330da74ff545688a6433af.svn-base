@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.questionnaire.dao.KsDao">
+
+	<resultMap id="ksMap" type="com.questionnaire.pojo.Ks">
+		<result column="id" property="id" />
+		<result column="hospital_id" property="hospitalId" />
+		<result column="general_surgery" property="generalSurgery" />
+		<result column="thoracic_surgery" property="thoracicSurgery" />
+		<result column="urology" property="urology" />
+		<result column="women_obstetrics" property="womenObstetrics" />
+		<result column="orthopaedic" property="orthopaedic" />
+		<result column="radioactive" property="radioactive" />
+		<result column="is_del" property="isDel" />
+		<result column="gmt_created" property="gmtCreated" />
+		<result column="gmt_modified" property="gmtModified" />
+	</resultMap>
+	<sql id="allColumn">
+		id,hospital_id,general_surgery,thoracic_surgery,urology,women_obstetrics,orthopaedic,radioactive,is_del,gmt_created,gmt_modified
+	</sql>
+	<insert id="addKs" >
+		insert into ks
+		(
+			hospital_id,
+			general_surgery,
+			thoracic_surgery,
+			urology,
+			women_obstetrics,
+			orthopaedic,
+			radioactive,
+			is_del,
+			gmt_created,
+			gmt_modified
+		) 
+		values
+		(
+			#{hospitalId},
+			#{generalSurgery},
+			#{thoracicSurgery},
+			#{urology},
+			#{womenObstetrics},
+			#{orthopaedic},
+			#{radioactive},
+			 0,
+			 now(),
+			 now()
+		)
+		<selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<update id="deleteKs" parameterType="Integer">
+		update ks set status = -1 where id = #{id}
+	</update>
+
+	<update id="updateKs" >
+		update ks set 
+			<if test="hospitalId != null ">
+				hospital_id=#{hospitalId}
+			</if>
+			<if test="generalSurgery != null and ''!= generalSurgery">
+				,general_surgery=#{generalSurgery}
+			</if>
+			<if test="thoracicSurgery != null and ''!= thoracicSurgery">
+				,thoracic_surgery=#{thoracicSurgery}
+			</if>
+			<if test="urology != null and ''!= urology">
+				,urology=#{urology}
+			</if>
+			<if test="womenObstetrics != null and ''!= womenObstetrics">
+				,women_obstetrics=#{womenObstetrics}
+			</if>
+			<if test="orthopaedic != null and ''!= orthopaedic">
+				,orthopaedic=#{orthopaedic}
+			</if>
+			<if test="radioactive != null and ''!= radioactive">
+				,radioactive=#{radioactive}
+			</if>
+			<if test="isDel != null ">
+				,is_del=#{isDel}
+			</if>
+				,gmt_created= now()
+				,gmt_modified= now()
+			where id = #{id}
+	</update>
+
+	<select id="countKs"  resultType="Integer">
+		select count(id)
+		from ks
+			where 1=1 
+			<if test="hospitalId != null ">
+				and hospital_id=#{hospitalId}
+			</if>
+			<if test="generalSurgery != null and ''!= generalSurgery">
+				and general_surgery=#{generalSurgery}
+			</if>
+			<if test="thoracicSurgery != null and ''!= thoracicSurgery">
+				and thoracic_surgery=#{thoracicSurgery}
+			</if>
+			<if test="urology != null and ''!= urology">
+				and urology=#{urology}
+			</if>
+			<if test="womenObstetrics != null and ''!= womenObstetrics">
+				and women_obstetrics=#{womenObstetrics}
+			</if>
+			<if test="orthopaedic != null and ''!= orthopaedic">
+				and orthopaedic=#{orthopaedic}
+			</if>
+			<if test="radioactive != null and ''!= radioactive">
+				and radioactive=#{radioactive}
+			</if>
+			<if test="isDel != null ">
+				and is_del=#{isDel}
+			</if>
+	</select>
+
+	<select id="findKs"  resultMap="ksMap">
+		select
+		<include refid="allColumn"/>
+		from ks
+			where is_del = 0 and hospital_id=#{hospitalId}	
+			<if test="generalSurgery != null and ''!= generalSurgery">
+				and general_surgery=#{generalSurgery}
+			</if>
+			<if test="thoracicSurgery != null and ''!= thoracicSurgery">
+				and thoracic_surgery=#{thoracicSurgery}
+			</if>
+			<if test="urology != null and ''!= urology">
+				and urology=#{urology}
+			</if>
+			<if test="womenObstetrics != null and ''!= womenObstetrics">
+				and women_obstetrics=#{womenObstetrics}
+			</if>
+			<if test="orthopaedic != null and ''!= orthopaedic">
+				and orthopaedic=#{orthopaedic}
+			</if>
+			<if test="radioactive != null and ''!= radioactive">
+				and radioactive=#{radioactive}
+			</if>
+
+	</select>
+
+	<select id="findKsList"  resultMap="ksMap">
+		select
+		<include refid="allColumn"/>
+		from ks
+			where 1=1 
+			<if test="hospitalId != null ">
+				and hospital_id=#{hospitalId}
+			</if>
+			<if test="generalSurgery != null and ''!= generalSurgery">
+				and general_surgery=#{generalSurgery}
+			</if>
+			<if test="thoracicSurgery != null and ''!= thoracicSurgery">
+				and thoracic_surgery=#{thoracicSurgery}
+			</if>
+			<if test="urology != null and ''!= urology">
+				and urology=#{urology}
+			</if>
+			<if test="womenObstetrics != null and ''!= womenObstetrics">
+				and women_obstetrics=#{womenObstetrics}
+			</if>
+			<if test="orthopaedic != null and ''!= orthopaedic">
+				and orthopaedic=#{orthopaedic}
+			</if>
+			<if test="radioactive != null and ''!= radioactive">
+				and radioactive=#{radioactive}
+			</if>
+			<if test="isDel != null ">
+				and is_del=#{isDel}
+			</if>
+	</select>
+
+
+</mapper>

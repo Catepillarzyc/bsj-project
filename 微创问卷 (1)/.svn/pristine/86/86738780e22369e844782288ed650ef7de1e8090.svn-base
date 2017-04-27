@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="#printUrl/css/normalize.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/css/samePage.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/css/zhongxinjianjie.css" type="text/css" rel="stylesheet"/>
+    <link href="#printUrl/css/common.css" type="text/css" rel="stylesheet">
+    <script src="#printUrl/js/jquery-1.12.2.js" type="text/javascript"></script>
+    <title>浙江省微创手术质量控制中心</title>
+</head>
+<body>
+<div class="header">
+    <div class="headerWrap">
+        <div class="header-top">
+            <img src="#printUrl/img/title.png" class="header-logo">
+            <p class="logo-msg1">团结<span class="letter-blank"></span>求实</p>
+            <p class="logo-msg2">规范<span class="letter-blank"></span>创新</p>
+        </div>
+        <div class="header-nav clearfix dh">
+ 	          <ul class="nav">
+                        <li class="dh1"><a href="#printUrl/weiChuang/index.html?userName=$!{user.userName}"  >首页</a></li>
+                        <li class="dh2"><a href="#printUrl/weiChuang/centerIntroduce.html?themeId=7&userName=$!{user.userName}" class="zxjj_on">中心简介</a></li>
+                        <li class="dh3"><a href="#printUrl/weiChuang/centerTrends.html?themeId=1&index=0&userName=$!{user.userName}" >中心动态</a></li>
+                        <li class="dh4"><a href="#printUrl/weiChuang/notice.html?themeId=5&index=0&userName=$!{user.userName}">通知公告</a></li>
+                        <li class="dh5 "><a href="#printUrl/weiChuang/qualityStandard.html?themeId=6&index=0&userName=$!{user.userName}">质控规范</a></li>
+                        <li class="dh6"><a href="#printUrl/weiChuang/healthTheme.html?themeId=3&index=0&userName=$!{user.userName}" >健康主题</a></li>
+                        <li class="dh7"><a href="#printUrl/weiChuang/regulation.html?themeId=2&index=0&userName=$!{user.userName}">标准法规</a></li>
+						<!--[if lte IE 7]>
+                <b></b><![endif]--><!-- 兼容不支持伪元素的 ie678 -->
+                 </ul>
+        </div>
+    </div>
+</div>
+	<input type="hidden"  class="d_hidUserName"  value="$!{user.userName}">
+<div class="blank-cont" style="height: 20px;"></div>
+<div class="main">
+    <div class="main-part clearfix">
+        <div class="main-part-l">
+            <div class="mod-lr mod zxjj">
+                <div class="mod-hb">
+                    <span class="mod-title">中心简介</span>
+                </div>
+                <div class="mod-bd">
+                    <ul>
+						#foreach($li in $list)
+                        <li class="d_themeLi" ><a class="d_childrenTheme">$li.theme<input type="hidden" name="themeId" value="$li.id"/></a></li>
+						#end
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="main-part-content">
+            <div class="mod-m mod zxgy" id="mod-zxgy">
+                <div class="mod-hb">
+                    <span class="mod-title">中心概要</span>
+                </div>
+                <div class="mod-bd clearfix">
+                    <p class="clearfix">浙江省临床麻醉质量控制中心成立于1989年，是浙江省卫生厅医政处直接领导的，协助医政处负责对全身医院麻醉科进行全面医疗质量
+                        管理的派出机构。‘省中心’挂靠在浙江大学医学院附属第二医院，同时接受医院的具体工作指导。在全省各地现分支有11个‘分中心’
+                        已经形成‘省中心——市（地）分中心——县（市）质控领导小组“三级严谨而有序的质控网络组织”，在加强医院麻醉科的管理，提高麻醉医疗质量
+                        发展麻醉学科建设等方面起了非常重要的作用。
+                    </p>
+                    <img src="#printUrl/img/tu.png" class="clearfix">
+                </div>
+            </div>
+            <div class="mod-m mod zxgy" id="mod-zxcy">
+                <div class="mod-hb">
+                    <span class="mod-title">中心成员</span>
+                </div>
+                <div class="mod-bd clearfix">
+                    <p class="clearfix">浙江省临床麻醉质量控制中心成立于1989年，是浙江省卫生厅医政处直接领导的，协助医政处负责对全身医院麻醉科进行全面医疗质量
+                        发展麻醉学科建设等方面起了非常重要的作用。
+                    </p>
+                    <img src="#printUrl/img/tu.png" class="clearfix">
+                </div>
+            </div>
+            <div class="mod-m mod zxgy" id="mod-dwjs">
+                <div class="mod-hb">
+                    <span class="mod-title">单位介绍</span>
+                </div>
+                <div class="mod-bd clearfix"">
+                    <p class="clearfix">浙江省临床麻醉质量控制中心成立于1989年，是浙江省卫生厅医政处直接领导的，协助医政处负责对全身医院麻醉科进行全面医疗质量
+                        管理的派出机构。‘省中心’挂靠在浙江大学医学院附属第二医院，同时接受医院的具体工作指导。在全省各地现分支有11个‘分中心’
+                    </p>
+                    <img src="#printUrl/img/tu.png" class="clearfix">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer" class="footer">
+    <div class="footer-nav clearfix">
+           <ul class="footer-nav-list">
+                <li><a href="#printUrl/weiChuang/centerIntroduce.html?themeId=7&userName=$!{user.userName}">中心简介</a></li>
+                <li><a href="#printUrl/weiChuang/centerTrends.html?themeId=1&index=0&userName=$!{user.userName}">中心动态</a></li>
+                <li><a href="#printUrl/weiChuang/notice.html?themeId=5&index=0&userName=$!{user.userName}">通知公告</a></li>
+                <li><a href="#printUrl/weiChuang/qualityStandard.html?themeId=6&index=0&userName=$!{user.userName}">质控规范</a></li>
+                <li><a href="#printUrl/weiChuang/healthTheme.html?themeId=3&index=0&userName=$!{user.userName}">健康主题</a></li>
+                <li><a href="#printUrl/weiChuang/regulation.html?themeId=2&index=0&userName=$!{user.userName}">标准法规</a></li>
+            </ul>  
+    </div>
+    <p>浙江省微创手术控制中心 </span><a>版权所有</a></p>
+    <p>电 话：0571-8888888/88888888<span class="letter-blank"></span>传 真：0571-88888888</p>
+    <p>地 址：浙江省杭州市xx路xx号<span class="letter-blank"></span>邮 编：888888 <a> 浙ICP备88888号</a></p>
+</div>
+<script >
+	webRoot ="#printUrl";
+	$(function(){	
+     $(".d_themeLi").each(function(){
+			var title = $(this).find("a").text();
+			if(title.indexOf("中心概要")>-1){
+			  $(this).attr("id","item_zxgy");
+			  $(this).find("a").addClass("abled_mod");
+			}
+			if(title.indexOf("中心成员")>-1){
+				$(this).attr("id","item_zxcy");
+			}
+			if(title.indexOf("单位介绍")>-1){
+				$(this).attr("id","item_dwjs");
+			}
+		})
+  })
+	
+	$(document).delegate(".d_childrenTheme","click",function(){
+	    var themeId = $(this).find("input[name=themeId]").val();
+		jQuery.ajax({
+			url: webRoot + "/weiChuang/getThemeContent.html",
+			type: "POST",
+			cache: "false",
+			async: "false",
+			data: {
+    			"themeId": themeId
+				 },
+			dataType: "json",
+			success: function(data,text) {
+				if(data.list.length>0){
+					for(var i=0; i<data.list.length; i++){
+						if(data.list[i].title.indexOf("中心概要")>-1){
+						
+						}
+					}
+				}
+			}
+			
+		})
+	})
+	$('.main-part-content').find('.mod-m').eq(0).show();
+	$('.zxjj .mod-bd li').click(function(){
+		var num = $('.zxjj .mod-bd li').index(this);
+		$(".abled_mod").removeClass('abled_mod');
+		$(this).find("a").addClass('abled_mod');
+		$('.main-part-content').find('.mod-m').hide();
+		$('.main-part-content').find('.mod-m').eq(num).show().siblings().hide();
+	})
+</script>
+</body>
+</html>

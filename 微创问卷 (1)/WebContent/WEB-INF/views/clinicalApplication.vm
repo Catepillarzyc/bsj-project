@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title></title>
+    <link href="#printUrl()/css/lcyy.css" rel="stylesheet" type="text/css" >
+    <link href="#printUrl()/css/textset.css" rel="stylesheet" type="text/css" >
+    <link href="#printUrl()/css/newcss.css" rel="stylesheet" type="text/css" >
+    <script type="text/javascript" src="#printUrl()/js/jquery-1.12.2.js"></script>
+</head>
+<body>
+<p class="ss-title" style="font-size: 14px;">腹腔镜肝脏切除术</p>
+<div class="question">
+    <div class="check-text"><span class="num">Q1.</span>目前贵院是否开展下列术式（已开展再行回答后续问题）：</div>
+    <div class="check-item">
+        <div class="item1"><input #if($!{clinicalApplication.fqLocalSurgery} == "腹腔镜局部肝脏切除术") checked #end type="checkbox"  name="checkbox6" value="腹腔镜局部肝脏切除术"/><label>腹腔镜局部肝脏切除术</label></div>
+        <div class="item1"><input #if($!{clinicalApplication.fqLeftSurgery} == "腹腔镜左肝外侧叶切除术") checked #end type="checkbox"  name="checkbox7" value="腹腔镜左肝外侧叶切除术"/><label>腹腔镜左肝外侧叶切除术</label></div>
+        <div class="item1"><input #if($!{clinicalApplication.fqLeftSideSurgery} == "腹腔镜左半肝切除术") checked #end type="checkbox"  name="checkbox8" value="腹腔镜左半肝切除术"/><label>腹腔镜左半肝切除术</label></div>
+        <div class="item1"><input #if($!{clinicalApplication.fqRightSideSurgery} == "腹腔镜右半肝切除术") checked #end type="checkbox"  name="checkbox9" value="腹腔镜右半肝切除术"/><label>腹腔镜右半肝切除术</label></div>
+    </div>
+</div>
+<div class="question">
+    <div class="check-text"><span class="num">Q2.</span>腹腔镜手术占同类手术的比例</div>
+    <div class="fill-long"><span class="f-text1">肝内胆管结石：</span><div class="fill-short-input"><input onkeypress="return myNumberic(event)" maxlength="5" type="text" value="$!{clinicalApplication.gndgProportion}" name="gndgProportion" style="width:4em;text-align:center;"/></div><div class="unit">%</div></div>
+    <div class="fill-long"><span class="f-text1">肝脏肿瘤：</span><div class="fill-short-input"><input onkeypress="return myNumberic(event)" maxlength="5" value="$!{clinicalApplication.gzlProportion}" name="gzlProportion"  type="text" style="width:4em;text-align:center;"/></div><div class="unit">%</div></div>
+</div>
+<div class="question">
+    <div>
+        <div class="fill-short"><span class="num">Q3.</span>是否实施加速康复外科:</div>
+        <div class="itemfree"><input id="shi" #if($!{clinicalApplication.kfProportion} == "是") checked #end type="radio" name="radio5" value="是"/><label>是</label><div class="f-per">
+        <div class="fill-short">比例</div><div class="fill-short-input"><input readonly="true" onkeypress="return myNumberic(event)" maxlength="5" value="$!{clinicalApplication.proportion}" name="proportion" type="text" style="width:4em;text-align:center;" /></div><div class="unit">%</div>
+    </div></div>
+        <div class="itemfree"><input id="fou" #if($!{clinicalApplication.kfProportion} == "否") checked #end type="radio" name="radio5" value="否"/><label>否</label></div>
+    </div>
+    
+</div>
+</div>
+<div class="question">
+    <div class="check-text"><span class="num">Q4.</span>未选用微创手术原因：</div>
+    <div class="check-item">
+        <div class="item1"><input #if($!{clinicalApplication.medical} == "既往上腹部手术病史") checked #end type="checkbox"  name="checkbox1" value="既往上腹部手术病史"/><label>既往上腹部手术病史</label></div>
+        <div class="item1"><input #if($!{clinicalApplication.cmDisease} == "严重心肺系统疾病") checked #end type="checkbox" name="checkbox2" value="严重心肺系统疾病"/><label>严重心肺系统疾病</label></div>
+        <div class="item1"><input #if($!{clinicalApplication.lackDoctor} == "缺少设备") checked #end type="checkbox" name="checkbox3" value="缺少设备"/><label>缺少设备</label></div>
+        <div class="item1"><input #if($!{clinicalApplication.lackEquipment} == "缺少微创外科医师") checked #end type="checkbox" name="checkbox4" value="缺少微创外科医师"/><label>缺少微创外科医师</label></div>
+        <div class="item1"><input id="oter" #if($!{clinicalApplication.otherReasons} == "其他原因") checked #end type="checkbox" name="checkbox5" value="其他原因"/><label>其他原因</label><input readonly="true" maxlength="20" #if($!{clinicalApplication.otherReasons} == "其他原因") value="$!{clinicalApplication.reasons}" #end  name="reasons"  type="text" style="width:16em" ></div>
+    </div>
+</div>
+<div class="question">
+    <div class="fill-short"><span class="num">Q5.</span>中转开腹手术比例</div><div onkeypress="return myNumberic(event)" class="fill-short-input"><input maxlength="5" value="$!{clinicalApplication.zkfProportion}"  name="zkfProportion" type="text" style="width:4em;text-align:center;"/></div><div class="unit">%</div>
+    <div class="f-zzyy">
+    	<div class="fill-short">中转原因： 腹腔粘连</div><div class="fill-short-input"><input maxlength="4" value="$!{clinicalApplication.fqldNumber}" name="fqldNumber" type="text" style="width:4em" onkeypress="keyPress()" class="center"/></div><div class="unit">例</div>
+    </div>
+    <div class="f-zzyy">
+    	<div class="fill-short">胆道损伤</div><div class="fill-short-input"><input maxlength="4" value="$!{clinicalApplication.ddssNumber}" name="ddssNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">例</div>
+    </div>
+    <div class="f-zzyy">
+    	<div class="fill-short">出血</div><div class="fill-short-input"><input maxlength="4" value="$!{clinicalApplication.bleedingNumber}" name="bleedingNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">例</div>
+    </div>
+    <div class="f-zzyy">
+    	<div class="fill-short">胆总管结石嵌顿</div><div class="fill-short-input"><input maxlength="4" value="$!{clinicalApplication.dzgjsNumber}" name="dzgjsNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">例</div>
+    </div>
+    <div class="f-zzyy">
+    	<div class="fill-short">其他</div><div class="fill-short-input"><input maxlength="4" value="$!{clinicalApplication.otherNumber}" name="otherNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">例</div>
+	</div>
+</div>
+<div class="question">
+    <div>
+        <div class="fill-short"><span class="num">Q6.</span>手术时间</div><div class="fill-short-input"><input maxlength="3" value="$!{clinicalApplication.operationTime}"  name="operationTime" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">min</div>      
+        <div class="fill-short f-ml2">出血</div><div class="fill-short-input"><input maxlength="4" value="$!{clinicalApplication.bleedingMl}" name="bleedingMl" type="text" onkeypress="keyPress()" style="width:4em" class="center"/></div><div class="unit">ml</div>
+        <div class="fill-short f-ml1">肝门阻断次数</div><div class="fill-short-input"><input maxlength="4" value="$!{clinicalApplication.portazsNumber}" name="portazsNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">次</div>
+        <div class="fill-short f-ml2">时间</div><div class="fill-short-input"><input maxlength="3" value="$!{clinicalApplication.portazsTime}" name="portazsTime" type="text" onkeypress="keyPress()" style="width:4em" class="center"/></div><div class="unit">min</div>   
+    </div>        
+</div>
+<div class="question">
+    <div class="fill-long"><span class="num">Q7.</span>并发症</div>
+    <div class="f-bfz f-bfz-first">
+        <div class="fill-short">二次手术</div><div class="fill-short-input"><input maxlength="4" value="$!{clinicalApplication.twoSurgeryNumber}" name="twoSurgeryNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">例</div>
+        <div class="fill-short">出血</div><div class="fill-short-input"><input maxlength="4" value="$!{clinicalApplication.bfzBleedingNumber}" name="bfzBleedingNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">例</div>
+    </div>
+    <div class="f-bfz">
+        <div class="fill-short">切口感染</div><div class="fill-short-input"><input maxlength="4" value="$!{clinicalApplication.bfzQkgrNumber}" name="bfzQkgrNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">例</div>
+        
+        <div class="fill-short">胆瘘</div><div class="fill-short-input"><input maxlength="4" value="$!{clinicalApplication.bfzFistulaNumber}" name="bfzFistulaNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">例</div>
+     </div>
+    <div class="f-bfz">
+        <div class="fill-short">腹腔感染</div><div class="fill-short-input"><input maxlength="4" value="$!{clinicalApplication.bfzFqgrNumber}" name="bfzFqgrNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">例</div>
+        
+        <div class="fill-short">其他</div><div class="fill-short-input"><input maxlength="4" value="$!{clinicalApplication.bfzOtherNumber}" name="bfzOtherNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">例</div>
+    </div>
+    <div class="block foot" style="text-align: center;"><div class="submit">提交问卷</div>
+</div>
+</body>
+<script>
+
+    var webRoot = '${link.contextPath}';
+    function myNumberic(e,len) {
+        var obj=e.srcElement || e.target;
+        var dot=obj.value.indexOf(".");
+        len =(typeof(len)=="undefined")?2:len;
+        var  key=e.keyCode|| e.which;
+            if(key==8 || key==9 || key==46 || (key>=37  && key<=40))//这里为了兼容Firefox的backspace,tab,del,方向键
+                 return true;
+            if (key<=57 && key>=48) { //数字
+                if(dot==-1)//没有小数点
+                     return true;
+                else if(obj.value.length<=dot+len)//小数位数
+                     return true;
+            } else if((key==46) && dot==-1){//小数点
+                return true;
+        }       
+        return false;
+    }
+	
+	function keyPress() {    
+         var keyCode = event.keyCode;    
+         if ((keyCode >= 48 && keyCode <= 57)){    
+             event.returnValue = true;    
+         } else {    
+             event.returnValue = false;    
+         }    
+    } 
+	
+	$("input[name=gndgProportion]").blur(function(){
+	      var gndgProportion=$(this).val();
+		  if(gndgProportion!=""){
+		     if(gndgProportion<0||gndgProportion>100){
+		         alert("肝内胆管结石数值范围只能为:>0和<=100！");
+		     }else if(/^[1-9]\d*(\.\d{1,2})?$/.test(gndgProportion)==false){
+		         alert("肝内胆管结石数据不合法！");
+		     } 
+		 }         
+	});
+	
+	$("input[name=gzlProportion]").blur(function(){
+	      var gzlProportion=$(this).val();
+		  if(gzlProportion != ""){
+		     if(gzlProportion<0||gzlProportion>100){
+		         alert("肝脏肿瘤数值范围只能为:>0和<=100！");
+		     }else if(/^[1-9]\d*(\.\d{1,2})?$/.test(gzlProportion)==false){
+		         alert("肝脏肿瘤数据不合法！");
+			 } 
+		 }
+	});
+	
+	$("input[name=proportion]").blur(function(){
+	      var proportion=$(this).val();
+		  if(proportion!=""){
+		     if(proportion<0||proportion>100){
+		         alert("康复外科数值范围只能为:>0和<=100！");
+		     }else if(/^[1-9]\d*(\.\d{1,2})?$/.test(proportion)==false){
+		         alert("康复外科数据不合法！");
+		     }     
+		 }             
+	});
+	   
+	$("input[name=zkfProportion]").blur(function(){
+	      var zkfProportion=$(this).val();
+		  if(zkfProportion!=""){
+		     if(zkfProportion<0||zkfProportion>100){
+		         alert("中转开腹手术数值范围只能为:>0和<=100！");
+		     }else if(/^[1-9]\d*(\.\d{1,2})?$/.test(zkfProportion)==false){
+		         alert("中转开腹手术数据不合法");
+		     }  
+		 }             
+	});
+    $(".center").blur(function(){
+	   var num = $(this).val().replace(/\s/g,"");
+	   var flag = /^(0|[1-9][0-9]*)?$/.test(num);
+	   if(flag == false){
+	       alert("输入不合法，只能输入正整数");
+		   return false;
+	   }
+	});
+	$(function(){
+	    if(jQuery("#oter").is(':checked')){
+		    $("input[name=reasons]").removeAttr("readonly")
+		}
+	})
+	$(function(){
+	     $("#oter").click(function(){
+            if(jQuery(this).is(':checked')){
+        	    $("input[name=reasons]").removeAttr("readonly");		    
+        	}else{
+			    $("input[name=reasons]").val("");
+        	    $("input[name=reasons]").attr("readonly","true");
+        	}
+	    });
+	
+	})
+	
+	$("#fou").click(function(){	    
+	    if(jQuery(this).is(':checked')){
+		    $("input[name=proportion]").val("");
+		    $("input[name=proportion]").attr("readonly","true");
+		}
+	});
+	$(function(){
+	    if(jQuery("#shi").is(':checked')){
+		    $("input[name=proportion]").removeAttr("readonly")
+		}
+	})
+	$("#shi").click(function(){
+	    if(jQuery(this).is(':checked')){
+		    $("input[name=proportion]").removeAttr("readonly")
+		}
+	});
+	
+    $(document).delegate("label","click",function(){
+        $(this).parent().find("input").click();
+    })
+    $(".question").click(function(){
+        $(".question").removeClass("on")
+        $(this).addClass("on")
+    })
+	
+	$(".submit").click(function(){        		 		              		 		 			  
+	     var fqLocalSurgery = $('input[name="checkbox6"]:checked').val();
+		 var fqLeftSurgery = $('input[name="checkbox7"]:checked').val();
+		 var fqLeftSideSurgery = $('input[name="checkbox8"]:checked').val();
+		 var fqRightSideSurgery = $('input[name="checkbox9"]:checked').val();
+         var gndgProportion = $("input[name=gndgProportion]").val();
+		 if(gndgProportion!=""){
+		     if(gndgProportion<0||gndgProportion>100){
+		         alert("肝内胆管结石数值范围只能为:>0和<=100！");
+				 return false;
+		     }else if(/^[1-9]\d*(\.\d{1,2})?$/.test(gndgProportion)==false){
+		         alert("肝内胆管结石数据不合法！");
+				 return false;
+		     } 
+		 }
+		 var gzlProportion = $("input[name=gzlProportion]").val();
+		 if(gzlProportion!=""){
+		     if(gzlProportion<0||gzlProportion>100){
+		         alert("肝脏肿瘤数值范围只能为:>0和<=100！");
+				 return false;
+		     }else if(/^[1-9]\d*(\.\d{1,2})?$/.test(gzlProportion)==false){
+		         alert("肝脏肿瘤数据不合法！");
+				 return false;
+		     } 
+		 }	 
+		 var proportion = $("input[name=proportion]").val();
+		 if(proportion!=""){
+		     if(proportion<0||proportion>100){
+		         alert("康复外科数值范围只能为:>0和<=100！");
+				 return false;
+		     }else if(/^[1-9]\d*(\.\d{1,2})?$/.test(proportion)==false){
+		         alert("康复外科数据不合法！");
+				 return false;
+		     }     
+		 }
+		 var kfProportion = $('input:radio[name="radio5"]:checked').val();
+		 
+		 var medical = $('input[name="checkbox1"]:checked').val();
+		 var cmDisease = $('input[name="checkbox2"]:checked').val();
+		 var lackDoctor = $('input[name="checkbox3"]:checked').val();
+		 var lackEquipment = $('input[name="checkbox4"]:checked').val();
+		 var otherReasons = $('input[name="checkbox5"]:checked').val();
+		 var reasons = $("input[name=reasons]").val();
+		 		 		 
+		 var zkfProportion = $("input[name=zkfProportion]").val();
+		 if(zkfProportion!=""){
+		     if(zkfProportion<0||zkfProportion>100){
+		         alert("中转开腹手术数值范围只能为:>0和<=100！");
+				 return false;
+		     }else if(/^[1-9]\d*(\.\d{1,2})?$/.test(zkfProportion)==false){
+		         alert("中转开腹手术数据不合法");
+				 return false;
+		     }  
+		 }	
+		 	 	 
+		 var fqldNumber = $("input[name=fqldNumber]").val();	
+         var flag2 = /^(undefined|0|[1-9][0-9]*)?$/.test(fqldNumber);
+         if(flag2 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var ddssNumber = $("input[name=ddssNumber]").val();
+         var flag3 = /^(undefined|0|[1-9][0-9]*)?$/.test(ddssNumber);
+         if(flag3 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+         var bleedingNumber = $("input[name=bleedingNumber]").val();
+         var flag4 = /^(undefined|0|[1-9][0-9]*)?$/.test(bleedingNumber);
+         if(flag4 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var dzgjsNumber = $("input[name=dzgjsNumber]").val();
+         var flag5 = /^(undefined|0|[1-9][0-9]*)?$/.test(dzgjsNumber);
+         if(flag5 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var otherNumber = $("input[name=otherNumber]").val();
+         var flag6 = /^(undefined|0|[1-9][0-9]*)?$/.test(otherNumber);
+         if(flag6 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var operationTime = $("input[name=operationTime]").val();
+         var flag7 = /^(undefined|0|[1-9][0-9]*)?$/.test(operationTime);
+         if(flag7 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var bleedingMl = $("input[name=bleedingMl]").val();
+         var flag8 = /^(undefined|0|[1-9][0-9]*)?$/.test(bleedingMl);
+         if(flag8 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+
+		 var portazsNumber = $("input[name=portazsNumber]").val();
+         var flag11 = /^(undefined|0|[1-9][0-9]*)?$/.test(portazsNumber);
+         if(flag11 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var portazsTime = $("input[name=portazsTime]").val();
+         var flag12 = /^(undefined|0|[1-9][0-9]*)?$/.test(portazsTime);
+         if(flag12 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var twoSurgeryNumber = $("input[name=twoSurgeryNumber]").val();
+         var flag13 = /^(undefined|0|[1-9][0-9]*)?$/.test(twoSurgeryNumber);
+         if(flag13 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var bfzBleedingNumber = $("input[name=bfzBleedingNumber]").val();
+         var flag14 = /^(undefined|0|[1-9][0-9]*)?$/.test(bfzBleedingNumber);
+         if(flag14 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var bfzFistulaNumber = $("input[name=bfzFistulaNumber]").val();
+         var flag15 = /^(undefined|0|[1-9][0-9]*)?$/.test(bfzFistulaNumber);
+         if(flag15 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var bfzQkgrNumber = $("input[name=bfzQkgrNumber]").val();
+         var flag16 = /^(undefined|0|[1-9][0-9]*)?$/.test(bfzQkgrNumber);
+         if(flag16 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var bfzFqgrNumber = $("input[name=bfzFqgrNumber]").val();
+         var flag17 = /^(undefined|0|[1-9][0-9]*)?$/.test(bfzFqgrNumber);
+         if(flag17 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var bfzOtherNumber = $("input[name=bfzOtherNumber]").val();
+         var flag18 = /^(undefined|0|[1-9][0-9]*)?$/.test(bfzOtherNumber);
+         if(flag18 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+	     jQuery.ajax({
+    			url:webRoot + "/submit.html",
+    			type:"POST",
+    			cache:false, 
+    			async:false, 
+    			data:{				
+				"fqLocalSurgery":fqLocalSurgery,
+				"fqLeftSurgery":fqLeftSurgery,
+				"fqLeftSideSurgery":fqLeftSideSurgery,
+				"fqRightSideSurgery":fqRightSideSurgery,
+				"gndgProportion":gndgProportion,
+				"gzlProportion":gzlProportion,
+				"kfProportion":kfProportion,
+				"proportion":proportion,				
+				"medical":medical,
+				"cmDisease":cmDisease,
+				"lackDoctor":lackDoctor,
+				"lackEquipment":lackEquipment,
+				"otherReasons":otherReasons,
+				"reasons":reasons,							
+				"zkfProportion":zkfProportion,
+				"fqldNumber":fqldNumber,
+				"ddssNumber":ddssNumber,
+				"bleedingNumber":bleedingNumber,
+				"dzgjsNumber":dzgjsNumber,
+				"otherNumber":otherNumber,
+				"operationTime":operationTime,
+				"bleedingMl":bleedingMl,
+				"portazsNumber":portazsNumber,
+				"portazsTime":portazsTime,
+				"twoSurgeryNumber":twoSurgeryNumber,
+				"bfzBleedingNumber":bfzBleedingNumber,
+				"bfzFistulaNumber":bfzFistulaNumber,
+				"bfzQkgrNumber":bfzQkgrNumber,
+				"bfzFqgrNumber":bfzFqgrNumber,
+				"bfzOtherNumber":bfzOtherNumber},
+    			dataType:"json",
+    			success:function(data,text){	
+					 alert("提交成功");
+				     parent.location.reload();
+	
+        	   }
+         });
+	});
+</script>
+</html>

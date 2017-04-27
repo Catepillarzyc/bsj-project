@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="#printUrl/css/normalize.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/css/wlzb_login.css" type="text/css" rel="stylesheet">
+	<script src="#printUrl/js/jquery-1.12.2.js" type="text/javascript"></script>	
+    <title>网络直报系统</title>
+</head>
+<body>
+    <div class="login-header">
+        <div class="login-header-top"></div>
+        <div class="login-header-logo">
+            <img src="#printUrl/img/logo.png">
+        </div>
+    </div>
+	<input type="hidden" id="d_loginFlag" value="$!{loginFlag}"/>
+    <div class="login-container">
+        <ul class="b_login-container">
+            <li id="login-container-title">
+                用户登录<img src="#printUrl/img/xg.png"><em style="color:#688b48">LOGIN</em>
+            </li>
+		
+                <li id="login-container-user">
+                    <span>用户名：</span><input type="text"  name="userName">
+                </li>
+                <li id="login-container-psw">
+                    <span>密<span style="width:1em;display: inline-block;"></span>码：</span><input type="text"  name="password" onfocus="this.type='password'">
+                </li>
+                <li id="login-container-identify">
+                    <span>验证码：</span><input type="text"  name="verifyCode" ><span class="identify-code d_fresh">$!{verifyCode}</span>
+                </li>
+                <li id="login-container-butt">
+                    <input type="button"  class="button"  id="sub" value="登录">
+						<span style="color:red" class="d_loginError"> </span>
+					    #if($!{loginFlag}==1)<span style="color:red" class="d_loginError">*用户名错误  </span>
+						#elseif($!{loginFlag}==3)<span style="color:red" class="d_loginError">* 密码错误，请重新输入</span>
+						#end
+                </li>
+	
+            <li id="login-contianer-copyright">
+                <p>
+                    浙江省微创手术质量控制中心
+                    <a>版权所有</a>
+                </p>
+                <p>
+                    <a>杭州百世伽</a>
+                    <a>技术支持</a>
+                </p>
+            </li>
+        </ul>
+    </div>
+    </div>
+<script >
+
+ var webRoot ="#printUrl"
+  $("input[type=text]").each(function(){
+  	$(this).attr("autocomplete","off");
+  })
+  $(document).delegate(".d_fresh","click",function(){  
+	 jQuery.ajax({
+          url:webRoot+"/weiChuang/refreshVerifyCode.html",
+          type: "POST",
+          cache: false,
+          async: true,
+          data: {},
+          dataType: "json",
+          success: function(data, text) {
+				if(data.verifyCode){
+					$(".d_fresh").html(data.verifyCode);
+					$("input[name=verifyCode]").val("");
+				}
+				
+		  }
+	 })	  
+  })
+    
+	$("#sub").click(function(){
+		var checkCode =$(".d_fresh").html();
+	    var userName =	$("input[name=userName]").val();
+		var psw = $("input[name=password]").val();
+		var verifyCode =$("input[name=verifyCode]").val();
+		if(verifyCode!=""){
+			if(verifyCode!=checkCode){
+				alert("验证码输入有误");	
+				return false;
+			}else{
+    			if(userName!="" && psw!=""){
+        				jQuery.ajax({
+            				url:webRoot+"/weiChuang/checkLogin.html",
+            			    type: "POST",
+            			    cache: false,
+            			    async: true,
+            			    data: {
+            					"userName": userName,
+            					"password":psw
+            				},
+            				dataType: "json",
+            				success: function(data, text) {
+            					if(data.loginFlag==1){
+            						$(".d_loginError").text("*用户名错误")
+            					}else if(data.loginFlag==3){
+            					  $(".d_loginError").text("* 密码错误，请重新输入")
+            					}else if(data.loginFlag==2){
+            						if(data.user.type==1){
+										  $(".d_loginError").text("*该账号没有登录此系统的权限")
+									}else if(data.user.type==2){
+										window.location.href="#printUrl/index.html";
+									}else if(data.user.type==3){
+										window.location.href="#printUrl/question/questionList.html";
+									}
+            					}
+            				}
+            			})	
+    			}else{
+        		   	alert("用户名和密码不能为空");
+					return false;
+    			}
+			}
+		}else{
+		   alert("请填写验证码");
+		   return false;
+		}
+	})
+ $("input[type=text]").each(function(){
+  	$(this).attr("autocomplete","off");
+  })
+  	$("input[name='userName'],input[name='password']").focus(function(){
+		$(".d_loginError").text("");
+	})	
+</script>
+</body>
+</html>

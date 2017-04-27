@@ -1,0 +1,13 @@
+package com.questionnaire.service;
+
+import com.questionnaire.pojo.User;
+import com.questionnaire.pojo.dto.PageDto;
+
+public interface UserService {
+	public User  queryUserByUserName(String userName);
+	public Integer updatePswByUserName(String userName, String newPsw);
+	public Integer  insertUser(User user);
+	public Integer updateIsBlock(Integer isBlock);
+	public PageDto<User> showPageUser(PageDto<User> page);
+	
+}

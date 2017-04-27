@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title></title>
+    <link href="#printUrl()/css/sbqk.css" rel="stylesheet" type="text/css" >
+    <link href="#printUrl()/css/textset.css" rel="stylesheet" type="text/css" >
+    <link href="#printUrl()/css/newcss.css" rel="stylesheet" type="text/css" >
+    <script type="text/javascript" src="#printUrl()/js/jquery-1.12.2.js"></script>
+	<script type="text/javascript" src="#printUrl()/laydate/laydate.js"></script>
+</head>
+<body>
+    <div class="question question-first">
+        <div class="fill-short"><span class="num">Q1.</span>医院现有腔镜机组数量:</div><div class="fill-short-input"><input id="a"  maxlength="4" value="$!{equipment.qNumber}"  name="qNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">套</div>
+        <div class="f-jz">
+        	<div class="fill-long">进口机组<div class="fill-short-input"><input maxlength="4" value="$!{equipment.qImportNumber}" name="qImportNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">套</div></div>
+        	<div class="fill-long">产地/品牌</div><div class="fill-long"><input maxlength="20" value="$!{equipment.qImportBrand}" name="qImportBrand" type="text" style="width:15em" /></div>
+        </div>
+        <div class="f-jz">
+        	<div class="fill-short">国产机组</div><div class="fill-short-input"><input maxlength="4" value="$!{equipment.qDomesticNumber}" name="qDomesticNumber" type="text" style="width:4em" onkeypress="keyPress()" class="center"/></div><div class="unit">套</div>
+        	<div class="fill-long">产地/品牌</div><div class="fill-long"><input maxlength="20" value="$!{equipment.qDomesticBrand}" name="qDomesticBrand" type="text" style="width:15em" /></div>
+    	</div>
+    </div>
+    <div class="question">
+        <div class="fill-short"><span class="num">Q2.</span>现有高清腹腔镜机组:</div><div class="fill-short-input"><input maxlength="4" value="$!{equipment.gfqNumber}" name="gfqNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">套</div>
+        <div class="fill-short" style="margin-left:20px;">标清腹腔镜机组 </div><div class="fill-short-input"><input maxlength="4" value="$!{equipment.standardfq}" name="standardfq" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">套</div>
+        <div class="f-jz">
+        	<div class="fill-short">进口机组</div><div class="fill-short-input"><input maxlength="4" value="$!{equipment.gfqImportNumber}" name="gfqImportNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">套</div>
+        	<div class="fill-short">国产机组</div><div class="fill-short-input"><input maxlength="4" value="$!{equipment.domesticsfq}" name="domesticsfq" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">套</div>
+    	</div>
+    </div>
+    <div class="question">
+        <div class="fill-short"><span class="num">Q3.</span>近3年新购置腹腔镜机组数量:</div><div class="fill-short-input"><input maxlength="4" value="$!{equipment.treeYeanfqNumber}" name="treeYeanfqNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">套</div>
+    </div>
+    <div class="question">
+        <div class="fill-short"><span class="num">Q4.</span>日均腔镜手术台次:</div><div class="fill-short-input"><input maxlength="4" value="$!{equipment.daySurNumber}" name="daySurNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">台</div>
+        
+        <div class="fill-short f-ml">常用腔镜机组</div><div class="fill-short-input"><input maxlength="4" value="$!{equipment.commonlyNumber}" name="commonlyNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">台</div>
+        
+        <div class="fill-short f-ml">备用</div><div class="fill-short-input"><input maxlength="4" value="$!{equipment.standbyNumber}" name="standbyNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">台</div>
+        
+        <div class="fill-short f-ml">空闲/缺口</div><div class="fill-short-input"><input maxlength="4" value="$!{equipment.freeNumber}" name="freeNumber" onkeypress="keyPress()" type="text" style="width:4em" class="center"/></div><div class="unit">台</div>
+    </div>
+    <div class="question">
+        <div class="radio-text"><span class="num">Q5.</span>近3年来有无新开展的腔镜手术方式:</div>
+        <div class="radio-item">
+            <div class="item2 f-ml"><input id="you" type="radio" #if($!{equipment.treeYeaSurgeryYw} == "有") checked #end name="radio11" value="有"/><label>有</label></div>
+            <div class="item2 f-ml"><input id="wu" type="radio" #if($!{equipment.treeYeaSurgeryYw} == "无") checked #end name="radio11" value="无"/><label>无</label></div>
+            <div class="fill-long-input f-ml"><textarea id="example" maxlength="200" readonly="true" placeholder="如有，请列举">$!{equipment.example}</textarea></div>
+        </div>
+    </div>
+    <div class="question">
+        <div class="radio-text"><span class="num">Q6.</span>贵院腔镜设备供需是否平衡：</div>
+        <div class="radio-item">
+            <div class="item1 f-ml"><input type="radio" #if($!{equipment.supplyState} == "供大于求") checked #end name="radio16" value="供大于求"/><label>供大于求</label></div>
+            <div class="item1 f-ml"><input type="radio" #if($!{equipment.supplyState} == "供需平衡") checked #end name="radio16" value="供需平衡"/><label>供需平衡 </label></div>
+            <div class="item1 f-ml"><input type="radio" #if($!{equipment.supplyState} == "供不应求") checked #end name="radio16" value="供不应求"/><label>供不应求</label></div>
+        </div>
+    </div>
+    <div class="question" id="f-question7">
+        <div class="radio-text"><span class="num">Q7.</span>腔镜器械消毒</div>
+        <div class="fill-short f-ml clearfix" style="display:block;height:30px;line-height:30px">
+			<span style="display:inline-block;float:left">消毒方式：</span>
+            <div class="itemfree"><input type="radio" #if($!{equipment.disinWay} == "高压灭菌") checked #end name="radio7" value="高压灭菌"/><label style="margin-left:5px">高压灭菌</label></div>
+            <div class="itemfree f-ml"><input type="radio" #if($!{equipment.disinWay} == "消毒液体浸泡") checked #end name="radio7" value="消毒液体浸泡"/><label style="margin-left:5px">消毒液体浸泡 </label></div>
+        </div>
+        
+        <div class="fill-long f-ml">消毒液体种类：<div class="fill-short-input"><input maxlength="10" value="$!{equipment.liquidType}" name="liquidType" type="text" style="width:11em" /></div></div>
+        <div class="fill-long f-ml">厂家：<div class="fill-short-input"><input maxlength="15" value="$!{equipment.manufacturer}" name="manufacturer" type="text" style="width:16em" /></div></div>
+        <div class="fill-long f-ml">消毒时间：<div class="fill-short-input"><input  value="$!{equipment.disinTime}" name="disinTime" class="laydate-icon-default" id="J-xl" type="text" style="width:14em;text-align:center" /></div></div>
+    </div>
+    <div class="foot"><a href="#" class="go">下一组</a></div>
+</body>
+<script>
+
+    var webRoot = '${link.contextPath}';
+	
+	function keyPress() {    
+         var keyCode = event.keyCode;    
+         if ((keyCode >= 48 && keyCode <= 57)){    
+             event.returnValue = true;    
+         } else {    
+             event.returnValue = false;    
+         }    
+    } 
+    $(".center").blur(function(){
+	   var num = $(this).val().replace(/\s/g,"");
+	   var flag = /^(0|[1-9][0-9]*)?$/.test(num);
+	   if(flag == false){
+	       alert("输入不合法，只能输入正整数");
+		   return false;
+	   }
+	});
+	
+	$(function(){
+	    if(jQuery("#you").is(':checked')){
+		    $("#example").removeAttr("readonly")
+		}
+	})
+	$("#wu").click(function(){	    
+	    if(jQuery(this).is(':checked')){
+		    $("#example").val("");
+		    $("#example").attr("readonly","true");
+		}
+	});
+	$("#you").click(function(){
+	    if(jQuery(this).is(':checked')){
+		    $("#example").removeAttr("readonly")
+		}
+	});
+	laydate({
+        elem: '#J-xl'
+    });
+	
+    $(document).delegate("label","click",function(){
+        $(this).parent().find("input").click();
+    })
+    $(".question").click(function(){
+        $(".question").removeClass("on")
+        $(this).addClass("on")
+    })
+	
+	$(".foot").click(function(){
+		 var qNumber = $("input[name=qNumber]").val();
+		 var eflag1 = /^(0|[1-9][0-9]*)?$/.test(qNumber);
+         if(eflag1 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+         var qImportNumber = $("input[name=qImportNumber]").val();
+		 var eflag2 = /^(0|[1-9][0-9]*)?$/.test(qImportNumber);
+         if(eflag2 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var qImportBrand = $("input[name=qImportBrand]").val();
+		 var qDomesticNumber = $("input[name=qDomesticNumber]").val();
+		 var eflag3 = /^(0|[1-9][0-9]*)?$/.test(qDomesticNumber);
+         if(eflag3 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var qDomesticBrand = $("input[name=qDomesticBrand]").val();
+		 var gfqNumber = $("input[name=gfqNumber]").val();
+		 var eflag4 = /^(0|[1-9][0-9]*)?$/.test(gfqNumber);
+         if(eflag4 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var gfqImportNumber = $("input[name=gfqImportNumber]").val();
+		 var eflag5 = /^(0|[1-9][0-9]*)?$/.test(gfqImportNumber);
+         if(eflag5 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var standardfq = $("input[name=standardfq]").val();	
+		 var eflag6 = /^(0|[1-9][0-9]*)?$/.test(standardfq);
+         if(eflag6 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var domesticsfq = $("input[name=domesticsfq]").val();
+		 var eflag7 = /^(0|[1-9][0-9]*)?$/.test(domesticsfq);
+         if(eflag7 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+         var treeYeanfqNumber = $("input[name=treeYeanfqNumber]").val();
+		 var eflag8 = /^(0|[1-9][0-9]*)?$/.test(treeYeanfqNumber);
+         if(eflag8 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var daySurNumber = $("input[name=daySurNumber]").val();
+		 var eflag9 = /^(0|[1-9][0-9]*)?$/.test(daySurNumber);
+         if(eflag9 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var commonlyNumber = $("input[name=commonlyNumber]").val();
+		 var eflag10 = /^(0|[1-9][0-9]*)?$/.test(commonlyNumber);
+         if(eflag10 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var standbyNumber = $("input[name=standbyNumber]").val();
+		 var eflag11 = /^(0|[1-9][0-9]*)?$/.test(standbyNumber);
+         if(eflag11 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var freeNumber = $("input[name=freeNumber]").val();
+		 var eflag12 = /^(0|[1-9][0-9]*)?$/.test(freeNumber);
+         if(eflag12 == false){
+             alert("输入不合法，只能输入正整数");
+             return false;
+         }
+		 var treeYeaSurgeryYw = $('input:radio[name="radio11"]:checked').val();
+		 var example = $("#example").val();
+		 var supplyState = $('input:radio[name="radio16"]:checked').val();
+		 var disinWay = $('input:radio[name="radio7"]:checked').val(); 
+		 var liquidType = $("input[name=liquidType]").val();
+		 var manufacturer = $("input[name=manufacturer]").val();
+		 var disinTime = $("input[name=disinTime]").val();	
+		 
+		 $(self.parent.document).find("#clinicalApplication").click();
+	     jQuery.ajax({
+    			url:webRoot + "/saveEquipment.html",
+    			type:"POST",
+    			cache:false, 
+    			async:false, 
+    			data:{
+				"qNumber":qNumber,
+				"qImportNumber":qImportNumber,
+				"qImportBrand":qImportBrand,
+				"qDomesticNumber":qDomesticNumber,
+				"qDomesticBrand":qDomesticBrand,
+				"gfqNumber":gfqNumber,
+				"gfqImportNumber":gfqImportNumber,
+				"standardfq":standardfq,
+				"domesticsfq":domesticsfq,
+				"treeYeanfqNumber":treeYeanfqNumber,
+				"daySurNumber":daySurNumber,
+				"commonlyNumber":commonlyNumber,
+				"standbyNumber":standbyNumber,
+				"freeNumber":freeNumber,
+				"treeYeaSurgeryYw":treeYeaSurgeryYw,
+				"example":example,
+				"supplyState":supplyState,
+				"disinWay":disinWay,
+				"liquidType":liquidType,
+				"manufacturer":manufacturer,
+				"disinTime":disinTime},
+    			dataType:"json",
+    			success:function(data,text){
+				    //parent.location.reload();
+        	  }
+         });
+	});
+</script>
+</html>

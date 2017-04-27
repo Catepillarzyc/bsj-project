@@ -1,0 +1,65 @@
+package com.questionnaire.service.impl;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.questionnaire.dao.NewsDao;
+import com.questionnaire.pojo.News;
+import com.questionnaire.pojo.dto.PageDto;
+import com.questionnaire.service.NewsService;
+
+
+
+@Component("NewsService")
+public class NewsServiceImpl implements NewsService {
+	@Autowired
+	private NewsDao newsDao;
+
+	@Override
+	public Map<Integer, News> showNews(Integer size, Integer themeId) {
+		List<News> list =  newsDao.queryNewsAll();	
+		Map<Integer, News>  map = new HashMap<Integer, News>();
+		Integer count=0;
+		for(News news : list){
+			if(news.getThemeId()== themeId){
+				if(count<=size){
+					count++;
+					map.put(news.getId(), news);
+				}
+			}
+		}
+		return map;
+	}
+
+	@Override
+	public News queryNewsById(Integer newsId) {
+		return newsDao.queryNewsById(newsId);
+	}
+
+
+
+	@Override
+	public List<News> showImport() {
+		List<News> list = newsDao.queryNewsByImport();	
+		return list;
+	}
+
+	@Override
+	public PageDto<News> showSearchPage(Integer themeId, PageDto<News> page, String keyWord) {
+		List<News> list = newsDao.queryNewsByKeyWordAndThemeId(themeId, keyWord, page.getStartIndex(), page.getPageSize());
+		page.setRecords(list);
+		page.setTotalRecords(newsDao.countNewsByKeyWordAndThemeId(themeId, keyWord));
+		return page;
+	}
+
+	@Override
+	public List<News> showNewsList(Integer themeId) {
+		List<News> list =newsDao.queryNewsByKeyWordAndThemeId(themeId,null, null, null);
+		return list;
+	}
+
+}

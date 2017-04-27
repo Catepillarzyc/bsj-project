@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.questionnaire.dao.NewsDao">
+	<resultMap id="newsMap" type="com.questionnaire.pojo.News">
+		<result column="id" property="id" />
+		<result column="theme_id"   property="themeId"   />
+		<result column="title"  property="title"/>
+		<result column="content" property="content" />
+		<result column="image" property="image" />
+		<result column="is_import" property="isImport"  />
+		<result column="is_del" property="isDel" />
+		<result column="news_date" property="newsDate"/>
+		<result column="gmt_created" property="gmtCreated" />
+		<result column="gmt_modified" property="gmtModified" />
+	</resultMap>
+	<sql id="allColumn">
+		id,theme_id,title,content,image,is_import,is_del,news_date, gmt_created,gmt_modified
+	</sql>
+	
+	<select id="queryNewsAll" resultMap="newsMap">
+		select 
+		  <include refid="allColumn"/>
+	   from news
+	   where is_del=0 
+		order by news_date desc
+	</select>
+	
+	<!-- 根据id查找新闻 -->
+	<select id="queryNewsById"  resultMap="newsMap">
+		select 
+			<include refid="allColumn"/>
+		from news
+		where is_del=0
+		and id=#{id}	
+	</select>
+
+	
+	<!-- 查找重要新闻 -->
+	<select id="queryNewsByImport" resultMap="newsMap">
+		select
+		<include refid="allColumn"/>
+		from news
+		where is_del=0 and is_import=1
+		order by news_date desc
+	</select>
+	
+	<!-- 根据新闻主题和新闻标题关键字查询新闻 -->
+	<select id="queryNewsByKeyWordAndThemeId"  resultMap="newsMap">
+		select
+		<include refid="allColumn"/>
+		from news 
+		where is_del=0 
+		<if test="themeId!=null and themeId!=''">
+	    	and theme_id=#{themeId}
+		</if>
+		<if test="keyWord!=null and keyWord!=''">
+			and title like concat('%',#{keyWord}, '%' )
+		</if>
+		order by news_date desc
+		<if test="size != null and start != null" >
+		    limit #{start},#{size}
+   	 	</if>	
+	</select>
+	<!--根据新闻主题和新闻标题的搜索词计算统计新闻的数量 -->
+	<select id="countNewsByKeyWordAndThemeId"  resultType="java.lang.Integer">
+		select count(id)
+		from news 
+		where is_del=0
+	<if test="themeId!=null and themeId!=''">
+	    	and theme_id=#{themeId}
+		</if>
+		<if test="keyWord!=null and keyWord!=''">
+			and title like concat('%',#{keyWord}, '%' )
+		</if>
+	</select>
+	<!-- 按新闻主题查询新闻 -->
+	<select id="queryNewsByThemeId"  resultMap="newsMap">
+		select
+		<include refid="allColumn"/>
+		from news 
+		where is_del =0 and 
+		<if test="themeId!=null and themeId!=''">
+		 theme_id=#{themeId}
+		</if>
+		order by news_date desc
+	</select>
+	<!-- 添加新闻 -->
+	<insert id="insertNews"  parameterType="com.questionnaire.pojo.News">
+		 insert  news
+		( theme_id,
+		  title,
+		  content,
+		  is_import,
+		  is_del,
+		  news_date,
+		  gmt_created,
+		  gmt_modified
+		    ) values
+		 (
+		   #{news.themeId},
+		   #{news.title},
+		   #{news.content},
+		   <if test="news.isImport!=null and news.isImport!=''">
+		   #{news.isImport},
+		   </if>
+		   0,
+		   now(),
+		   now(),
+		   now() )
+	</insert>
+	<!-- 根据新闻id修改新闻 -->
+	<update id="updateNewsById"  parameterType="com.questionnaire.pojo.News">
+		update news
+		 set theme_id=#{news.themeId},
+		 title = #{news.title},
+		 content= #{news.content},
+		 is_import = #{news.isImport},
+		 news_date= now(),
+		 gmt_created=now(),
+		 gmt_modified=now()
+		 where is_del =0 and id = #{news.id}
+	</update>
+	<!-- 根据id删除新闻 -->
+	<update id="deleteNewsById">
+		update news
+		set is_del= 1
+		where id=#{id}
+	</update>
+	
+</mapper>	

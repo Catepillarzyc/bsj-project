@@ -1,0 +1,74 @@
+@charset "utf-8";
+/* CSS Document */
+
+.text-main{
+	width:100%;
+	margin:0 auto;
+	}
+.question{
+	padding: 10px;
+	border-bottom: 1px #C6D7F1 solid;
+	}
+.on{
+	background: #E5F1FF;
+}
+.num{
+	font-size: 13px;
+	color:#2971BB;
+}
+.radio-text,.check-text,.fill-long{
+	font-size:13px;
+	}
+.fill-short,.unit,.comma{
+	font-size:13px;
+	}
+.check-item label{
+	margin-left:5px;
+    vertical-align: middle;
+	}
+.radio-item label{
+	margin-left:5px;
+    vertical-align: middle;
+	}
+.item2{
+	font-size:13px;
+	width:45%;
+	display:inline-block;
+	vertical-align:bottom;
+	}
+.item4{
+	font-size:13px;
+	width:24%;
+	display:inline-block;
+	}
+.item1{
+	font-size:13px;
+	display:block
+	}
+.itemfree{
+	font-size:13px;
+	display:inline-block;
+	}
+.comma{
+	display:inline;
+	}
+.fill-short{
+	display:inline;
+	}
+.fill-short-input{
+	margin:0 5px;
+	}
+input[type=text]{
+	border-top:none;
+	border-left:none;
+	border-right:none;
+	border-bottom:1px solid #B9B4B4;
+	}
+.unit{
+	display:inline;
+	}
+textarea{
+	width:90%;
+	height:100px;
+	padding:5px;
+	}

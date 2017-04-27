@@ -1,0 +1,11 @@
+package com.questionnaire.dao;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.questionnaire.pojo.User;
+
+
+
+public interface UserDao {
+	public User queryUserByUserName(@Param("userName") String userName);
+}

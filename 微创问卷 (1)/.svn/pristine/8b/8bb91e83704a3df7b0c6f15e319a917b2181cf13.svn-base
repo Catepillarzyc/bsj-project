@@ -1,0 +1,21 @@
+$(function() {
+	var subFlag=false;
+	$(document).delegate(".d_subButton","click",function(){
+		subFlag =true;
+		var name =$("input[name=userName]").val();
+		var psw =$("input[name=password]").val();
+		if(name!=''&& psw!=''&& subFlag){
+			$("#subMit").submit();
+		}else{
+		   	alert("用户名和密码不能为空");
+		}
+	})
+	 var name=$(".d_hidUserName").val();
+	if(jQuery.trim(name)!=""){
+		$("#login-succeed").show();
+		$("#login-not").hide();
+	}else{
+		$("#login-succeed").hide();
+		$("#login-not").show();
+	}
+})

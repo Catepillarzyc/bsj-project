@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xsi:schemaLocation="http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+    <mvc:default-servlet-handler />
+
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+    <!-- property loader -->
+    <bean id="webPropertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+        <property name="locations">
+            <list>
+                <value>classpath:/com/questionnaire/config/velocity.properties</value>
+            </list>
+        </property>
+    </bean>
+    <!-- shared velocity engine which will be used by email and page presentation -->
+    <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+        <property name="resourceLoaderPath" value="${velocity.resourceLoaderPath}" />
+        <property name="preferFileSystemAccess" value="${velocity.preferFileSystemAccess}" />
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">${input.encoding}</prop>
+                <prop key="output.encoding">${output.encoding}</prop>
+                <prop key="file.resource.loader.cache">false</prop>
+                <prop key="file.resource.loader.modificationCheckInterval">2</prop>
+                <prop key="velocimacro.library">macro.vm</prop>
+                <prop key="velocimacro.library.autoreload">true</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="velocityEngine" ref="velocityEngine" />
+    </bean>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="exposeSpringMacroHelpers" value="true" />
+        <property name="prefix" value=""/>
+        <property name="suffix" value="${velocity.suffix}"/>
+        <property name="contentType" value="text/html;charset=UTF-8" />
+        <property name="toolboxConfigLocation" value="/WEB-INF/vm-tools.xml"/>
+        <property name="viewClass" value="com.questionnaire.util.velocity.VelocityToolbox2View"/>
+    </bean>
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8"></property>
+        <property name="maxUploadSize" value="10485760000"></property>
+        <property name="maxInMemorySize" value="40960"></property>
+    </bean>
+
+    <bean class="com.questionnaire.web.filter.InitSystem"/>
+    <context:component-scan base-package="com.questionnaire" />
+
+</beans>

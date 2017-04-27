@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="#printUrl/weiChuangManage/css/normalize.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/weiChuangManage/css/common.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/weiChuangManage/css/accountLists.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="#printUrl/js/jquery-1.12.2.js"></script>
+    <script type="text/javascript" src="#printUrl/js/index.js"></script>
+    <script type="text/javascript" src="#printUrl/js/common.js"></script>
+    <script type="text/javascript" src="#printUrl/js/accountList.js"></script>
+    <title></title>
+</head>
+<body style="overflow-x: hidden;background:#FFF">
+    <div id="f-right-items">
+        <div class="f-xjzh-header f-xj-header"><a href="#printUrl/weiChuangManage/userList.html"><img src="img/xjzhfh.png"></a>新建账号</div>
+		<form  action="#printUrl/weiChuangManage/modifyUser.html" method="post" id="subForm">
+        <div class="f-xjzh-main f-create f-xj-main">
+            <p class="f-xj-first"><span class="f-name-text f-text">单位名称</span><input type="text" class="f-company-name f-xjzh-input f-xj-input" name="hosptialName"  value="$!{ue.hosptialName}"></p>
+            <p>
+                <span class="f-power-text f-text">权限</span>
+				#if($!{ue.type}==3) 
+					<input type="radio" name="type"  checked  class="f-radio"   value="3">普通用户
+                     <input type="radio" name="type" class="f-super f-radio" value="2">超级管理员
+				#elseif($!{ue.type}== 2)
+					 <input type="radio" name="type" class="f-radio"   value="3">普通用户
+                     <input type="radio" name="type" checked class="f-super f-radio" value="2">超级管理员
+				#else
+					 <input type="radio" name="type" checked class="f-radio"   value="3">普通用户
+                     <input type="radio" name="type"  class="f-super f-radio" value="2">超级管理员
+				#end		
+            </p>
+            <p><span class="f-user-text f-text">用户名</span><input type="text" class="f-xjzh-input f-xjzh-user f-xj-input" name="userName" value="$!{ue.userName}"> <span class="d_userNameExist"  style="color:red;margin-left:10px"></span></p>
+            <p><span class="f-psw-text f-text">密码</span>
+				<input type="text" class="f-xjzh-input f-xjzh-psw f-xj-input" name="password" id="tx" value=""/>
+			    <input type="password" class="f-xjzh-input f-xjzh-psw f-xj-input" name="password" id="psw" style="display:none" value="$!{ue.password}"/>	
+             </p>
+            <p class="f-xjzh-tips  d_errorMessage"></p>
+            <p class="f-xj-buttons"><img src="#printUrl/weiChuangManage/img/xjzhbc.png" class="f-xjzh-save f-xj-button d_insertSure"><img src="#printUrl/weiChuangManage/img/xjzhqk.png" class="f-xjzh-clear  f-xj-button d_removeAll "></p>
+        </div>
+		 </form>	
+        <div class="f-return dn ">
+            <h1 class="create-success">操作成功！</h1>
+            <p class="return-menu"><a href="#printUrl/weiChuangManage/userList.html">返回账号列表</a></p>
+        </div>
+    </div>
+
+</body>
+<script >
+	 var webRoot = '${link.contextPath}';
+	 var flag ="$!{flag}";
+	 $("input[type=text]").each(function(){
+		  	$(this).attr("autocomplete","off");
+	 })
+$(function(){
+	
+	if(flag==1){
+		  $('.f-create').addClass('dn');
+		  $('.f-return').removeClass('dn');
+	}
+   	  $("#tx").focus(function(){
+          if(this.value!=""){
+		  } 
+    	  $(this).css("display","none");
+		  $(this).attr("name","");
+          $("#psw").css("display","inline-block");
+		  $("#psw").val(""); 
+          $("#psw").focus(); 
+   	 })
+//     $("#psw").blur(function(){
+ //         if(this.value!=""){
+  //       } 
+ //      $("#psw").css("display","none");
+//       $("#tx").css("display","");
+//     })
+	 
+   })
+
+  $("input[name='userName'],input[name='password']").blur(function(){
+  	     var value = $(this).val();
+		 if(value==""){
+		 	$(".d_errorMessage").text("用户名和密码不能为空");
+		 }
+	})	 
+     $("input[name='userName'],input[name='password']").focus(function(){
+	 	   if($(this).attr("name")=="userName"){
+		      $(".d_userNameExist").text("")
+		   }
+		 	$(".d_errorMessage").text("");
+	})	 
+ 	
+	
+  var subFlag = true;
+  $(document).delegate(".d_insertSure","click",function(){
+	 var errMessage =$(".d_errorMessage").text();
+	 var userName =$("input[name=userName]").val();
+	 var nameError =$(".d_userNameExist").text();
+	 var psw =$("input[name='password']").val();
+	 if(userName=="" || psw==""){
+			$(".d_errorMessage").text("用户名和密码不能为空");
+	 }
+	if(subFlag && userName!=""&& psw!="" && errMessage=="" && nameError==""){
+		subFlag=false;
+		$("#subForm").submit();
+	}
+  })
+    
+  $("input[name=userName]").blur(function(){
+  		var userName = jQuery.trim($(this).val());
+		if(userName!=""){
+			jQuery.ajax({
+				url:webRoot+"/weiChuangManage/userNameIsExist.html",
+			    type: "POST",
+			    cache: false,
+			    async: true,
+			    data: {
+					"userName": userName
+				},
+				dataType: "json",
+				success: function(data, text) {
+					if(data.flag>0){
+						$(".d_userNameExist").text("此用户名已存在");
+					}
+				}
+			 })		
+		}
+  })
+  
+  $(".d_removeAll").click(function(){
+    window.location.href="${link.contextPath}/weiChuangManage/creatUser.html"
+  })
+  
+</script>
+</html>

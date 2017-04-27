@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>介绍页</title>
+    <link href="#printUrl()/css/jieshao.css" rel="stylesheet" type="text/css" >
+    <link href="#printUrl()/css/newcss.css" rel="stylesheet" type="text/css" >
+    <script type="text/javascript" src="#printUrl()/js/jquery-1.12.2.js"></script>
+</head>
+<body>
+    <div class="head">浙江省微创技术质量控制中心调查问卷</div>
+    <div class="logo"><img src="img/logo.png" style="width:50%"></div>
+    <div class="main">
+        <p>　　近20年来,微创外科技术迅速发展, 微创理念不断深入人心，不单单影响了无数的临床医生，也深刻地改变了医学的观念和操作，造福了广大的患者。</p>
+        <p>　　但我们也必须认识到微创技术目前的发展也存在很多不足，特别是地区发展极不平衡。在基层医院，许多优秀的微创技术并没有得到充分的利用，某些微创技术使用不规范不合理，还有某些微创技术的使用存在超范围、超指南的情况。</p>
+        <p>　　因此在浙江省卫计委的支持下，我们成立浙江省微创技术质量控制中心，旨在蔡秀军教授的领导下，在微创技术质量控制中心委员会各专家的帮助下，进一步提高浙江省微创技术，使之规范化、合理化、优质化，更好的造福广大患者，更好地从微创技术获益。</p>
+        <p>　　本调查问卷旨在了解目前微创技术在各单位的使用情况，了解各个单位在微创技术人员和设备情况，时间有限，存在不足与错误，欢迎批评指正。</p>
+    </div>
+	<div class="foot"><a href="${link.contextPath}/index.html" class="go">点击进入</a></div>
+</body>
+<script>
+
+    if(top.location!=self.location){
+        top.location=self.location;
+    }
+		
+</script>
+</html>

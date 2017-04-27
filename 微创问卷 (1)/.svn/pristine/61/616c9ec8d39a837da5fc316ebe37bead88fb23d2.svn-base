@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.questionnaire.dao.HospitalDao">
+
+	<resultMap id="hospitalMap" type="com.questionnaire.pojo.Hospital">
+		<result column="id" property="id" />
+		<result column="hospital_name" property="hospitalName" />
+		<result column="legal_representative" property="legalRepresentative" />
+		<result column="contact" property="contact" />
+		<result column="hospital_address" property="hospitalAddress" />
+		<result column="telephone_fax" property="telephoneFax" />
+		<result column="ks_position" property="ksPosition" />
+		<result column="email" property="email" />
+		<result column="contact_phone" property="contactPhone" />
+		<result column="hospital_level" property="hospitalLevel" />
+		<result column="hospital_nature" property="hospitalNature" />
+		<result column="beds" property="beds" />
+		<result column="is_del" property="isDel" />
+		<result column="gmt_created" property="gmtCreated" />
+		<result column="gmt_modified" property="gmtModified" />
+	</resultMap>
+	<sql id="allColumn">
+		id,hospital_name,legal_representative,contact,hospital_address,telephone_fax,ks_position,email,contact_phone,hospital_level,hospital_nature,beds,is_del,gmt_created,gmt_modified
+	</sql>
+	<insert id="addHospital" >
+		insert into hospital
+		(
+			hospital_name,
+			legal_representative,
+			contact,
+			hospital_address,
+			telephone_fax,
+			ks_position,
+			email,
+			contact_phone,
+			hospital_level,
+			hospital_nature,
+			beds,
+			is_del,
+			gmt_created,
+			gmt_modified
+		) 
+		values
+		(
+			#{hospitalName},
+			#{legalRepresentative},
+			#{contact},
+			#{hospitalAddress},
+			#{telephoneFax},
+			#{ksPosition},
+			#{email},
+			#{contactPhone},
+			#{hospitalLevel},
+			#{hospitalNature},
+			#{beds},
+			0,
+			now(),
+			now()
+		)
+		<selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<update id="deleteHospital" parameterType="Integer">
+		update hospital set is_del = 1 where id = #{id}
+	</update>
+
+	<update id="updateHospital" >
+		update hospital set 
+			<if test="hospitalName != null and ''!= hospitalName">
+				hospital_name=#{hospitalName}
+			</if>
+			<if test="legalRepresentative != null and ''!= legalRepresentative">
+				,legal_representative=#{legalRepresentative}
+			</if>
+			<if test="contact != null and ''!= contact">
+				,contact=#{contact}
+			</if>
+			<if test="hospitalAddress != null and ''!= hospitalAddress">
+				,hospital_address=#{hospitalAddress}
+			</if>
+			<if test="telephoneFax != null and ''!= telephoneFax">
+				,telephone_fax=#{telephoneFax}
+			</if>
+			<if test="ksPosition != null and ''!= ksPosition">
+				,ks_position=#{ksPosition}
+			</if>
+			<if test="email != null and ''!= email">
+				,email=#{email}
+			</if>
+			<if test="contactPhone != null and ''!= contactPhone">
+				,contact_phone=#{contactPhone}
+			</if>
+			<if test="hospitalLevel != null and ''!= hospitalLevel">
+				,hospital_level=#{hospitalLevel}
+			</if>
+			<if test="hospitalNature != null and ''!= hospitalNature">
+				,hospital_nature=#{hospitalNature}
+			</if>
+			<if test="beds != null and ''!= beds">
+				,beds=#{beds}
+			</if>
+			<if test="isDel != null ">
+				,is_del=#{isDel}
+			</if>
+				,gmt_created= now()
+				,gmt_modified= now()
+			where id = #{id}
+	</update>
+
+	<select id="countHospital"  resultType="Integer">
+		select count(id)
+		from hospital
+			where is_del = 0 
+			<if test="hospitalName != null and ''!= hospitalName">
+				and hospital_name=#{hospitalName}
+			</if>
+			<if test="legalRepresentative != null and ''!= legalRepresentative">
+				and legal_representative=#{legalRepresentative}
+			</if>
+			<if test="contact != null and ''!= contact">
+				and contact=#{contact}
+			</if>
+			<if test="hospitalAddress != null and ''!= hospitalAddress">
+				and hospital_address=#{hospitalAddress}
+			</if>
+			<if test="telephoneFax != null and ''!= telephoneFax">
+				and telephone_fax=#{telephoneFax}
+			</if>
+			<if test="ksPosition != null and ''!= ksPosition">
+				and ks_position=#{ksPosition}
+			</if>
+			<if test="email != null and ''!= email">
+				and email=#{email}
+			</if>
+			<if test="contactPhone != null and ''!= contactPhone">
+				and contact_phone=#{contactPhone}
+			</if>
+			<if test="hospitalLevel != null and ''!= hospitalLevel">
+				and hospital_level=#{hospitalLevel}
+			</if>
+			<if test="hospitalNature != null and ''!= hospitalNature">
+				and hospital_nature=#{hospitalNature}
+			</if>
+			<if test="beds != null and ''!= beds">
+				and beds=#{beds}
+			</if>
+	</select>
+
+	<select id="findHospital"  resultMap="hospitalMap">
+		select
+		<include refid="allColumn"/>
+		from hospital
+			where is_del = 0  and id = #{id}
+			<if test="hospitalName != null and ''!= hospitalName">
+				and hospital_name=#{hospitalName}
+			</if>
+			<if test="legalRepresentative != null and ''!= legalRepresentative">
+				and legal_representative=#{legalRepresentative}
+			</if>
+			<if test="contact != null and ''!= contact">
+				and contact=#{contact}
+			</if>
+			<if test="hospitalAddress != null and ''!= hospitalAddress">
+				and hospital_address=#{hospitalAddress}
+			</if>
+			<if test="telephoneFax != null and ''!= telephoneFax">
+				and telephone_fax=#{telephoneFax}
+			</if>
+			<if test="ksPosition != null and ''!= ksPosition">
+				and ks_position=#{ksPosition}
+			</if>
+			<if test="email != null and ''!= email">
+				and email=#{email}
+			</if>
+			<if test="contactPhone != null and ''!= contactPhone">
+				and contact_phone=#{contactPhone}
+			</if>
+			<if test="hospitalLevel != null and ''!= hospitalLevel">
+				and hospital_level=#{hospitalLevel}
+			</if>
+			<if test="hospitalNature != null and ''!= hospitalNature">
+				and hospital_nature=#{hospitalNature}
+			</if>
+			<if test="beds != null and ''!= beds">
+				and beds=#{beds}
+			</if>
+
+	</select>
+
+	<select id="findHospitalList"  resultMap="hospitalMap">
+		select
+		<include refid="allColumn"/>
+		from hospital
+			where is_del = 0  
+			<if test="hospitalName != null and ''!= hospitalName">
+				and hospital_name=#{hospitalName}
+			</if>
+			<if test="legalRepresentative != null and ''!= legalRepresentative">
+				and legal_representative=#{legalRepresentative}
+			</if>
+			<if test="contact != null and ''!= contact">
+				and contact=#{contact}
+			</if>
+			<if test="hospitalAddress != null and ''!= hospitalAddress">
+				and hospital_address=#{hospitalAddress}
+			</if>
+			<if test="telephoneFax != null and ''!= telephoneFax">
+				and telephone_fax=#{telephoneFax}
+			</if>
+			<if test="ksPosition != null and ''!= ksPosition">
+				and ks_position=#{ksPosition}
+			</if>
+			<if test="email != null and ''!= email">
+				and email=#{email}
+			</if>
+			<if test="contactPhone != null and ''!= contactPhone">
+				and contact_phone=#{contactPhone}
+			</if>
+			<if test="hospitalLevel != null and ''!= hospitalLevel">
+				and hospital_level=#{hospitalLevel}
+			</if>
+			<if test="hospitalNature != null and ''!= hospitalNature">
+				and hospital_nature=#{hospitalNature}
+			</if>
+			<if test="beds != null and ''!= beds">
+				and beds=#{beds}
+			</if>
+			      order by id desc
+			     <if test="start != null">
+			         limit #{start},#{size}
+		         </if>
+	</select>
+
+
+</mapper>

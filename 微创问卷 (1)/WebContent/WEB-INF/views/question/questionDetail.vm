@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>问卷详情</title>
+<script type="text/javascript" src="#printUrl()/js/jquery-1.12.2.js"></script>
+<link rel="stylesheet" type="text/css" href="#printUrl()/question/css/newcss.css" />
+<link rel="stylesheet" type="text/css" href="#printUrl()/question/css/detail.css" />
+<link href="#printUrl()/css/textset.css" rel="stylesheet" type="text/css" >
+</head>
+
+<body>
+    <div class="main">
+    	<div class="head">$!{hospital.hospitalName}</div>
+        <div class="block">
+            <div class="tag">基本信息</div>
+            <table class="list1">
+                <tr>
+                    <td class="bt">医院名称</td>
+                    <td>$!{hospital.hospitalName}</td>
+                    <td class="bt">医院地址</td>
+                    <td>$!{hospital.hospitalAddress}</td>
+                </tr>
+                <tr>
+                    <td class="bt">法人代表</td>
+                    <td>$!{hospital.legalRepresentative}</td>
+                    <td class="bt">电话传真</td>
+                    <td>$!{hospital.telephoneFax}</td>
+                </tr>
+                <tr>
+                    <td class="bt">电子邮箱</td>
+                    <td>$!{hospital.email}</td>
+                    <td class="bt">联系人</td>
+                    <td>$!{hospital.contact}</td>
+                </tr>
+                <tr>
+                    <td class="bt">科室职位</td>
+                    <td>$!{hospital.ksPosition}</td>
+                    <td class="bt">联系电话</td>
+                    <td>$!{hospital.contactPhone}</td>
+                </tr>
+                <tr>
+                    <td class="bt">医院等级</td>
+                    <td>$!{hospital.hospitalLevel}</td>
+                    <td class="bt">医院性质</td>
+                    <td>$!{hospital.hospitalNature}</td>
+                </tr>
+                <tr>
+                    <td class="bt">床位数</td>
+                    <td>$!{hospital.beds}</td>
+                    <td class="bt"></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="block">
+            <div class="tag">人员信息</div>
+            <p>目前微创技术在下列科室得到应用：</p>
+            <div style="width:90%;margin:0 auto;">
+                <table class="list">
+                    <tr>
+                        <th class="bt"></th>
+                        <th class="bt">微创技术医师</th>
+                        <th class="bt">主任医师</th>
+                        <th class="bt">副主任医师</th>
+                        <th class="bt">主治医师</th>
+                        <th class="bt">住院医师</th>
+                        <th class="bt">博士</th>
+                        <th class="bt">硕士</th>
+                        <th class="bt">学士</th>
+                    </tr>
+					#foreach($staff in $staffList)
+                        <tr>
+							<td>$!{staff.ksName}</td>
+                            <td>$!{staff.physiciansNumber}</td>
+                            <td>$!{staff.chiefPhysician}</td>
+                            <td>$!{staff.fchiefPhysician}</td>
+                            <td>$!{staff.attendingNumber}</td>
+                            <td>$!{staff.attendingNumber}</td>
+                            <td>$!{staff.drNumber}</td>
+                            <td>$!{staff.masterNumber}</td>
+                            <td>$!{staff.bachelorNumber}</td>
+                        </tr>
+					#end
+                </table>
+            </div>
+        </div>
+        <div class="block">
+            <div class="tag">设备信息</div>
+            <p>1.医院现有腔镜机组数量<span class="center">$!{equipment.qNumber}</span>套，其中进口机组<span class="center">$!{equipment.qImportNumber}</span>套，产地（或品牌）<span class="qImportBrand" style="display:inline"></span>。国产机组<span class="center">$!{equipment.qDomesticNumber}</span>套，产地（或品牌）<span class="qDomesticBrand" style="display:inline"></span></p>
+            <p>2.现有高清腹腔镜机组<span class="center">$!{equipment.gfqNumber}</span>套，进口<span class="center">$!{equipment.gfqImportNumber}</span>套；标清腹腔镜机组<span class="center">$!{equipment.standardfq}</span>套，国产<span class="center">$!{equipment.domesticsfq}</span>套。</p>
+            <p>3.近3年新购置腹腔镜机组数量<span class="center">$!{equipment.treeYeanfqNumber}</span>套。</p>
+            <p>4.日均腔镜手术台次<span class="center">$!{equipment.daySurNumber}</span>次，常用腔镜机组<span class="center">$!{equipment.commonlyNumber}</span>台，备用<span class="center">$!{equipment.standbyNumber}</span>台，空闲/缺口<span class="center">$!{equipment.freeNumber}</span>台。</p>
+            <p>5.近3年来<span class="center">$!{equipment.treeYeaSurgeryYw}</span>新开展的腔镜手术方式。如有，请列举<span>$!{equipment.example}</span>。</p>                                      
+            <p>6.贵院腔镜设备供需情况<span>$!{equipment.supplyState}</span>。</p>
+            <p>7.腔镜器械的消毒方式：<span>$!{equipment.disinWay}</span>。消毒液体种类：<span>$!{equipment.liquidType}</span>，厂家：<span>$!{equipment.manufacturer}</span>，消毒时间：<span>$!{equipment.disinTime}</span>。</p>
+        </div>		
+        <div class="block">
+            <div class="tag">临床应用</div>
+            <h4>腹腔镜肝脏切除术</h4>			
+            <p>
+				1.目前贵院已经开展：
+				<span>
+					 $!{clinicalApplication.fqLocalSurgery}		
+			    </span>。
+			</p>
+            <p>2.腹腔镜手术占同类手术的比例：肝内胆管结石<span class="center">$!{clinicalApplication.gndgProportion}</span>%，肝脏肿瘤<span class="center">$!{clinicalApplication.gzlProportion}</span>%。</p>
+            <p>3.是否实施加速康复外科：<span class="center">$!{clinicalApplication.kfProportion}</span>，比例<span class="center">$!{clinicalApplication.proportion}</span>%。</p>          			
+			<p>
+				4.未选用微创手术原因：
+				<span>
+					$!{clinicalApplication.medical}
+				</span>。
+			</p>
+			
+			<p>5.中转开腹手术比例<span class="center">$!{clinicalApplication.zkfProportion}</span>%，中转原因：腹腔粘连<span class="center">$!{clinicalApplication.fqldNumber}</span>例，胆道损伤<span class="center">$!{clinicalApplication.ddssNumber}</span>例，出血<span class="center">$!{clinicalApplication.bleedingNumber}</span>例，胆总管结石嵌顿<span class="center">$!{clinicalApplication.dzgjsNumber}</span>例，其他<span class="center">$!{clinicalApplication.otherNumber}</span>例。</p>
+            <p>6.手术时间<span class="center">$!{clinicalApplication.operationTime}</span>min，出血<span class="center">$!{clinicalApplication.bleedingMl}</span>ml。肝门阻断次数<span class="center">$!{clinicalApplication.portazsNumber}</span>次，时间<span class="center">$!{clinicalApplication.portazsTime}</span>min。</p>
+            <p>7.并发症：二次手术<span class="center">$!{clinicalApplication.twoSurgeryNumber}</span class="center">例，出血<span class="center">$!{clinicalApplication.bfzBleedingNumber}</span>例，胆瘘<span class="center">$!{clinicalApplication.bfzFistulaNumber}</span>例，切口感染<span class="center">$!{clinicalApplication.bfzQkgrNumber}</span>例，腹腔感染<span class="center">$!{clinicalApplication.bfzFqgrNumber}</span>例，其他<span class="center">$!{clinicalApplication.bfzOtherNumber}</span>例。</p>
+       </div>
+	   <div class="print">导   出</div>
+   </div>
+   <input type="hidden" name="hid1" value="$!{equipment.qImportBrand}"/>
+   <input type="hidden" name="hid2" value="$!{equipment.qDomesticBrand}"/>
+   <form action="exportWord.html" method="post" id="form">
+		<input name="hospitalId" type="hidden" value="$!{hospital.id}"/>
+   </form>
+  
+</body>
+<script>
+     
+     jQuery(document).delegate('.print','click',function(){
+	      var hospitalId = $("input[name=hospitalId]").val();	
+		  jQuery("#form").submit();
+	 });
+
+     $(function(){
+	       if("$!{equipment.qImportBrand}"==""){
+		       $(".qImportBrand").html("　　");
+		   }else{
+		       $(".qImportBrand").html('$!{equipment.qImportBrand}');
+		   }
+		   if("$!{equipment.qDomesticBrand}"==""){
+		       $(".qDomesticBrand").html("　　");
+		   }else{
+		       $(".qDomesticBrand").html('$!{equipment.qDomesticBrand}');
+		   }
+	 })
+</script>
+</html>

@@ -1,0 +1,110 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, 
+pre, form, fieldset, input, textarea, p, blockquote, th, td {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-size: 12px;
+	font-family:"微软雅黑";
+}
+
+ol, ul {
+	list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+	font-size: 100%;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.cb {
+	clear: both;
+}
+.bl{ 
+	display:block;
+}
+a {
+	text-decoration: none;
+	color:#888;
+}
+img {
+	border: none;
+}
+table { 
+	border-collapse: collapse; border-spacing: 0; 
+}
+textarea{ resize:none;}
+
+th,td{ height:17px;padding:0}
+.dn{ display:none;}
+.list tr{background-color:#fff;}
+.list tr:hover{ background-color:#FBDCA3;}
+
+.list td{overflow:hidden;white-space:nowrap;text-overflow:ellipsis; }
+.list td:hover{overflow:visible;white-space:normal; word-wrap: break-word;}
+.list{table-layout:fixed;}
+.list{
+	width:100%;
+	margin:0 auto;
+	}
+.list th{
+	font-weight:normal;
+	background:#EFEFEF;
+	height:25px;
+	border:1px #C3C3C3 solid;
+	}
+.list td{
+	height:25px;
+	border:1px #C3C3C3 solid;
+	text-align:center;
+	}
+.list span{
+	color:#999;
+	margin-left:15px;
+	}
+.list a{
+	color:#00A1FF;
+	cursor:pointer;
+	}
+
+#pagelist  ul {
+    list-style:none;
+}
+#pagelist {
+	position:absolute;
+	right:1px;
+	bottom:1px;
+    padding:6px 0;
+	}
+#pagelist ul li {
+    float:left;
+    border:1px solid #5d9cdf;
+    height:20px;
+    line-height:20px;
+    margin:0 2px;
+}
+#pagelist ul li a, .pageinfo {
+    display:block;
+    padding:0 6px;
+    background:#e6f2fe;
+    font-size:12px;
+    color:#333;
+    text-decoration:none;
+}
+.current {
+    background:#a9d2ff;
+    display:block;
+    padding:0 6px;
+    font-weight:bold;
+}

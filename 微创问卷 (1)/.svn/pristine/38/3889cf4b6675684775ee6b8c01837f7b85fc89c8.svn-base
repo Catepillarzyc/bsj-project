@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" style="background: #fff;">
+<head>
+    <meta charset="UTF-8">
+    <link href="#printUrl/weiChuangManage/css/normalize.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/weiChuangManage/css/index.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/weiChuangManage/css/common.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/weiChuangManage/css/articleLists.css" type="text/css" rel="stylesheet">
+	<link href="#printUrl/css/samePage.css" type="text/css" rel="stylesheet">	
+    <script type="text/javascript" src="#printUrl/js/jquery-1.12.2.js"></script>
+    <script type="text/javascript" src="#printUrl/js/index.js"></script>
+    <script type="text/javascript" src="#printUrl/js/common.js"></script>
+    <script type="text/javascript" src="#printUrl/js/articleLists.js"></script>
+    <title>文章列表</title>
+    <style>
+
+    </style>
+</head>
+<body style="overflow-x:hidden">
+ 
+    <div class="dn" id="f-tipbox">
+        <p>删除后网页将不展示此文章，确定删除？</p>
+        <span class="f-edit d_sure"></span><span class="f-del" id="f-delete-button"></span>
+    </div>
+    <div id="f-right-items" class="clearfix">
+        <h3>文章列表</h3>
+        <table class="list">
+            <tbody>
+            <tr class="striped">
+			 <form  action="#printUrl/weiChuangManage/newsList.html"  method="post"  id="d_search" >
+                <th width="300px"><span class="f-key-text">关键字：</span><input type="text" placeholder="输入关键字" id="f-keyword"  name="keyWord"  value="$!{keyWord}"></th>
+					<input  type="hidden"  name="themeId"   value="$!{themeId}"/>
+                <th width="17%"><select id="f-kind" class="d_selectTheme">
+						<option  value="">全部</option>
+						#foreach($li in $themeList)
+						 <option value="$!li.id">$!li.theme</option>
+						#end
+						 <option value="11">法律</option>
+						 <option value="12">法规</option>
+				</select></th>
+			</form>
+                <th width="12%"></th>
+                <th width="15%"><img src="#printUrl/weiChuangManage/img/cx.png" id="f-cx"  class="d_search"></th>
+                <th><a href="#printUrl/weiChuangManage/newArticle.html"><img src="#printUrl/weiChuangManage/img/xj.png" id="f-xjwz"></a></th>
+            </tr>
+            <tr class="striped">
+                <td>标题</td>
+                <td>种类</td>
+                <td>级别</td>
+                <td>发布时间</td>
+                <td>操作</td>
+            </tr>
+			#foreach($li in $page.records)
+            <tr>
+                <td><a class="overflow">$!li.title</a></td>
+                <td>
+					 #foreach($p in $map.keySet())
+						 #if($p==$li.themeId)
+								$map.get($p)
+						 #end 	
+					 #end	
+                 </td>
+                <td>
+					#if($!li.isImport ==0)
+						普通
+					#elseif($!li.isImport ==1)
+						重要
+					#end	
+				</td>
+                <td>$!date.format("yyyy-MM-dd",$li.newsDate)</td>
+                <td>
+					<a href="#printUrl/weiChuangManage/newArticle.html?keyWord=$!{keyWord}&themeId=$!{themeId}&newsId=$!{li.id}" ><span class="d_editeNews">编辑</span></a>
+					<span  class="d_delteNews">删除</span>
+					<input type="hidden"  name="hidId"  value="$!{li.id}"/>
+				</td>
+            </tr>
+		 #end	
+		   	#set( $pp =$page.pageSize - $page.records.size())
+        #if($pp>0) 
+        	#foreach($li in [1..$pp])
+              <tr>
+                <td><a class="overflow"></a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><span></span><span></span></td>
+            </tr>
+        	#end 
+		 #end
+          
+            </tbody>
+        </table>
+		  <div class="pagenation">
+               #pagemodel("newsList.html" "keyWord=$!{keyWord}&themeId=$!{themeId}" $page)
+          </div>
+    </div>
+</body>
+<script >
+	 var webRoot ="${link.contextPath}"
+   	$(".d_search").click(function(){
+		var themeId =$(".d_selectTheme").val();
+		$("input[name=themeId]").val(themeId);
+		$("#d_search").submit();
+	})
+	$("input[type=text]").each(function(){
+	   $(this).attr("autocomplete","off")
+	})
+	
+  $(function(){
+	  var themeId =	$("input[name=themeId]").val();
+	  if(themeId!=""){
+	  	$(".d_selectTheme").find("option[value="+themeId+"]").attr("selected", true);
+	  }
+	})
+	$(".d_delteNews").click(function(){
+	   var newsId =	$(this).parent().find("input[name=hidId]").val();
+	     $(".d_sure").click(function(){
+    	   	 jQuery.ajax({
+                url:webRoot+"/weiChuangManage/deleteNewsById.html",
+                type: "POST",
+                cache: false,
+                async: true,
+                data: {"newsId":newsId},
+                dataType: "json",
+                success: function(data, text) {
+    				if(data.flag>0){
+    			 		 window.location.href="${link.contextPath}/weiChuangManage/newsList.html?keyWord=$!{keyWord}&themeId=$!{themeId}"
+    		         }
+    			 }
+    		 })	 
+		 })
+	 })
+</script>
+</html>

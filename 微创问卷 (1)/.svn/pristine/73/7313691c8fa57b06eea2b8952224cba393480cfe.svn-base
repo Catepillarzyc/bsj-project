@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="${link.contextPath}/css/normalize.css" type="text/css" rel="stylesheet">
+    <link href="${link.contextPath}/css/samePage.css" type="text/css" rel="stylesheet">
+    <link href="${link.contextPath}/css/common.css" type="text/css" rel="stylesheet">
+    <script src="${link.contextPath}/js/jquery-1.12.2.js" type="text/javascript"></script>
+	 <script src="${link.contextPath}/js/common.js" type="text/javascript"></script>
+    <title>浙江省微创手术质量控制中心</title>
+</head>
+<body>
+<div class="header">
+    <div class="headerWrap">
+        <div class="header-top">
+            <img src="${link.contextPath}/img/title.png" class="header-logo">
+            <p class="logo-msg1">团结<span class="letter-blank"></span>求实</p>
+            <p class="logo-msg2">规范<span class="letter-blank"></span>创新</p>
+        </div>
+        <div class="header-nav clearfix dh">
+        	<ul class="nav">
+                        <li class="dh1"><a href="#printUrl/weiChuang/index.html?userName=$!{user.userName}"  >首页</a></li>
+                        <li class="dh2"><a href="#printUrl/weiChuang/centerIntroduce.html?themeId=7&userName=$!{user.userName}">中心简介</a></li>
+                        <li class="dh3"><a href="#printUrl/weiChuang/centerTrends.html?themeId=1&index=0&userName=$!{user.userName}" >中心动态</a></li>
+                        <li class="dh4"><a href="#printUrl/weiChuang/notice.html?themeId=5&index=0&userName=$!{user.userName}">通知公告</a></li>
+                        <li class="dh5 "><a href="#printUrl/weiChuang/qualityStandard.html?themeId=6&index=0&userName=$!{user.userName}">质控规范</a></li>
+                        <li class="dh6"><a href="#printUrl/weiChuang/healthTheme.html?themeId=3&index=0&userName=$!{user.userName}" class="jkzt_on">健康主题</a></li>
+                        <li class="dh7"><a href="#printUrl/weiChuang/regulation.html?themeId=2&index=0&userName=$!{user.userName}">标准法规</a></li>
+						<!--[if lte IE 7]>
+                <b></b><![endif]--><!-- 兼容不支持伪元素的 ie678 -->
+                 </ul>
+        </div>
+    </div>
+</div>
+<div class="blank-cont" style="height: 20px;"></div>
+    <div class="main">
+        <div class="main-part clearfix">
+            <div class="main-part-l">
+                <div class="mod-lr mod grdl" id="login-not" >
+                    <div class="mod-hb">
+                        <span class="mod-title">个人登录</span>
+                        <a href="#" class="hidden"><span>更多>></span></a>
+                    </div>
+					<form  id="subMit" method="post" action="#printUrl/weiChuang/checkLogin.html?pageFlag=notice">
+                        <div class="mod-bd">
+                            <div class="username input-type1"><span class="input-span">用户名:</span><input type="text" class="f-userInput" name="userName" ></div>
+                            <div class="psw input-type1"><span class="input-span">密<span class="letter-blank"></span>码:</span><input type="text" class="f-pswInput"  onfocus="this.type='password'"  name="password"/></div>
+                            <a href="#" class="f-index-forgetPsw  d_missPsw">忘记密码？</a>
+                            <input type="button" class="login-but f-index-button d_subButton"  value="登录">
+                            #if($!{loginFlag}==1)<span style="color:red">*用户名错误  </span>#elseif($!{loginFlag}==3)<span style="color:red">* 密码错误，请重新输入</span> #end
+                        </div>
+					</form>
+                </div>
+                <div class="mod-lr mod grdl" id="login-succeed" style="display:none" >
+                    <div class="mod-hb">
+                        <span class="mod-title">个人登录</span>
+                        <a href="#"><span>注销</span></a>
+                    </div>
+                    <div class="mod-bd">
+						<input type="hidden"  class="d_hidUserName"  value="$!{user.userName}">
+                        <div class="welcome">欢迎您,<span id="grdl-name">${user.userName}</span></div>
+                    </div>
+                </div>
+                <div class="mod-lr mod zngg">
+                    <div class="mod-hb">
+                        <span class="mod-title">站内公告</span>
+                    </div>
+                    <div class="mod-bd">
+                        <p class="zngg-text">
+                            本站旨在为微创手术界同仁提供一个获取最新微创手术咨询及学术交流的平台，欢迎各位光临本站，并请惠赐佳作，谢谢！
+                        </p>
+                    </div>
+                </div>
+                <div class="mod-lr mod wlzb">
+                    <div class="mod-bd">
+	                    #if($!{user.userName})
+								<a href="#printUrl/index.html?userName=$!{user.userName}" target="_blank" id="wlzbLink">进入网络直报系统</a>
+						#else
+							  <a href="#printUrl/weiChuang/questionLogin.html?userName=$!{user.userName}" target="_blank" id="wlzbLink">进入网络直报系统</a>
+						#end	
+                    </div>
+                </div>
+            </div>
+            <div class="main-part-content">
+                <div class="mod-m mod zxdt">
+                    <div class="mod-hb">
+                        <span class="mod-title">中心动态</span>
+                    </div>
+                    <div class="mod-bd">
+                        <ul class="list-a dt-list">
+							#foreach($li in $page.records)	
+                            <li><a href="healthThemeDetail.html?newsId=$li.id&userName=$!{user.userName}" target="_blank">$li.title</a><span>$!date.format("yyyy-MM-dd",$li.newsDate)</span></li>
+							#end
+                        </ul>
+                        <div class="pagenation">
+                           #pagemodel("healthTheme.html" "themeId=3" $page)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div id="footer" class="footer">
+    <div class="footer-nav clearfix">
+            <ul class="footer-nav-list">
+                    <li><a href="#printUrl/weiChuang/centerIntroduce.html?themeId=7&userName=$!{user.userName}">中心简介</a></li>
+                    <li><a href="#printUrl/weiChuang/centerTrends.html?themeId=1&index=0&userName=$!{user.userName}">中心动态</a></li>
+                    <li><a href="#printUrl/weiChuang/notice.html?themeId=5&index=0&userName=$!{user.userName}">通知公告</a></li>
+                    <li><a href="#printUrl/weiChuang/qualityStandard.html?themeId=6&index=0&userName=$!{user.userName}">质控规范</a></li>
+                    <li><a href="#printUrl/weiChuang/healthTheme.html?themeId=3&index=0&userName=$!{user.userName}">健康主题</a></li>
+                    <li><a href="#printUrl/weiChuang/regulation.html?themeId=2&index=0&userName=$!{user.userName}">标准法规</a></li>
+             </ul>  
+    </div>
+    <p>浙江省微创手术控制中心 </span><a>版权所有</a></p>
+    <p>电 话：0571-8888888/88888888<span class="letter-blank"></span>传 真：0571-88888888</p>
+    <p>地 址：浙江省杭州市xx路xx号<span class="letter-blank"></span>邮 编：888888 <a> 浙ICP备88888号</a></p>
+</div>
+</body>
+</html>

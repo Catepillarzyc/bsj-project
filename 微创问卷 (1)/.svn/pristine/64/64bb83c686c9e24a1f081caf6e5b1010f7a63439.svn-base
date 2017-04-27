@@ -1,0 +1,128 @@
+html,body {
+    color:#3c3c3c;
+    font-size: 14px;
+    font-family:normal small Microsoft YaHei,"微软雅黑","宋体",Verdana, Arial, Helvetica, sans-serif;
+}
+.login-header-top {
+    height: 79px;
+    width: 100%;
+    background:url("../img/dbjb.png") repeat-x 0 0;
+}
+.login-header-logo {
+    width:890px;
+    margin:10px auto;
+}
+
+.login-container {
+    width:890px;
+    height: 328px;
+    position: relative;
+    background: url("../img/bj2.png") no-repeat 0 25px;
+    margin: 50px auto;
+}
+.b_login-container {
+    background:url('../img/kuang.png') no-repeat 0 0;
+    height: 328px;
+    width: 404px;
+    overflow: hidden;
+    position: relative;
+    left: 470px;
+}
+.b_login-container li {
+    display: block;
+    width: 250px;
+    margin: 10px auto;
+    text-indent: 1em;
+    height:25px;
+    line-height:25px;
+}
+#login-container-title {
+    text-indent: 0;
+    margin-top:65px;
+    font-size:18px;
+    color:#688b48;
+    height: 30px;
+    border-bottom:1px solid #688b48;
+}
+#login-container-user {
+    margin-top: 20px;
+}
+
+#login-container-identify input{
+    width:50px;
+}
+#login-container-identify .identify-code {
+    text-indent: 0;
+    float:left;
+    text-align: center;
+    letter-spacing: 0.5em;
+    margin-left: 10px;
+    display: inline-block;
+    width:72px;
+    height: 20px;
+    line-height: 20px;
+    background-color:#fff;
+}
+#login-container-butt .button {
+    display: inline-block;
+    text-indent:0.5em;
+    width: 80px;
+    font-size: 16px;
+    height: 27px;
+    background:url("../img/login_but.png") repeat-x 0 0;
+    outline:none;
+    border:none;
+    color:#fff;
+    text-align: center;
+    letter-spacing: 0.5em;
+    margin-left:56px;
+    cursor: pointer;
+}
+#login-container-butt .button:hover {
+    background: url("../img/login_but_h.png") repeat-x 0 0 ;
+}
+#login-contianer-copyright p,#login-contianer-copyright a{
+    text-align: center;
+    font-size:11px;
+    color:#3c3c3c;
+    line-height: 17px;
+    letter-spacing: 0.1em;
+    word-break: keep-all;
+}
+#login-contianer-copyright a:link {
+    color:#3c3c3c;
+}
+#login-contianer-copyright a:visited {
+    color:#3c3c3c;
+}
+
+#login-container-butt {
+	position:relative;
+	padding-bottom:30px;
+}
+.d_loginError {
+	position:absolute;
+	top:30px;
+	left:30px;
+}
+#login-container-user span,#login-container-psw span,#login-container-identify span {
+	float:left;
+	height:20px;
+	line-height:20px;
+	width:70px;
+	text-align:right;
+}
+input[name=verifyCode],input[name=password],input[name=userName] {
+	float:left;
+}
+
+#login-contianer-copyright {
+	position:absolute;
+	left:77px;
+	bottom:17px;
+	margin:0 auto;
+}
+
+#login-container-user input,#login-container-psw input {
+        width:132px;
+}

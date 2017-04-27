@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="${link.contextPath}/css/normalize.css" type="text/css" rel="stylesheet">
+    <link href="${link.contextPath}/css/biaozhunfagui.css" type="text/css" rel="stylesheet">
+    <link href="${link.contextPath}/css/common.css" type="text/css" rel="stylesheet">
+    <script src="${link.contextPath}/js/jquery-1.12.2.js" type="text/javascript"></script>
+	<script src="${link.contextPath}/js/common.js" type="text/javascript"></script>
+    <title>浙江省微创手术质量控制中心</title>
+</head>
+<body>
+<div class="ts"></div>
+<div class="header">
+    <div class="headerWrap">
+        <div class="header-top">
+            <img src="${link.contextPath}/img/title.png" class="header-logo">
+            <p class="logo-msg1">团结<span class="letter-blank"></span>求实</p>
+            <p class="logo-msg2">规范<span class="letter-blank"></span>创新</p>
+        </div>
+        <div class="header-nav clearfix dh">
+           	<ul class="nav">
+                        <li class="dh1"><a href="#printUrl/weiChuang/index.html"  >首页</a></li>
+                        <li class="dh2"><a href="#printUrl/weiChuang/centerIntroduce.html?themeId=7">中心简介</a></li>
+                        <li class="dh3"><a href="#printUrl/weiChuang/centerTrends.html?themeId=1&index=0" >中心动态</a></li>
+                        <li class="dh4"><a href="#printUrl/weiChuang/notice.html?themeId=5&index=0">通知公告</a></li>
+                        <li class="dh5 "><a href="#printUrl/weiChuang/qualityStandard.html?themeId=6&index=0">质控规范</a></li>
+                        <li class="dh6"><a href="#printUrl/weiChuang/healthTheme.html?themeId=3&index=0" >健康主题</a></li>
+                        <li class="dh7"><a href="#printUrl/weiChuang/regulation.html?themeId=2&index=0" class="bzfg_on">标准法规</a></li>
+						<!--[if lte IE 7]>
+                <b></b><![endif]--><!-- 兼容不支持伪元素的 ie678 -->
+                 </ul>
+        </div>
+    </div>
+</div>
+<div class="blank-cont" style="height: 20px;"></div>
+<div class="main">
+    <div class="main-part clearfix">
+        <div class="main-part-l">
+            <div class="mod mod-lr flfg">
+			#foreach($li in $list)
+                <div class="mod-hb"><strong >$li.theme</strong></div>
+                <ul class="mod-bd">
+                   #foreach($ps in $newsList)
+    					#if($ps.themid==$li.id)
+        					 #foreach($pp in $ps.list )
+                            <li><a a href="#printUrl/weiChuang/regulationDetail.html?newsId=$pp.id&themeId=$li.parentId"  class="overflow">$pp.title</a></li>
+        					 #end
+    					 #end
+                   #end
+                </ul>
+              #end
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden"  class="d_hidUserName"  value="$!{user.userName}">
+<div id="footer" class="footer" style="margin-top: 100px">
+    <div class="footer-nav clearfix">
+           <ul class="footer-nav-list">
+                <li><a href="#printUrl/weiChuang/centerIntroduce.html?themeId=7">中心简介</a></li>
+                <li><a href="#printUrl/weiChuang/centerTrends.html?themeId=1&index=0">中心动态</a></li>
+                <li><a href="#printUrl/weiChuang/notice.html?themeId=5&index=0">通知公告</a></li>
+                <li><a href="#printUrl/weiChuang/qualityStandard.html?themeId=6&index=0">质控规范</a></li>
+                <li><a href="#printUrl/weiChuang/healthTheme.html?themeId=3&index=0">健康主题</a></li>
+                <li><a href="#printUrl/weiChuang/regulation.html?themeId=2&index=0">标准法规</a></li>
+            </ul>  
+    </div>
+    <p>浙江省微创手术质量控制中心 </span><a>版权所有</a></p>
+    <p>电 话：0571-8888888/88888888<span class="letter-blank"></span>传 真：0571-88888888</p>
+    <p>地 址：浙江省杭州市xx路xx号<span class="letter-blank"></span>邮 编：888888 <a> 浙ICP备88888号</a></p>
+</div>
+<script>
+
+</script>
+</body>
+</html>

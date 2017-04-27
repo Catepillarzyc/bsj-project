@@ -1,0 +1,9 @@
+validationQuery=SELECT 1
+jdbc.driver=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://127.0.0.1:3306/questionnaire?useUnicode=true&amp;characterEncoding=utf-8&useSSL=false
+#jdbc.url=jdbc:mysql://localhost:3307/questionnaire?useUnicode=true&amp;characterEncoding=utf-8&useSSL=false
+#jdbc.url=jdbc:mysql://120.27.197.95:3306/questionnaire?useUnicode=true&amp;characterEncoding=utf-8&useSSL=false
+jdbc.username=root
+jdbc.password=123456
+#jdbc.password=123456
+#jdbc.password=Baishijia2015

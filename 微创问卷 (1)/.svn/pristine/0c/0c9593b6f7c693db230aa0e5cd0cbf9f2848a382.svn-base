@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" style="background: #fff;">
+<head>
+    <meta charset="UTF-8">
+    <link href="#printUrl/weiChuangManage/css/normalize.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/weiChuangManage/css/index.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/css/samePage.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/weiChuangManage/css/common.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/weiChuangManage/css/accountLists.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="#printUrl/js/jquery-1.12.2.js"></script>
+    <script type="text/javascript" src="#printUrl/js/index.js"></script>
+    <script type="text/javascript" src="#printUrl/js/common.js"></script>
+    <script type="text/javascript" src="#printUrl/js/accountList.js"></script>
+    <title>账号设置</title>
+    <style>
+
+    </style>
+</head>
+<body style="overflow-x:hidden;background:#fff">
+<div class="ts"></div>
+<div class="hou"></div>
+
+    <div class="f-pswEdit-after dn">
+        <p>修改成功!<span class="f-window-close">关闭</span></p>
+    </div>
+</div>
+<div class="dn" id="f-tipbox">
+    <p>删除后该账户将无法使用，确定删除？</p>
+    <span class="f-edit  d_sure"></span><span class="f-del" id="f-delete-button"></span>
+</div>
+<div id="f-right-items" class="clearfix">
+    <h3>账号列表</h3>
+    <table class="list">
+        <tbody>
+        <tr class="striped">
+            <th width="180px"></th>
+            <th width="20%"></th>
+            <th width="20%"></th>
+            <th width="15%"></th>
+            <th><a href="#printUrl/weiChuangManage/creatUser.html"><img src="#printUrl/weiChuangManage/img/zhszxjzh.png" id="f-xjzh"></a></th>
+        </tr>
+        <tr class="striped">
+            <td>单位名称</td>
+            <td>用户名</td>
+            <td>初始密码</td>
+            <td>权限</td>
+            <td>操作</td>
+        </tr>
+		#foreach($li in $page.records)
+        <tr>
+            <td>$!li.hosptialName</td>
+            <td>$!li.userName</td>
+            <td>123456</td>
+            <td>#if($!li.type==2)超级管理员#elseif($!li.type==3)普通用户#end</td>
+            <td>
+				<span class="f-list-operate  d_operate">初始化密码</span>
+				#if($!li.isBlock==0)
+				<span class="f-list-operate d_updateIsBlock ">停用</span>
+				#elseif($!li.isBlock==1)
+					<span class="f-list-operate d_updateIsBlock">启用</span>
+				#end
+				<span class="f-list-operate d_operate">删除</span>
+				<input  type="hidden" name="userId"  value="$!li.id"/>
+			</td>
+        </tr>
+       #end
+       	#set( $pp =$page.pageSize - $page.records.size())
+        #if($pp>0) 
+        	#foreach($li in [1..$pp])
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><span></span><span></span><span></span></td>
+                 </tr>
+        	#end 
+		 #end
+        </tbody>
+    </table>
+		  <div class="pagenation">
+               #pagemodel("userList.html" "" $page)
+          </div>
+</div>
+</body>
+<script >
+	 var webRoot ="${link.contextPath}"
+   $(document).delegate(".d_operate","click",function(){
+        var that = $(this);
+   	    var text = $(this).text();
+		var classText =$(this).get(0).className;
+		if(classText.indexOf("undoable")>-1){
+		}else{
+			if(text.indexOf("初始化密码")>-1){
+				initalPsw(that);
+			}
+			if(text.indexOf("删除")>-1){
+				deleteAccount(that);
+			}
+		}
+        var userName = $(this).parent().parent().find("td").eq(1).text();
+		var userId =$(this).parent().find("input[name=userId]").val();
+    	$(document).delegate(".d_sure","click",function(){
+       	   var p = $(this).parent().find("p").html();
+    	   if(p.indexOf("初始化")>-1){
+    	   		 jQuery.ajax({
+                      url:webRoot+"/weiChuangManage/initalPsw.html",
+                      type: "POST",
+                      cache: false,
+                      async: true,
+                      data: {"userName":userName},
+                      dataType: "json",
+                      success: function(data, text) {
+					   	  if(data.flag>0){
+						    alert("初始化成功");
+						  }
+    				  }
+    			})	  
+    	   }
+		    if(p.indexOf("删除")>-1){
+				 jQuery.ajax({
+                      url:webRoot+"/weiChuangManage/delteUser.html",
+                      type: "POST",
+                      cache: false,
+                      async: true,
+                      data: {"userId":userId},
+                      dataType: "json",
+                      success: function(data, text) {
+					     if(data.flag>0){
+			 				 window.location.href="${link.contextPath}/weiChuangManage/userList.html"
+		                  }
+					  }
+				  })	  
+			 }
+		   
+		   
+        })
+  })   
+  $(document).delegate(".d_updateIsBlock","click",function(){
+  	if($(this).text().indexOf("启用")>-1){
+	 	var isBlock =0;
+	}
+	if($(this).text().indexOf("停用")>-1){
+	 	var isBlock =1;
+	}
+	var userId =$(this).parent().find("input[name=userId]").val();
+	 jQuery.ajax({
+         url:webRoot+"/weiChuangManage/updateIsBlock.html",
+         type: "POST",
+         cache: false,
+         async: true,
+         data: {"isBlock":isBlock,"userId":userId},
+         dataType: "json",
+         success: function(data, text) {
+		 	 if(data.flag>0){
+					 window.location.href="${link.contextPath}/weiChuangManage/userList.html"
+		      }
+		 }
+	})
+  })
+  
+  $("input").each(function(){
+   	$(this).attr("autocomplete","off")
+  })
+  
+ $(function(){
+ 	$(".d_updateIsBlock").each(function(){
+	   var textBlock =$(this).text();
+	   if(textBlock.indexOf("启用")>-1){
+		$(this).parent().parent().addClass('undoable');
+		$(this).parent().parent().find('span:lt(2)').addClass('undoable');
+      }
+	if(textBlock.indexOf("停用")>-1){
+		 $(this).parent().parent().removeClass(".undoable");
+		 $(this).parent().parent().find('span:lt(2)').removeClass('undoable');
+	}
+  })
+ })
+  
+</script>
+</html>

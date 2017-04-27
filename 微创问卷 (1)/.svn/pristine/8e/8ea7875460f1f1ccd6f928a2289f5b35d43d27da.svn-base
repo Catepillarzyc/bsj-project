@@ -1,0 +1,99 @@
+     
+			<div class="mod-lr mod grdl" id="login-not" >
+                    <div class="mod-hb">
+                        <span class="mod-title">个人登录</span>
+                        <a href="#" class="hidden"><span>更多>></span></a>
+                    </div>
+                        <div class="mod-bd">
+                            <div class="username input-type1"><span class="input-span">用户名:</span><input type="text" class="f-userInput" name="userName" ></div>
+                            <div class="psw input-type1"><span class="input-span">密<span class="letter-blank"></span>码:</span><input type="text" class="f-pswInput"  onfocus="this.type='password'"  name="password"/></div>
+                            <a href="#" class="f-index-forgetPsw  d_missPsw">忘记密码？</a>
+                            <input type="button" class="login-but f-index-button d_subButton"  value="登录">
+								<span style="color:red" class="d_loginError"></span>
+                            #if($!{loginFlag}==1)<span style="color:red" class="d_loginError">*用户名错误  </span>
+								#elseif($!{loginFlag}==3)<span style="color:red" class="d_loginError">* 密码错误，请重新输入</span>
+							#end
+                        </div>
+                </div>
+		
+                <div class="mod-lr mod grdl" id="login-succeed" style="display: none;height: 218.5px;" >
+                    <div class="mod-hb">
+                        <span class="mod-title">个人登录</span>
+                        <a href="#printUrl/weiChuang/loginOut.html?pageFlag=index" ><span>注销</span></a>
+                    </div>
+                    <div class="mod-bd">
+                        <div class="welcome">欢迎您,<span id="grdl-name" class="d_hidUserName">$!{user.userName}</span></div>
+                    </div>
+               </div>
+<script >
+ var webRoot = '${link.contextPath}';
+
+	var uname="$!{user.userName}";
+	if(uname){
+		$("#login-succeed").show();
+        $("#login-not").hide();
+	}else{
+		$("#login-succeed").hide();
+        $("#login-not").show();
+	}
+
+	$(document).delegate(".d_subButton","click",function(){
+		var name =$("input[name=userName]").val();
+		var psw =$("input[name=password]").val();
+		if(name!=''&& psw!=''){
+			jQuery.ajax({
+				url:webRoot+"/weiChuang/checkLogin.html",
+			    type: "POST",
+			    cache: false,
+			    async: true,
+			    data: {
+					"userName": name,
+					"password":psw
+				},
+				dataType: "json",
+				success: function(data, text) {
+					if(data.loginFlag==1){
+						$(".d_loginError").text("*用户名错误")
+					}else if(data.loginFlag==3){
+					  $(".d_loginError").text("* 密码错误，请重新输入")
+					}else if(data.loginFlag==2){
+					   	if(data.user.type==1){
+							window.location.href="${link.contextPath}/weiChuang/houTai.html";			  
+						}else if(data.user.type==2||data.user.type==3){
+							var name = data.user.userName;
+							$(".d_hidUserName").html(name);
+							var userName=$(".d_hidUserName").html();
+                        	if(jQuery.trim(userName)!=""){
+                        		$("#login-succeed").show();
+                        		$("#login-not").hide();
+                        	}else{
+                        		$("#login-succeed").hide();
+                        		$("#login-not").show();
+                        	}
+							if(data.user.type==2){
+								$("#wlzbLink").attr("href","#printUrl/question/questionList.html")
+							}
+							if(data.user.type==3){
+								$("#wlzbLink").attr("href","#printUrl/index.html")
+							}
+							
+						}			
+					}
+				}
+			})			
+		}else{
+		   	alert("用户名和密码不能为空");
+		}
+	})	
+	
+	  $("input[type=text]").each(function(){
+		  	$(this).attr("autocomplete","off");
+		  })
+		  $(".d_missPsw").click(function(){
+		  	alert("请联系管理员修改密码")
+		  })
+	$("input[name='userName'],input[name='password']").focus(function(){
+		$(".d_loginError").text("");
+	})	  
+	
+</script>	

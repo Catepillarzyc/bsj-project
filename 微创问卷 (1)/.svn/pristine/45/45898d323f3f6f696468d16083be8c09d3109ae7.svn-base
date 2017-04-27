@@ -1,0 +1,32 @@
+.foot{
+    width: 100%;
+    text-align: center;
+    margin: 40px 0;
+    padding-bottom:40px;
+}
+.go{
+    display: block;
+    line-height: 40px;
+    text-align: center;
+    color: #303030;
+    font-size: 12px;
+    background: #fff;
+    width:110px;
+    border:1px solid #008b9d;
+    color:#008b9d;
+    border-radius:4px;
+    height: 40px;
+    margin: 5px auto;
+    
+   /*  -moz-box-shadow:2px 2px 2px #949494;
+    -webkit-box-shadow:2px 2px 2px #949494;
+    box-shadow:2px 2px 2px #949494; */
+}
+
+.error{
+	margin-right:20px;
+	color:red;
+	font-size:12px;
+	vertical-align:middle;
+	
+}

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.questionnaire.dao.ClinicalApplicationDao">
+
+	<resultMap id="clinicalApplicationMap" type="com.questionnaire.pojo.ClinicalApplication">
+		<result column="id" property="id" />
+		<result column="hospital_id" property="hospitalId" />
+		<result column="operation" property="operation" />
+		<result column="fqsimilar_proportion" property="fqsimilarProportion" />
+		<result column="speed_kfsurgical" property="speedKfsurgical" />
+		<result column="minimally_why" property="minimallyWhy" />
+		<result column="zsurgery_proportion" property="zsurgeryProportion" />
+		<result column="zsurgery" property="zsurgery" />
+		<result column="complications" property="complications" />
+		<result column="is_del" property="isDel" />
+		<result column="gmt_created" property="gmtCreated" />
+		<result column="gmt_modified" property="gmtModified" />
+		<result column="oter" property="oter" />
+	</resultMap>
+	<sql id="allColumn">
+		id,hospital_id,operation,fqsimilar_proportion,speed_kfsurgical,minimally_why,zsurgery_proportion,zsurgery,complications,is_del,gmt_created,gmt_modified,oter
+	</sql>
+	<insert id="addClinicalApplication" >
+		insert into clinical_application
+		(
+			hospital_id,
+			operation,
+			fqsimilar_proportion,
+			speed_kfsurgical,
+			minimally_why,
+			zsurgery_proportion,
+			zsurgery,
+			complications,
+			is_del,
+			gmt_created,
+			gmt_modified,
+			oter
+		) 
+		values
+		(
+			#{hospitalId},
+			#{operation},
+			#{fqsimilarProportion},
+			#{speedKfsurgical},
+			#{minimallyWhy},
+			#{zsurgeryProportion},
+			#{zsurgery},
+			#{complications},
+			 0,
+			 now(),
+			 now(),
+			#{oter}
+		)
+		<selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<update id="deleteClinicalApplication" parameterType="Integer">
+		update clinical_application set status = -1 where id = #{id}
+	</update>
+
+	<update id="updateClinicalApplication" >
+		update clinical_application set 
+			<if test="hospitalId != null ">
+				hospital_id=#{hospitalId}
+			</if>
+			<if test="operation != null and ''!= operation">
+				,operation=#{operation}
+			</if>
+			<if test="fqsimilarProportion != null and ''!= fqsimilarProportion">
+				,fqsimilar_proportion=#{fqsimilarProportion}
+			</if>
+			<if test="speedKfsurgical != null and ''!= speedKfsurgical">
+				,speed_kfsurgical=#{speedKfsurgical}
+			</if>
+			<if test="minimallyWhy != null and ''!= minimallyWhy">
+				,minimally_why=#{minimallyWhy}
+			</if>
+			<if test="zsurgeryProportion != null and ''!= zsurgeryProportion">
+				,zsurgery_proportion=#{zsurgeryProportion}
+			</if>
+			<if test="zsurgery != null and ''!= zsurgery">
+				,zsurgery=#{zsurgery}
+			</if>
+			<if test="complications != null and ''!= complications">
+				,complications=#{complications}
+			</if>
+			<if test="isDel != null ">
+				,is_del=#{isDel}
+			</if>
+				,gmt_created= now()
+				,gmt_modified= now()
+			<if test="oter != null and ''!= oter">
+				,oter=#{oter}
+			</if>
+			where id = #{id}
+	</update>
+
+	<select id="countClinicalApplication"  resultType="Integer">
+		select count(id)
+		from clinical_application
+			where 1=1 
+			<if test="hospitalId != null ">
+				and hospital_id=#{hospitalId}
+			</if>
+			<if test="operation != null and ''!= operation">
+				and operation=#{operation}
+			</if>
+			<if test="fqsimilarProportion != null and ''!= fqsimilarProportion">
+				and fqsimilar_proportion=#{fqsimilarProportion}
+			</if>
+			<if test="speedKfsurgical != null and ''!= speedKfsurgical">
+				and speed_kfsurgical=#{speedKfsurgical}
+			</if>
+			<if test="minimallyWhy != null and ''!= minimallyWhy">
+				and minimally_why=#{minimallyWhy}
+			</if>
+			<if test="zsurgeryProportion != null and ''!= zsurgeryProportion">
+				and zsurgery_proportion=#{zsurgeryProportion}
+			</if>
+			<if test="zsurgery != null and ''!= zsurgery">
+				and zsurgery=#{zsurgery}
+			</if>
+			<if test="complications != null and ''!= complications">
+				and complications=#{complications}
+			</if>
+			<if test="isDel != null ">
+				and is_del=#{isDel}
+			</if>
+			<if test="oter != null and ''!= oter">
+				and oter=#{oter}
+			</if>
+	</select>
+
+	<select id="findClinicalApplication"  resultMap="clinicalApplicationMap">
+		select
+		<include refid="allColumn"/>
+		from clinical_application
+			where is_del = 0 and hospital_id = #{hospitalId} 
+			<if test="operation != null and ''!= operation">
+				and operation=#{operation}
+			</if>
+			<if test="fqsimilarProportion != null and ''!= fqsimilarProportion">
+				and fqsimilar_proportion=#{fqsimilarProportion}
+			</if>
+			<if test="speedKfsurgical != null and ''!= speedKfsurgical">
+				and speed_kfsurgical=#{speedKfsurgical}
+			</if>
+			<if test="minimallyWhy != null and ''!= minimallyWhy">
+				and minimally_why=#{minimallyWhy}
+			</if>
+			<if test="zsurgeryProportion != null and ''!= zsurgeryProportion">
+				and zsurgery_proportion=#{zsurgeryProportion}
+			</if>
+			<if test="zsurgery != null and ''!= zsurgery">
+				and zsurgery=#{zsurgery}
+			</if>
+			<if test="complications != null and ''!= complications">
+				and complications=#{complications}
+			</if>
+			<if test="oter != null and ''!= oter">
+				and oter=#{oter}
+			</if>
+
+	</select>
+
+	<select id="findClinicalApplicationList"  resultMap="clinicalApplicationMap">
+		select
+		<include refid="allColumn"/>
+		from clinical_application
+			where 1=1 
+			<if test="hospitalId != null ">
+				and hospital_id=#{hospitalId}
+			</if>
+			<if test="operation != null and ''!= operation">
+				and operation=#{operation}
+			</if>
+			<if test="fqsimilarProportion != null and ''!= fqsimilarProportion">
+				and fqsimilar_proportion=#{fqsimilarProportion}
+			</if>
+			<if test="speedKfsurgical != null and ''!= speedKfsurgical">
+				and speed_kfsurgical=#{speedKfsurgical}
+			</if>
+			<if test="minimallyWhy != null and ''!= minimallyWhy">
+				and minimally_why=#{minimallyWhy}
+			</if>
+			<if test="zsurgeryProportion != null and ''!= zsurgeryProportion">
+				and zsurgery_proportion=#{zsurgeryProportion}
+			</if>
+			<if test="zsurgery != null and ''!= zsurgery">
+				and zsurgery=#{zsurgery}
+			</if>
+			<if test="complications != null and ''!= complications">
+				and complications=#{complications}
+			</if>
+			<if test="isDel != null ">
+				and is_del=#{isDel}
+			</if>
+			<if test="oter != null and ''!= oter">
+				and oter=#{oter}
+			</if>
+	</select>
+
+
+</mapper>

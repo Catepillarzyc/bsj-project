@@ -1,0 +1,22 @@
+.list tr:hover{
+    background-color: #edf7fd;
+}
+.unused {
+    color:#999 !important;
+}
+.undoable {
+    color:#999 !important;
+}
+
+
+
+.f-company-name {
+    width:400px;
+}
+
+.f-xj-main .f-xjzh-save {
+    margin-left:110px;
+}
+
+
+

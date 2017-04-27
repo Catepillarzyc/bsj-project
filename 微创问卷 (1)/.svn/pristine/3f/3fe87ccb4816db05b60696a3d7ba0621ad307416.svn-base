@@ -1,0 +1,140 @@
+html {
+    line-height: 1.15; /* 1 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+body {
+    font-size:14px;
+}
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,figure,figcaption,code,del,dfn,em,image,q,dl,dt,dd,ol,ul,li,fieldset,form,legend,table,tf,tr,th {
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    font-family:normal small Microsoft YaHei,"微软雅黑","宋体",Verdana, Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
+    color:#3c3c3c;
+}
+
+article,
+aside,
+footer,
+header,
+nav,
+section {
+    display: block;
+}
+
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+
+hr {
+    box-sizing: content-box; /* 1 */
+    height: 0; /* 1 */
+    overflow: visible; /* 2 */
+}
+input,textarea,select
+{
+    background-color: #FFFFFF;
+    font-size:12px;
+    outline:none;
+}
+input {
+    text-indent: 0.5em;
+}
+img {
+    border: 0px;
+    border-style: none;
+    vertical-align:bottom;
+    -ms-interpolation-mode: bicubic;
+}
+ul, li {
+    list-style-type:none;
+}
+
+a {
+    cursor: pointer;
+    background-color: transparent; /* 1 */
+    -webkit-text-decoration-skip: objects; /* 2 */
+}
+a:link {
+    text-decoration: none;
+    color:#3c3c3c;
+}
+a:visited {
+    color:#3c3c3c;
+    text-decoration: none;
+}
+a:hover
+{
+    text-decoration:underline;
+}
+a:active {
+    color:#3c3c3c;
+    text-decoration: none;
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
+}
+.hidden {
+    display: none;
+}
+.clearfix {
+    display: block;
+    zoom:1;
+}
+.clearfix:after {
+    display:block;
+    content:'';
+    clear:both;
+    height:0px;
+    visibility: hidden;
+}
+
+button,
+input { /* 1 */
+    overflow: visible;
+}
+
+button,
+select { /* 1 */
+    text-transform: none;
+}
+.dn {
+    display: none;
+}
+.vh {
+    visibility: hidden;
+}
+.letter-blank {
+    display: inline-block;
+    width: 1em;
+}
+.clearfix {
+    display: block;
+    zoom:1;
+}
+.clearfix:after {
+    display:block;
+    content:'';
+    clear:both;
+    height:0px;
+    visibility: hidden;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+    text-align: center;
+}

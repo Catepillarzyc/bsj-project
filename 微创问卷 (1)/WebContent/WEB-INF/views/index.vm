@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>首页</title>
+    <link href="#printUrl()/css/index.css" rel="stylesheet" type="text/css" >
+    <link href="#printUrl()/css/newcss.css" rel="stylesheet" type="text/css" >
+    <script type="text/javascript" src="#printUrl()/js/jquery-1.12.2.js"></script>
+</head>
+<body>
+    <div class="head">浙江省微创技术质量控制中心调查问卷</div>
+    <div class="nav clearfix">
+        <div id="hospital" class="block" flag="iframe1"><a class="now"  >医院情况</a></div>
+        <div id="ksStaff" class="block" flag="iframe2"><a class="unfinished"  >人员情况</a></div>
+        <div id="equipment" class="block" flag="iframe3"><a class="unfinished"  >设备情况</a></div>
+        <div id="clinicalApplication" class="block" flag="iframe4"><a class="unfinished"  >临床应用</a></div>
+        <div class="block" style="display:none"><div flag="1" class="submit">提交问卷</div></div> 
+	</div>
+        <iframe class="iframe1 ifr"   scrolling="auto" src="#printUrl()/hospital.html" name="main" frameborder="0" height="100%" width="100%"></iframe>
+		<iframe class="iframe2 ifr dn"  scrolling="auto" src="#printUrl()/ksStaff.html" name="main1" frameborder="0" height="100%" width="100%"></iframe>
+		<iframe class="iframe3 ifr dn" scrolling="auto" src="#printUrl()/equipment.html" name="main2" frameborder="0" height="100%" width="100%"></iframe>
+		<iframe class="iframe4 ifr dn" scrolling="auto" src="#printUrl()/clinicalApplication.html" name="main3" frameborder="0" height="100%" width="100%"></iframe>
+    
+</body>
+<script>
+    var height = $(window).height()-100;
+    $(".ifr").height(height);
+	var errorMsg ="";
+	var webRoot = '${link.contextPath}';
+	$(document).delegate(".block","click",function(){
+	      var flag = $(this).find(".submit").attr("flag");
+		
+	      //医院详情
+		  var hospitalName = $(window.frames["main"].document).find("input[name=hospitalName]").val();		  
+		  var hospitalAddress = $(window.frames["main"].document).find("input[name=hospitalAddress]").val();		  
+		  var legalRepresentative = $(window.frames["main"].document).find("input[name=legalRepresentative]").val();
+		 
+		  var telephoneFax = $(window.frames["main"].document).find("input[name=telephoneFax]").val();
+	      var reg4 = /^(\d|-|\/)+$/;
+	      var flag4 = reg4.test(telephoneFax);
+		  
+		  var email = $(window.frames["main"].document).find("input[name=email]").val(); 
+		  var reg1 = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 	   
+	      var flag2 = reg1.test(email);
+		  
+		  var contactPhone = $(window.frames["main"].document).find("input[name=contactPhone]").val();		   
+	      var reg3 = /^(\d|-|\/)+$/;
+		  var flag3 = reg3.test(contactPhone);
+		  //人员信息
+		  var generalSurgery = $(window.frames["main1"].document).find("#itme1:checked").val();
+		  var gallbladderSurgery = $(window.frames["main1"].document).find("#itme2:checked").val();
+		  var gastrointesSurgery = $(window.frames["main1"].document).find("#itme3:checked").val();
+		  var herniaSurgery = $(window.frames["main1"].document).find("#itme4:checked").val();
+		  var breastSurgery = $(window.frames["main1"].document).find("#itme5:checked").val();
+		  var vascularSurgery = $(window.frames["main1"].document).find("#itme6:checked").val();		 
+		  var thoracicSurgery = $(window.frames["main1"].document).find("#itme7:checked").val();
+		  var ptThoracicSurgery = $(window.frames["main1"].document).find("#itme8:checked").val();
+		  var cardiacSurgery = $(window.frames["main1"].document).find("#itme9:checked").val();		 
+		  var urology = $(window.frames["main1"].document).find("#itme10:checked").val();
+		  var urologicalOncology = $(window.frames["main1"].document).find("#itme11:checked").val();
+		  var stonesBranch = $(window.frames["main1"].document).find("#itme12:checked").val();		 
+		  var womenObstetrics = $(window.frames["main1"].document).find("#itme13:checked").val();
+		  var gynecologicOncology = $(window.frames["main1"].document).find("#itme14:checked").val();
+		  var ptGynaecology = $(window.frames["main1"].document).find("#itme15:checked").val();		 
+		  var orthopaedic = $(window.frames["main1"].document).find("#itme16:checked").val();
+		  var spineSurgery = $(window.frames["main1"].document).find("#itme17:checked").val();
+		  var jointSurgery = $(window.frames["main1"].document).find("#itme18:checked").val();		 
+		  var radioactive = $(window.frames["main1"].document).find("#itme19:checked").val();	  
+		  var ksName = new Array();
+		  $(window.frames["main1"].document).find(".ks").each(function(){
+		      var ksn = $(this).html();
+			  ksName.push(ksn);               
+		  });
+		  var physiciansNumber = new Array();
+		  $(window.frames["main1"].document).find("input[name=physiciansNumber]").each(function(){
+		     var phn = $(this).val();
+			 physiciansNumber.push(phn);
+		  });
+		  var chiefPhysician = new Array();
+		  $(window.frames["main1"].document).find("input[name=chiefPhysician]").each(function(){
+		     var cp = $(this).val();
+			 chiefPhysician.push(cp);                 
+		  });
+		  var fchiefPhysician = new Array();
+		  $(window.frames["main1"].document).find("input[name=fchiefPhysician]").each(function(){
+		     var fp = $(this).val();
+			 fchiefPhysician.push(fp);
+		  });
+		  var attendingNumber = new Array();
+		  $(window.frames["main1"].document).find("input[name=attendingNumber]").each(function(){
+		     var an = $(this).val();
+			 attendingNumber.push(an);
+		  });
+		  var residentNumber = new Array();
+		  $(window.frames["main1"].document).find("input[name=residentNumber]").each(function(){
+		     var rn = $(this).val();
+			 residentNumber.push(rn);
+		  });
+		  var drNumber = new Array();
+		  $(window.frames["main1"].document).find("input[name=drNumber]").each(function(){
+		     var dn = $(this).val();
+			 drNumber.push(dn);
+		  });
+		  var masterNumber = new Array();
+		  $(window.frames["main1"].document).find("input[name=masterNumber]").each(function(){
+		     var mn = $(this).val();
+			 masterNumber.push(mn);
+		  });
+		  var bachelorNumber = new Array();
+		  $(window.frames["main1"].document).find("input[name=bachelorNumber]").each(function(){
+		     var bn = $(this).val();
+			 bachelorNumber.push(bn);
+		  });
+		  var treeYeaSurgeryYw = $(window.frames["main2"].document).find("input:radio[name='radio11']:checked").val();
+		  var example = $(window.frames["main2"].document).find("#example").val();
+		  var supplyState = $(window.frames["main2"].document).find("input:radio[name='radio16']:checked").val();
+		  var disinWay = $(window.frames["main2"].document).find("input:radio[name='radio7']:checked").val(); 
+		  var liquidType = $(window.frames["main2"].document).find("input[name=liquidType]").val();
+		  var manufacturer = $(window.frames["main2"].document).find("input[name=manufacturer]").val();
+		  var disinTime = $(window.frames["main2"].document).find("input[name=disinTime]").val();
+		  //设备信息
+		  var qNumber = $(window.frames["main2"].document).find("input[name=qNumber]").val();
+          var eflag1 = /^(undefined|0|[1-9][0-9]*)?$/.test(qNumber);
+		  
+		  var qImportNumber = $(window.frames["main2"].document).find("input[name=qImportNumber]").val();
+		  var eflag2 = /^(undefined|0|[1-9][0-9]*)?$/.test(qImportNumber);
+		  
+		  var qImportBrand = $(window.frames["main2"].document).find("input[name=qImportBrand]").val();	 
+		  var qDomesticNumber = $(window.frames["main2"].document).find("input[name=qDomesticNumber]").val();
+		  var eflag3 = /^(undefined|0|[1-9][0-9]*)?$/.test(qDomesticNumber);
+		  
+		  var qDomesticBrand = $(window.frames["main2"].document).find("input[name=qDomesticBrand]").val();
+		  var gfqNumber = $(window.frames["main2"].document).find("input[name=gfqNumber]").val();
+		  var eflag4 = /^(undefined|0|[1-9][0-9]*)?$/.test(gfqNumber);
+		  
+		  var gfqImportNumber = $(window.frames["main2"].document).find("input[name=gfqImportNumber]").val();
+		  var eflag5 = /^(undefined|0|[1-9][0-9]*)?$/.test(gfqImportNumber);
+		  
+		  var standardfq = $(window.frames["main2"].document).find("input[name=standardfq]").val();		 	
+		  var eflag6 = /^(undefined|0|[1-9][0-9]*)?$/.test(standardfq);
+		  
+		  var domesticsfq = $(window.frames["main2"].document).find("input[name=domesticsfq]").val();
+          var eflag7 = /^(undefined|0|[1-9][0-9]*)?$/.test(domesticsfq);
+		  
+		  var treeYeanfqNumber = $(window.frames["main2"].document).find("input[name=treeYeanfqNumber]").val();
+		  var eflag8 = /^(undefined|0|[1-9][0-9]*)?$/.test(treeYeanfqNumber);
+		  
+		  var daySurNumber = $(window.frames["main2"].document).find("input[name=daySurNumber]").val();
+		  var eflag9 = /^(undefined|0|[1-9][0-9]*)?$/.test(daySurNumber);
+		  
+		  var commonlyNumber = $(window.frames["main2"].document).find("input[name=commonlyNumber]").val();
+		  var eflag10 = /^(undefined|0|[1-9][0-9]*)?$/.test(commonlyNumber);
+		  
+		  var standbyNumber = $(window.frames["main2"].document).find("input[name=standbyNumber]").val();
+		  var eflag11 = /^(undefined|0|[1-9][0-9]*)?$/.test(standbyNumber);
+		  
+		  var freeNumber = $(window.frames["main2"].document).find("input[name=freeNumber]").val();
+		  var eflag12 = /^(undefined|0|[1-9][0-9]*)?$/.test(freeNumber);
+		  
+		  var contact = $(window.frames["main"].document).find("input[name=contact]").val();	      
+		  var ksPosition = $(window.frames["main"].document).find("input[name=ksPosition]").val();		  		
+		  var hospitalLevel = $(window.frames["main"].document).find("input:radio[name='Grade']:checked").val();
+		  var hospitalNature = $(window.frames["main"].document).find("input:radio[name='property']:checked").val();
+		  var beds = $(window.frames["main"].document).find("input:radio[name='bed']:checked").val();
+		  
+		  //临床应用
+		  var fqLocalSurgery = $(window.frames["main3"].document).find("input[name='checkbox6']:checked").val();  
+		  var fqLeftSurgery = $(window.frames["main3"].document).find('input[name="checkbox7"]:checked').val(); 
+		  var fqLeftSideSurgery = $(window.frames["main3"].document).find("input[name='checkbox8']:checked").val();
+		  var fqRightSideSurgery = $(window.frames["main3"].document).find("input[name='checkbox9']:checked").val();
+		 
+		  var medical = $(window.frames["main3"].document).find("input[name='checkbox1']:checked").val();
+		  var cmDisease = $(window.frames["main3"].document).find("input[name='checkbox2']:checked").val();
+		  var lackDoctor = $(window.frames["main3"].document).find("input[name='checkbox3']:checked").val();
+		  var lackEquipment = $(window.frames["main3"].document).find("input[name='checkbox4']:checked").val();
+		  var otherReasons = $(window.frames["main3"].document).find("input[name='checkbox5']:checked").val();
+		  var reasons = $(window.frames["main3"].document).find("input[name=reasons]").val();
+		 
+          var gndgProportion = $(window.frames["main3"].document).find("input[name=gndgProportion]").val();
+		  var gzlProportion = $(window.frames["main3"].document).find("input[name=gzlProportion]").val();
+		  
+		  var proportion = $(window.frames["main3"].document).find("input[name=proportion]").val();
+		  var kfProportion = $(window.frames["main3"].document).find("input:radio[name='radio5']:checked").val();
+		  
+		  var zkfProportion = $(window.frames["main3"].document).find("input[name=zkfProportion]").val();
+		  
+		  var fqldNumber = $(window.frames["main3"].document).find("input[name=fqldNumber]").val();			  
+		  var cflag2 = /^(undefined|0|[1-9][0-9]*)?$/.test(fqldNumber);
+		  
+		  var ddssNumber = $(window.frames["main3"].document).find("input[name=ddssNumber]").val();
+          var cflag3 = /^(undefined|0|[1-9][0-9]*)?$/.test(ddssNumber);
+		  
+		  var bleedingNumber = $(window.frames["main3"].document).find("input[name=bleedingNumber]").val();
+		  var cflag4 = /^(undefined|0|[1-9][0-9]*)?$/.test(bleedingNumber);
+		  
+		  var dzgjsNumber = $(window.frames["main3"].document).find("input[name=dzgjsNumber]").val();
+		  var cflag5 = /^(undefined|0|[1-9][0-9]*)?$/.test(dzgjsNumber);
+		  
+		  var otherNumber = $(window.frames["main3"].document).find("input[name=otherNumber]").val();
+		  var cflag6 = /^(undefined|0|[1-9][0-9]*)?$/.test(otherNumber);
+		  
+		  var operationTime = $(window.frames["main3"].document).find("input[name=operationTime]").val();
+		  var cflag7 = /^(undefined|0|[1-9][0-9]*)?$/.test(operationTime);
+		  
+		  var bleedingMl = $(window.frames["main3"].document).find("input[name=bleedingMl]").val();
+		  var cflag8 = /^(undefined|0|[1-9][0-9]*)?$/.test(bleedingMl);
+		  
+		  var portazsNumber = $(window.frames["main3"].document).find("input[name=portazsNumber]").val();
+		  var cflag9 = /^(undefined|0|[1-9][0-9]*)?$/.test(portazsNumber);
+		  
+		  var portazsTime = $(window.frames["main3"].document).find("input[name=portazsTime]").val();
+		  var cflag12 = /^(undefined|0|[1-9][0-9]*)?$/.test(portazsTime);
+		  
+		  var twoSurgeryNumber = $(window.frames["main3"].document).find("input[name=twoSurgeryNumber]").val();	 
+		  var cflag13 = /^(undefined|0|[1-9][0-9]*)?$/.test(twoSurgeryNumber);
+		  
+		  var bfzBleedingNumber = $(window.frames["main3"].document).find("input[name=bfzBleedingNumber]").val();
+		  var cflag14 = /^(undefined|0|[1-9][0-9]*)?$/.test(bfzBleedingNumber);
+		  
+		  var bfzFistulaNumber = $(window.frames["main3"].document).find("input[name=bfzFistulaNumber]").val();
+		  var cflag15 = /^(undefined|0|[1-9][0-9]*)?$/.test(bfzFistulaNumber);
+		  
+		  var bfzQkgrNumber = $(window.frames["main3"].document).find("input[name=bfzQkgrNumber]").val();
+		  var cflag16 = /^(undefined|0|[1-9][0-9]*)?$/.test(bfzQkgrNumber);
+		  
+		  var bfzFqgrNumber = $(window.frames["main3"].document).find("input[name=bfzFqgrNumber]").val();
+		  var cflag17 = /^(|0|[1-9][0-9]*)?$/.test(bfzFqgrNumber);
+		  
+		  var bfzOtherNumber = $(window.frames["main3"].document).find("input[name=bfzOtherNumber]").val();
+		  var cflag18 = /^(undefined|0|[1-9][0-9]*)?$/.test(bfzOtherNumber);
+		  		  
+		  if(hospitalName == ""){
+		       alert("医院名称不能为空");
+			   return false;
+		  }
+		  if(errorMsg!=""){
+		   alert(errorMsg);
+		    return false;
+		  }
+		  else if(flag4 == false && telephoneFax != ""){
+			   alert("电话传真输入不合法，只能输入数字 或特殊符号  - 或 /");	
+			   return false;
+	      }
+		  else if(flag2 == false && email != ""){
+			   alert("邮箱不合法");
+			   return false;
+		  }
+		  else if(flag3 == false && contactPhone !=""){
+		       alert("联系电话输入不合法，只能输入数字 或特殊符号  - 或 /");
+			   return false;
+		  }
+		  else if(eflag1 == false && qNumber != ""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(eflag2 == false && qImportNumber != ""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(eflag3 == false && qDomesticNumber != ""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(eflag4 == false && gfqNumber != ""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(eflag5 == false && gfqImportNumber != ""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(eflag6 == false && standardfq != ""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(eflag7 == false && domesticsfq != ""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(eflag8 == false && treeYeanfqNumber != ""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(eflag9 == false && daySurNumber != ""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(eflag10 == false && commonlyNumber != ""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(eflag11 == false && standbyNumber != ""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(eflag12 == false && freeNumber != ""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(gndgProportion<0||gndgProportion>100 && gndgProportion !="" ){
+		       alert("肝内胆管结石数值范围只能为:>0和<=100！");
+			   return false;
+		  }
+		  else if(/^[1-9]\d*(\.\d{1,2})?$/.test(gndgProportion)==false && gndgProportion !=""){
+		       alert("肝内胆管结石数据不合法！");
+			   return false;
+		  }
+		  else if(gzlProportion<0||gzlProportion>100 && gzlProportion !=""){
+		       alert("肝脏肿瘤数值范围只能为:>0和<=100！");
+			   return false;
+		  }
+		  else if(/^[1-9]\d*(\.\d{1,2})?$/.test(gzlProportion)==false && gzlProportion !=""){
+		      alert("肝脏肿瘤数据不合法！");
+			  return false;
+		  }
+		  else if(proportion<0||proportion>100 && proportion !=""){
+		       alert("康复外科数值范围只能为:>0和<=100！");
+			   return false;
+		  }
+		  else if(/^[1-9]\d*(\.\d{1,2})?$/.test(proportion)==false && proportion !=""){
+		       alert("康复外科数据不合法！");
+			   return false;
+		  }
+		  else if(zkfProportion<0||zkfProportion>100 && zkfProportion !=""){
+		       alert("中转开腹手术数值范围只能为:>0和<=100！");
+			   return false;
+		  }
+		  else if(/^[1-9]\d*(\.\d{1,2})?$/.test(zkfProportion)==false && zkfProportion !=""){
+		       alert("中转开腹手术数据不合法");
+			   return false;
+		  }
+		  else if(cflag2 == false && fqldNumber !=""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(cflag3 == false && ddssNumber !=""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(cflag4 == false && bleedingNumber !=""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(cflag5 == false && dzgjsNumber !=""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(cflag6 == false && otherNumber !=""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(cflag7 == false && operationTime !=""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(cflag8 == false && bleedingMl !=""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(cflag9 == false && portazsNumber !=""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(cflag12 == false && portazsTime !=""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(cflag13 == false && twoSurgeryNumber !=""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(cflag14 == false && bfzBleedingNumber !=""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(cflag15 == false && bfzFistulaNumber !=""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(cflag16 == false && bfzQkgrNumber !=""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(cflag17 == false && bfzFqgrNumber !=""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  }
+		  else if(cflag18 == false && bfzOtherNumber !=""){
+		       alert("输入不合法，只能输入正整数");
+			   return false;
+		  } 
+		  else{
+		       var obj = $(this).attr("flag");
+		  	   $(".ifr").hide();
+			   $("."+obj).show();
+			   $(this).find("a").attr("class","now");
+	      	   $(this).siblings().find("a").attr("class","unfinished");
+		  }		  
+		  if(flag == 1){	
+		      jQuery.ajax({
+    			url:webRoot + "/indexSubmit.html",
+    			type:"POST",
+    			cache:false, 
+    			async:false, 
+    			data:{				
+				"fqLocalSurgery":fqLocalSurgery,
+				"fqLeftSurgery":fqLeftSurgery,
+				"fqLeftSideSurgery":fqLeftSideSurgery,
+				"fqRightSideSurgery":fqRightSideSurgery,
+				"medical":medical,
+				"cmDisease":cmDisease,
+				"lackDoctor":lackDoctor,
+				"lackEquipment":lackEquipment,
+				"otherReasons":otherReasons,
+				"reasons":reasons,	
+				"hospitalName":hospitalName,
+				"hospitalAddress":hospitalAddress,
+				"legalRepresentative":legalRepresentative,
+				"telephoneFax":telephoneFax,
+				"email":email,
+				"contact":contact,
+				"ksPosition":ksPosition,
+				"contactPhone":contactPhone,
+				"hospitalLevel":hospitalLevel,
+				"hospitalNature":hospitalNature,
+				"beds":beds,				
+				"generalSurgery":generalSurgery,
+				"gallbladderSurgery":gallbladderSurgery,
+				"gastrointesSurgery":gastrointesSurgery,
+				"herniaSurgery":herniaSurgery,
+				"breastSurgery":breastSurgery,
+				"vascularSurgery":vascularSurgery,
+				"thoracicSurgery":thoracicSurgery,
+				"ptThoracicSurgery":ptThoracicSurgery,
+				"cardiacSurgery":cardiacSurgery,
+				"urology":urology,
+				"urologicalOncology":urologicalOncology,
+				"stonesBranch":stonesBranch,
+				"womenObstetrics":womenObstetrics,
+				"gynecologicOncology":gynecologicOncology,
+				"ptGynaecology":ptGynaecology,
+				"orthopaedic":orthopaedic,
+				"spineSurgery":spineSurgery,
+				"jointSurgery":jointSurgery,
+				"radioactive":radioactive,
+				"ksName":JSON.stringify(ksName),
+				"physiciansNumber":JSON.stringify(physiciansNumber),
+				"chiefPhysician":JSON.stringify(chiefPhysician),
+				"fchiefPhysician":JSON.stringify(fchiefPhysician),
+				"attendingNumber":JSON.stringify(attendingNumber),
+				"residentNumber":JSON.stringify(residentNumber),
+				"drNumber":JSON.stringify(drNumber),
+				"masterNumber":JSON.stringify(masterNumber),
+				"bachelorNumber":JSON.stringify(bachelorNumber),				
+				"qNumber":qNumber,
+				"qImportNumber":qImportNumber,
+				"qImportBrand":qImportBrand,
+				"qDomesticNumber":qDomesticNumber,
+				"qDomesticBrand":qDomesticBrand,
+				"gfqNumber":gfqNumber,
+				"gfqImportNumber":gfqImportNumber,
+				"standardfq":standardfq,
+				"domesticsfq":domesticsfq,
+				"treeYeanfqNumber":treeYeanfqNumber,
+				"daySurNumber":daySurNumber,
+				"commonlyNumber":commonlyNumber,
+				"standbyNumber":standbyNumber,
+				"freeNumber":freeNumber,
+				"treeYeaSurgeryYw":treeYeaSurgeryYw,
+				"example":example,
+				"supplyState":supplyState,
+				"disinWay":disinWay,
+				"liquidType":liquidType,
+				"manufacturer":manufacturer,
+				"disinTime":disinTime,				
+				"gndgProportion":gndgProportion,
+				"gzlProportion":gzlProportion,
+				"kfProportion":kfProportion,
+				"proportion":proportion,
+				"zkfProportion":zkfProportion,
+				"fqldNumber":fqldNumber,
+				"ddssNumber":ddssNumber,
+				"bleedingNumber":bleedingNumber,
+				"dzgjsNumber":dzgjsNumber,
+				"otherNumber":otherNumber,
+				"operationTime":operationTime,
+				"bleedingMl":bleedingMl,
+				"portazsNumber":portazsNumber,
+				"portazsTime":portazsTime,
+				"twoSurgeryNumber":twoSurgeryNumber,
+				"bfzBleedingNumber":bfzBleedingNumber,
+				"bfzFistulaNumber":bfzFistulaNumber,
+				"bfzQkgrNumber":bfzQkgrNumber,
+				"bfzFqgrNumber":bfzFqgrNumber,
+				"bfzOtherNumber":bfzOtherNumber},
+    			dataType:"json",
+    			success:function(data,text){				     
+					 alert("提交成功");
+				 //parent.location.reload();
+				  parent.location.href=webRoot+"/index.html";
+       	       }        
+		    });
+		  }else{			      
+    		  jQuery.ajax({
+        			url:webRoot + "/addData.html",
+        			type:"POST",
+        			cache:false, 
+        			async:false, 
+        			data:{
+    				"fqLocalSurgery":fqLocalSurgery,
+    				"fqLeftSurgery":fqLeftSurgery,
+    				"fqLeftSideSurgery":fqLeftSideSurgery,
+    				"fqRightSideSurgery":fqRightSideSurgery,
+    				"medical":medical,
+    				"cmDisease":cmDisease,
+    				"lackDoctor":lackDoctor,
+    				"lackEquipment":lackEquipment,
+    				"otherReasons":otherReasons,
+    				"reasons":reasons,
+    				"hospitalName":hospitalName,
+    				"hospitalAddress":hospitalAddress,
+    				"legalRepresentative":legalRepresentative,
+    				"telephoneFax":telephoneFax,
+    				"email":email,
+    				"contact":contact,
+    				"ksPosition":ksPosition,
+    				"contactPhone":contactPhone,
+    				"hospitalLevel":hospitalLevel,
+    				"hospitalNature":hospitalNature,
+    				"beds":beds,				
+    				"generalSurgery":generalSurgery,
+    				"gallbladderSurgery":gallbladderSurgery,
+    				"gastrointesSurgery":gastrointesSurgery,
+    				"herniaSurgery":herniaSurgery,
+    				"breastSurgery":breastSurgery,
+    				"vascularSurgery":vascularSurgery,
+    				"thoracicSurgery":thoracicSurgery,
+    				"ptThoracicSurgery":ptThoracicSurgery,
+    				"cardiacSurgery":cardiacSurgery,
+    				"urology":urology,
+    				"urologicalOncology":urologicalOncology,
+    				"stonesBranch":stonesBranch,
+    				"womenObstetrics":womenObstetrics,
+    				"gynecologicOncology":gynecologicOncology,
+    				"ptGynaecology":ptGynaecology,
+    				"orthopaedic":orthopaedic,
+    				"spineSurgery":spineSurgery,
+    				"jointSurgery":jointSurgery,
+    				"radioactive":radioactive,
+    				"ksName":JSON.stringify(ksName),
+    				"physiciansNumber":JSON.stringify(physiciansNumber),
+    				"chiefPhysician":JSON.stringify(chiefPhysician),
+    				"fchiefPhysician":JSON.stringify(fchiefPhysician),
+    				"attendingNumber":JSON.stringify(attendingNumber),
+    				"residentNumber":JSON.stringify(residentNumber),
+    				"drNumber":JSON.stringify(drNumber),
+    				"masterNumber":JSON.stringify(masterNumber),
+    				"bachelorNumber":JSON.stringify(bachelorNumber),				
+    				"qNumber":qNumber,
+    				"qImportNumber":qImportNumber,
+    				"qImportBrand":qImportBrand,
+    				"qDomesticNumber":qDomesticNumber,
+    				"qDomesticBrand":qDomesticBrand,
+    				"gfqNumber":gfqNumber,
+    				"gfqImportNumber":gfqImportNumber,
+    				"standardfq":standardfq,
+    				"domesticsfq":domesticsfq,
+    				"treeYeanfqNumber":treeYeanfqNumber,
+    				"daySurNumber":daySurNumber,
+    				"commonlyNumber":commonlyNumber,
+    				"standbyNumber":standbyNumber,
+    				"freeNumber":freeNumber,
+    				"treeYeaSurgeryYw":treeYeaSurgeryYw,
+    				"example":example,
+    				"supplyState":supplyState,
+    				"disinWay":disinWay,
+    				"liquidType":liquidType,
+    				"manufacturer":manufacturer,
+    				"disinTime":disinTime,				
+    				"gndgProportion":gndgProportion,
+    				"gzlProportion":gzlProportion,
+    				"kfProportion":kfProportion,
+    				"proportion":proportion,
+    				"zkfProportion":zkfProportion,
+    				"fqldNumber":fqldNumber,
+    				"ddssNumber":ddssNumber,
+    				"bleedingNumber":bleedingNumber,
+    				"dzgjsNumber":dzgjsNumber,
+    				"otherNumber":otherNumber,
+    				"operationTime":operationTime,
+    				"bleedingMl":bleedingMl,
+    				"portazsNumber":portazsNumber,
+    				"portazsTime":portazsTime,
+    				"twoSurgeryNumber":twoSurgeryNumber,
+    				"bfzBleedingNumber":bfzBleedingNumber,
+    				"bfzFistulaNumber":bfzFistulaNumber,
+    				"bfzQkgrNumber":bfzQkgrNumber,
+    				"bfzFqgrNumber":bfzFqgrNumber,
+    				"bfzOtherNumber":bfzOtherNumber},
+        			dataType:"json",
+        			success:function(data,text){					    
+    		
+           	        }        
+    		    });
+		    }  
+	 });
+
+	  
+</script>
+</html>

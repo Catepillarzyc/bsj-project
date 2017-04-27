@@ -1,0 +1,20 @@
+package com.questionnaire.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
+import com.questionnaire.pojo.Consumer;
+
+
+
+
+public interface ConsumerDao {
+	public Consumer queryUserByUserName(@Param("userName") String userName);
+	public Integer updatePswByUserName(@Param("userName") String userName, @Param("newPsw") String newPsw);
+	public Integer insertUser(@Param("user")Consumer user);
+	public Integer updateIsBlock(@Param("isBlock")Integer isBlock, @Param("id") Integer id);
+	public List<Consumer> queryQuestionUser(@Param("start") Integer start, @Param("size")Integer size);
+	public Integer countQuestionUser();
+	public Integer deleteUser(@Param("id")Integer id);
+}

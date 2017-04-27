@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.questionnaire.dao.EquipmentDao">
+
+	<resultMap id="equipmentMap" type="com.questionnaire.pojo.Equipment">
+		<result column="id" property="id" />
+		<result column="hospital_id" property="hospitalId" />
+		<result column="qiangjinji" property="qiangjinji" />
+		<result column="fqjinji" property="fqjinji" />
+		<result column="newplace_fqjinji" property="newplaceFqjinji" />
+		<result column="carry_qsurgery" property="carryQsurgery" />
+		<result column="supply_state" property="supplyState" />
+		<result column="qiangjiqi_disin" property="qiangjiqiDisin" />
+		<result column="is_del" property="isDel" />
+		<result column="gmt_created" property="gmtCreated" />
+		<result column="gmt_modified" property="gmtModified" />
+	</resultMap>
+	<sql id="allColumn">
+		id,hospital_id,qiangjinji,fqjinji,newplace_fqjinji,carry_qsurgery,supply_state,qiangjiqi_disin,is_del,gmt_created,gmt_modified
+	</sql>
+	<insert id="addEquipment" >
+		insert into equipment
+		(
+			hospital_id,
+			qiangjinji,
+			fqjinji,
+			newplace_fqjinji,
+			carry_qsurgery,
+			supply_state,
+			qiangjiqi_disin,
+			is_del,
+			gmt_created,
+			gmt_modified
+		) 
+		values
+		(
+			#{hospitalId},
+			#{qiangjinji},
+			#{fqjinji},
+			#{newplaceFqjinji},
+			#{carryQsurgery},
+			#{supplyState},
+			#{qiangjiqiDisin},
+			 0,
+			 now(),
+			 now()
+		)
+		<selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<update id="deleteEquipment" parameterType="Integer">
+		update equipment set status = -1 where id = #{id}
+	</update>
+
+	<update id="updateEquipment" >
+		update equipment set 
+			<if test="hospitalId != null ">
+				hospital_id=#{hospitalId}
+			</if>
+			<if test="qiangjinji != null and ''!= qiangjinji">
+				,qiangjinji=#{qiangjinji}
+			</if>
+			<if test="fqjinji != null and ''!= fqjinji">
+				,fqjinji=#{fqjinji}
+			</if>
+			<if test="newplaceFqjinji != null and ''!= newplaceFqjinji">
+				,newplace_fqjinji=#{newplaceFqjinji}
+			</if>
+			<if test="carryQsurgery != null and ''!= carryQsurgery">
+				,carry_qsurgery=#{carryQsurgery}
+			</if>
+			<if test="supplyState != null and ''!= supplyState">
+				,supply_state=#{supplyState}
+			</if>
+			<if test="qiangjiqiDisin != null and ''!= qiangjiqiDisin">
+				,qiangjiqi_disin=#{qiangjiqiDisin}
+			</if>
+			<if test="isDel != null ">
+				,is_del=#{isDel}
+			</if>
+				,gmt_created= now()
+				,gmt_modified= now()
+			where id = #{id}
+	</update>
+
+	<select id="countEquipment"  resultType="Integer">
+		select count(id)
+		from equipment
+			where 1=1 
+			<if test="hospitalId != null ">
+				and hospital_id=#{hospitalId}
+			</if>
+			<if test="qiangjinji != null and ''!= qiangjinji">
+				and qiangjinji=#{qiangjinji}
+			</if>
+			<if test="fqjinji != null and ''!= fqjinji">
+				and fqjinji=#{fqjinji}
+			</if>
+			<if test="newplaceFqjinji != null and ''!= newplaceFqjinji">
+				and newplace_fqjinji=#{newplaceFqjinji}
+			</if>
+			<if test="carryQsurgery != null and ''!= carryQsurgery">
+				and carry_qsurgery=#{carryQsurgery}
+			</if>
+			<if test="supplyState != null and ''!= supplyState">
+				and supply_state=#{supplyState}
+			</if>
+			<if test="qiangjiqiDisin != null and ''!= qiangjiqiDisin">
+				and qiangjiqi_disin=#{qiangjiqiDisin}
+			</if>
+			<if test="isDel != null ">
+				and is_del=#{isDel}
+			</if>
+	</select>
+
+	<select id="findEquipment"  resultMap="equipmentMap">
+		select
+		<include refid="allColumn"/>
+		from equipment
+			where is_del = 0 and hospital_id = #{hospitalId} 
+			<if test="hospitalId != null ">
+				and hospital_id=#{hospitalId}
+			</if>
+			<if test="qiangjinji != null and ''!= qiangjinji">
+				and qiangjinji=#{qiangjinji}
+			</if>
+			<if test="fqjinji != null and ''!= fqjinji">
+				and fqjinji=#{fqjinji}
+			</if>
+			<if test="newplaceFqjinji != null and ''!= newplaceFqjinji">
+				and newplace_fqjinji=#{newplaceFqjinji}
+			</if>
+			<if test="carryQsurgery != null and ''!= carryQsurgery">
+				and carry_qsurgery=#{carryQsurgery}
+			</if>
+			<if test="supplyState != null and ''!= supplyState">
+				and supply_state=#{supplyState}
+			</if>
+			<if test="qiangjiqiDisin != null and ''!= qiangjiqiDisin">
+				and qiangjiqi_disin=#{qiangjiqiDisin}
+			</if>
+			<if test="isDel != null ">
+				and is_del=#{isDel}
+			</if>
+
+	</select>
+
+	<select id="findEquipmentList"  resultMap="equipmentMap">
+		select
+		<include refid="allColumn"/>
+		from equipment
+			where 1=1 
+			<if test="hospitalId != null ">
+				and hospital_id=#{hospitalId}
+			</if>
+			<if test="qiangjinji != null and ''!= qiangjinji">
+				and qiangjinji=#{qiangjinji}
+			</if>
+			<if test="fqjinji != null and ''!= fqjinji">
+				and fqjinji=#{fqjinji}
+			</if>
+			<if test="newplaceFqjinji != null and ''!= newplaceFqjinji">
+				and newplace_fqjinji=#{newplaceFqjinji}
+			</if>
+			<if test="carryQsurgery != null and ''!= carryQsurgery">
+				and carry_qsurgery=#{carryQsurgery}
+			</if>
+			<if test="supplyState != null and ''!= supplyState">
+				and supply_state=#{supplyState}
+			</if>
+			<if test="qiangjiqiDisin != null and ''!= qiangjiqiDisin">
+				and qiangjiqi_disin=#{qiangjiqiDisin}
+			</if>
+			<if test="isDel != null ">
+				and is_del=#{isDel}
+			</if>
+	</select>
+
+
+</mapper>

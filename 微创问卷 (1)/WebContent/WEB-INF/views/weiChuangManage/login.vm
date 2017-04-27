@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <link href="#printUrl/weiChuangManage/css/login.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/weiChuangManage/css/normalize.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="#printUrl/js/jquery-1.12.2.js"></script>	
+    <title></title>
+</head>
+<body>
+    <h1 id="header">微创质控中心网站管理系统</h1>
+    <div id="main">
+        <div id="f-login-box">
+            <ul class="f-menu">
+                <li id="f-login-header">管理员登陆</li>
+                <li class="f-login-input"><span class='f-login-text'>账号</span><input type="text" name="userName"></li>
+                <li class="f-login-input" id="login-psw"><span class='f-login-text'>密码</span><input type="text"   name="password" id="tx" value="" /><input type="password"  name="password" id="psw" style="display:none" value=""/></li>
+                <li id="f-tips" class="vh d_loginError">账号或密码错误，请重新输入。</li>
+                <li id="f-login-button"   class="d_subButton"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="f-copyright">
+        <p>浙江省微创手术质量控制中心<a>版权所有</a></p>
+        <p>电 话：0571-8888888/88888888<span class="letter-blank"></span>传 真：0571-88888888</p>
+        <p>地 址：浙江省杭州市xx路xx号<span class="letter-blank"></span>邮 编：888888 <a> 浙ICP备88888号</a></p>
+    </div>
+</body>
+<script >
+   var webRoot = '${link.contextPath}';
+	$(document).delegate(".d_subButton","click",function(){
+		var name =jQuery.trim($("input[name=userName]").val());
+		var psw =$("#psw").val();
+		if(name!=''&& psw!=''){
+			jQuery.ajax({
+				url:webRoot+"/weiChuangManage/checkLogin.html",
+			    type: "POST",
+			    cache: false,
+			    async: true,
+			    data: {
+					"userName": name,
+					"password":psw
+				},
+				dataType: "json",
+				success: function(data, text) {
+					if(data.loginFlag==1){
+						$(".d_loginError").html("*账号错误，请重新输入");
+						$("#f-tips").removeClass("vh");
+					}else if(data.loginFlag==3){
+					  $(".d_loginError").html("* 密码错误，请重新输入");
+					 	$("#f-tips").removeClass("vh");
+					}else if(data.loginFlag==2){
+					   	if(data.user.type==1){
+							window.location.href="${link.contextPath}/weiChuangManage/index.html";			  
+						}else{
+							$(".d_loginError").html("*没有权限登录系统");
+						    $("#f-tips").removeClass("vh");
+						}
+							
+					}
+				}
+			})			
+		}else{
+		   	alert("用户名和密码不能为空");
+		}
+	})	
+	
+	$(function(){
+   	  $("#tx").focus(function(){
+          if(this.value!=""){
+		  	 return; 
+		  } 
+    	  $(this).css("display","none")
+          $("#psw").css("display","inline-block");
+		  $("#psw").val(""); 
+          $("#psw").focus(); 
+   	 })
+     $("#psw").blur(function(){
+          if(this.value!=""){
+		 	 return; 
+         } 
+       $("#psw").css("display","none");
+       $("#tx").css("display","")
+     })
+	 
+   })
+
+ $("input[type=text]").each(function(){
+   $(this).attr("autocomplete","off");
+ })
+
+$("input[name='userName'],input[name='password']").focus(function(){
+	$(".d_loginError").text("");
+})	  
+	
+</script>
+
+</html>

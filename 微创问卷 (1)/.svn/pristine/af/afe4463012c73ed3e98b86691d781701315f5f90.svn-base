@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="#printUrl/weiChuangManage/css/normalize.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/weiChuangManage/css/index.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/weiChuangManage/css/common.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="#printUrl/js/jquery-1.12.2.js"></script>
+    <script type="text/javascript" src="#printUrl/js/index.js"></script>
+    <script type="text/javascript" src="#printUrl/js/common.js"></script>
+	 <script type="text/javascript" src="#printUrl/js/preLoad.js"></script>
+    <title>index</title>
+    <style type="text/css">
+        html{
+            overflow-x:hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="ts"></div>
+    <div class="hou"></div>
+    <div class="f-windowBox dn" id="f-newpswBox">
+		#if($!{us.userName})
+        <h4>修改密码<img class="f-window-close f-window-cancle" src="#printUrl/weiChuangManage/img/mmxggb.png"></h4>
+		#end	
+        <div class="f-pswEdit-before">
+            <div class="f-newpswBox-main f-window">
+                <p><span class="psw-text">原密码</span><input type="password" class="f-pswEdit d_oldPsw"   name="oldPsw"></p>
+                <span class="psw-wrong-tip d_errMsg" id="psw-wrong-origin"></span>
+                <p><span class="psw-text">新密码</span><input type="password" class="f-pswEdit d_newPsw d_npsw"  name="newPsw"></p>
+                <p><span class="psw-text">确认新密码</span><input type="password" class="f-pswEdit d_npsw"  name="rePsw"></p>
+                <span class="psw-wrong-tip d_errMsg" id="psw-wrong-two"></span>
+            </div>
+            <div class="f-newpswBox-foot clearfix">
+                <img class="fl" id="f-newpswBox-sure" src="#printUrl/weiChuangManage/img/qrxg.png"  class="d_updatePswSure">
+                <img class="fl f-window-cancle" id="f-newpswBox-cancle"  src="#printUrl/weiChuangManage/img/mmxgqx.png">
+            </div>
+        </div>
+        <div class="f-pswEdit-after dn">
+            <p>修改成功!<span class="f-window-close">关闭</span></p>
+        </div>
+    </div>
+    <div class="dn" id="f-tipbox">
+        <p>删除后网页将不展示此文章，确定删除？</p>
+        <span class="f-edit"></span><span class="f-del" id="f-delete-button"></span>
+    </div>
+    <div class="f-header-wrapper">
+        <div class="header clearfix">
+            <h4 class="fl">微创质控中心网站管理系统</h4>
+			<span style="color:red">#if($!{us.userName})欢迎$!{us.userName}登录 #end</span>
+            <span ><a href="#printUrl/weiChuangManage/loginOut.html" style="text-decoration:none">退出</a></span> <span id="f-main-pswEdit"  class="d_upatePsw">密码修改</span>
+        </div>
+    </div>
+    <div id="f-wrapper">
+        <div class="f-container clearfix">
+            <div id="f-left-items" class="clearfix">
+                <ul class="f-items first-item">
+                    <li class="one f-msgManner">信息管理</li>
+                    <a href="newsList.html" target="iframe1"><li class="two">文章列表</li></a>
+                </ul>
+                <ul class="f-items">
+                    <li class="one f-countManner">账号管理</li>
+                    <a href="userList.html" target="iframe1"><li class="two">账号设置</li></a>
+                </ul>
+            </div>
+            <div id="tt">
+                <iframe name="iframe1" frameborder="0" border="0" scrolling="no" id="iframe1" style="background-color:white"></iframe>
+            </div>
+        </div>
+    </div>
+</body>
+<script >
+ var webRoot ="${link.contextPath}"
+	$("#f-newpswBox-sure").click(function(){
+	     var oldPsw =jQuery.trim($("input[name=oldPsw]").val());
+	     var newPsw = jQuery.trim($("input[name=newPsw]").val());
+		 var rePsw =jQuery.trim($("input[name=rePsw]").val());
+		 if(oldPsw==""){
+		 	  $("#psw-wrong-origin").text("原密码不能为空");
+		 }
+		 if(newPsw==""){
+		 	$("#psw-wrong-two").text("新密码不能为空");
+		 }
+		 var errMsg ="";
+		 if(newPsw ==rePsw ){
+		 }else{
+		 	$("#psw-wrong-two").text("两次密码填写不一致，请重新填写");
+		 }
+		  $(".d_errMsg").each(function(){
+    		 errMsg = errMsg+$(this).text();
+         })
+		 if(errMsg==""){
+		 	 jQuery.ajax({
+                 url:webRoot+"/weiChuangManage/updatePassword.html",
+                 type: "POST",
+                 cache: false,
+                 async: true,
+                 data: {"oldPsw":oldPsw,"newPsw":newPsw},
+                 dataType: "json",
+                 success: function(data, text) {
+        			 if(data.flag==1){
+        			//	$('.f-pswEdit-after').removeClass('dn');
+                    //  $('.f-pswEdit-before').addClass('dn');
+				       window.location.href ="${link.contextPath}/weiChuangManage/loginOut.html"
+        			  }else if(data.flag==2){
+    				      $("#psw-wrong-origin").text("原密码错误");
+    				  }
+        		  }
+    	    })	  
+		 }
+		
+	})
+	$(".d_oldPsw").focus(function(){
+	 	 $("#psw-wrong-origin").text("");
+	})
+	$(".d_npsw").focus(function(){
+		$("#psw-wrong-two").text("");
+	})
+</script>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="#printUrl/weiChuangManage/css/normalize.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/weiChuangManage/css/common.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/weiChuangManage/css/articleLists.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="#printUrl/weiChuangManage/dist/css/wangEditor.min.css">
+    <script type="text/javascript" src="#printUrl/js/jquery-1.12.2.js"></script>
+    <script type="text/javascript" src="#printUrl/js/index.js"></script>
+    <script type="text/javascript" src="#printUrl/js/common.js"></script>
+    <script type="text/javascript" src="#printUrl/js/articleLists.js"></script>
+
+    <title></title>
+</head>
+
+<body style="overflow-x: hidden;background:#FFF">
+<form  action="#printUrl/weiChuangManage/modifyNews.html"  method="post" id="d_submit"  enctype="multipart/form-data">
+<div id="f-right-items">
+	<input type="hidden"  name="id" value="$!{news.id}">
+    <div class="f-xjwz-header f-xj-header"><a href="#printUrl/weiChuangManage/newsList.html" style="text-decoration:none"><img src="#printUrl/weiChuangManage/img/xjwzfh.png">#if($!{news.id}) 编辑文章 #else 新建文章 #end</a></div>
+    <div class="f-xjwz-main f-xj-main f-create" id="f-xjfg">
+        <p class="f-xj-first f-line">
+			<input  type="hidden"  name="themeId"  value=""/>
+            <span class="f-text">所属分类</span>
+            <select class="f-xjwz-kind d_selectTheme">
+                <option  value="2">标准法规</option>
+				#foreach($li in $themeList)
+                <option value="$!li.id">$!li.theme</option>
+				#end
+            </select>
+        </p >	
+        <p class="f-tag1 f-line " >
+            <span class="f-text d_append">类别</span>
+			<input type="radio" name="flfg" value="11" checked class="f-radio d_loyal">法律
+			<input type="radio" name="flfg" value="12" class="f-radio f-xjwz-fg d_loyal">法规
+        </p >
+        <p class="f-tag2 f-line">
+            <span class="f-text">标题</span>
+            <input type="text"   name="title" class="f-xj-input f-xjwz-name"  value="$!{news.title}" maxlength="30">
+        </p >
+        <span style="position:absolute; left:75px;top: 175px;">正文</span>
+		<input type="hidden" name="content" style="display:none"/>
+        <div id="editor-container">
+            <div id="editor-trigger">
+				#if($!{news.content})
+					<p  class="d_content">$!{news.content}</p>
+				#else
+					 <p class="d_content"></p >
+				#end
+            </div>
+        </div>
+        <p class="f-xjwz-tips dn f-line d_errorMsg"></p >
+        <p class="f-xj-buttons f-line"><img src="#printUrl/weiChuangManage/img/xjwzfb.png" class="f-xjwz-fb f-xj-button  d_sub"/><img src="#printUrl/weiChuangManage/img/xjwzqk.png" class="f-xj-button f-xjwz-qk d_clean"/></p >
+    </div>
+</form>		
+    <div class="f-return dn">
+        <h1 class="create-success">操作成功！</h1>
+        <p class="return-menu"><a href="#printUrl/weiChuangManage/newsList.html">返回文章列表</a></p >
+    </div>
+</div>
+<script type="text/javascript" src="#printUrl/weiChuangManage/dist/js/lib/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="#printUrl/weiChuangManage/dist/js/wangEditor.js"></script>
+
+<script>
+    var editor = new wangEditor('editor-trigger');
+    editor.config.uploadImgUrl = '#printUrl/weiChuangManage/uploadImag.html';
+	editor.config.uploadImgFileName = 'myFileName';
+	editor.config. imgLink ='#printUrl/weiChuangManage/deletePic.html'
+    editor.config.uploadParams = {
+        // token1: 'abcde',
+        // token2: '12345'
+    };
+    editor.config.uploadHeaders = {
+        // 'Accept' : 'text/x-json'
+    }
+    editor.config.menus = [
+            'bold',
+            'fontsize',
+            'alignleft',
+            'aligncenter',
+            'alignright',
+            'img',
+			'link'
+    ];
+	 
+    editor.create();
+	
+$(function(){
+	 var flag ="$!{flag}";
+	 //新增成功的操作
+	if(flag>0){
+		 $('.f-xjwz-tips').addClass('dn');
+         $('.f-create').addClass('dn');
+         $('.f-return').removeClass('dn');
+	}
+	//修改数据的页面效果
+	var themeId ="$!{news.themeId}";
+	if(themeId!=""){
+	  	$(".d_selectTheme").find("option[value="+themeId+"]").attr("selected", true);
+		if(themeId=='11' || themeId=='12'){
+    		$(".d_loyal").each(function(){
+    		 	 if($(this).val()==themeId){
+    			 	$(this).attr("checked","true");
+					$("input[name=themeId]").val(themeId);
+    			 }
+    		})
+	    }else if(themeId=='1' || themeId=='5'){
+		   $("input[name=themeId]").val(themeId);
+    	    var isImport ="$!{news.isImport}";
+    		$('.f-tag1').html("<span class='f-text'>级别</span>" +
+                    "<input type='radio' name='isImport' value='0' checked class='f-radio d_import'>普通" +
+                    "<input type='radio' name='isImport' value='1' class='f-radio f-xjwz-fg d_import'>重要");
+                $('.f-tag2 .f-text').text('标题');
+                $('.f-xjwz-tips').text('标题不能为空');
+    		$(".d_import").each(function(){
+        		 if($(this).val()==isImport){
+        			$(this).attr("checked","true");
+    			 }
+    		})	
+	   }else{
+	     $(".f-tag1").html("");
+	   }
+  }
+})		
+
+var subFlag = false;
+$(".d_sub").click(function(){
+   var sel = $(".d_selectTheme").children('option:selected').val();
+   if(sel==2){
+    $(".d_loyal").each(function(){
+		if($(this).is(":checked")){
+		 	$("input[name=themeId]").val($(this).val());
+		}
+	})
+   }
+	subFlag=true;
+	var title = jQuery.trim($("input[name=title]").val());
+	var content = editor.$txt.html();
+	$("input[name=content]").val(content);
+	var context = jQuery.trim( editor.$txt.text());
+	var errorMsg =$(".d_errorMsg").text();
+	if(title!=""&& context!="" && subFlag ){
+		$("#d_submit").submit();
+	    subFlag = false;
+	}else{
+		$(".d_errorMsg").removeClass("dn");
+		$(".d_errorMsg").text("标题和内容不能为空");
+	}
+})
+//清空效果
+$(".d_clean").click(function(){
+	window.location.href="$!{link.contextPath}/weiChuangManage/newArticle.html"
+})
+
+  $('.f-xjwz-kind').change(function(){
+        var txt = $(this).children('option:selected').val();
+        if(txt == '2') {
+            $('.f-tag1').html("<span class='f-text'>类别</span>" +
+                "<input type='radio' name='flfg' value='11' checked='checked' class='f-radio d_loyal'>法律" +
+                "<input type='radio' name='flfg' value='12' class='f-radio f-xjwz-fg d_loyal'>法规");
+            $('.f-tag2 .f-text').text('标题');
+            $('.f-xjwz-tips').text('标题不能为空');
+			
+        } else if(txt=='1'|| txt=='5') {
+			$("input[name=themeId]").val(txt);
+            $('.f-tag1').html("<span class='f-text'>级别</span>" +
+                "<input type='radio' name='isImport' value='0' checked class='f-radio'>普通" +
+                "<input type='radio' name='isImport' value='1' class='f-radio f-xjwz-fg'>重要");
+            $('.f-tag2 .f-text').text('标题');
+            $('.f-xjwz-tips').text('标题不能为空');
+
+        }else{
+	     $(".f-tag1").html("");
+		}
+    })
+	$("input[name=title],#editor-trigger").focus(function(){
+		$(".d_errorMsg").text("");
+	})
+	
+
+
+</script>
+</body>
+</html>

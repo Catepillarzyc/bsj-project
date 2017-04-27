@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/views/index.vm=UTF-8
+encoding//WebContent/WEB-INF/views/login.vm=UTF-8
+encoding//src/com/questionnaire/config/log4j.properties=UTF-8
+encoding//src/config/log4j.properties=UTF-8
+encoding/<project>=UTF-8
