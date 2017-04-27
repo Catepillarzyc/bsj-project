@@ -239,7 +239,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");								
 							staff.setPhysiciansNumber(physiciansNumber);
-							staff.setChiefPhysician(chiefPhysician);
+							staff.setChiefPhysician(fchiefPhysician);
 							staff.setFchiefPhysician(fchiefPhysician);
 							staff.setAttendingNumber(attendingNumber);
 							staff.setResidentNumber(residentNumber);
@@ -248,6 +248,23 @@ public class RootController {
 							staff.setBachelorNumber(bachelorNumber);
 							general.put(ksDto.getGeneralSurgery(),staff);				
 						}				
+					}
+					for(int i = 0;i<ksName.length;i++){	
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						   
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getGallbladderSurgery() != null && ksDto.getGallbladderSurgery().equals(name)){								
 							StaffDto staff1 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -259,7 +276,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");							
 							staff1.setPhysiciansNumber(physiciansNumber);
-							staff1.setChiefPhysician(chiefPhysician);
+							staff1.setChiefPhysician(fchiefPhysician);
 							staff1.setFchiefPhysician(fchiefPhysician);
 							staff1.setAttendingNumber(attendingNumber);
 							staff1.setResidentNumber(residentNumber);
@@ -268,7 +285,23 @@ public class RootController {
 							staff1.setBachelorNumber(bachelorNumber);
 							general.put(ksDto.getGallbladderSurgery(),staff1);	
 						}				
-					
+					}
+					for(int i = 0;i<ksName.length;i++){	
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						   
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getGastrointesSurgery() != null && ksDto.getGastrointesSurgery().equals(name)){
 							StaffDto staff2 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -280,7 +313,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");					
 							staff2.setPhysiciansNumber(physiciansNumber);
-							staff2.setChiefPhysician(chiefPhysician);
+							staff2.setChiefPhysician(fchiefPhysician);
 							staff2.setFchiefPhysician(fchiefPhysician);
 							staff2.setAttendingNumber(attendingNumber);
 							staff2.setResidentNumber(residentNumber);
@@ -289,7 +322,23 @@ public class RootController {
 							staff2.setBachelorNumber(bachelorNumber);
 							general.put(ksDto.getGastrointesSurgery(),staff2);
 						}				
-					
+					}
+					for(int i = 0;i<ksName.length;i++){	
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						   
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getHerniaSurgery() != null && ksDto.getHerniaSurgery().equals(name)){
 							StaffDto staff3 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -301,7 +350,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");;								
 							staff3.setPhysiciansNumber(physiciansNumber);
-							staff3.setChiefPhysician(chiefPhysician);
+							staff3.setChiefPhysician(fchiefPhysician);
 							staff3.setFchiefPhysician(fchiefPhysician);
 							staff3.setAttendingNumber(attendingNumber);
 							staff3.setResidentNumber(residentNumber);
@@ -310,6 +359,23 @@ public class RootController {
 							staff3.setBachelorNumber(bachelorNumber);
 							general.put(ksDto.getHerniaSurgery(),staff3);
 						}				
+					}
+					for(int i = 0;i<ksName.length;i++){		
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						   
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getBreastSurgery() != null && ksDto.getBreastSurgery().equals(name)){
 							StaffDto staff4 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -320,7 +386,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");								
 							staff4.setPhysiciansNumber(physiciansNumber);
-							staff4.setChiefPhysician(chiefPhysician);
+							staff4.setChiefPhysician(fchiefPhysician);
 							staff4.setFchiefPhysician(fchiefPhysician);
 							staff4.setAttendingNumber(attendingNumber);
 							staff4.setResidentNumber(residentNumber);
@@ -329,6 +395,23 @@ public class RootController {
 							staff4.setBachelorNumber(bachelorNumber);
 							general.put(ksDto.getBreastSurgery(),staff4);
 						}				
+					}
+					for(int i = 0;i<ksName.length;i++){	
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						   
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getVascularSurgery() != null && ksDto.getVascularSurgery().equals(name)){
 							StaffDto staff5 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -340,7 +423,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");							
 							staff5.setPhysiciansNumber(physiciansNumber);
-							staff5.setChiefPhysician(chiefPhysician);
+							staff5.setChiefPhysician(fchiefPhysician);
 							staff5.setFchiefPhysician(fchiefPhysician);
 							staff5.setAttendingNumber(attendingNumber);
 							staff5.setResidentNumber(residentNumber);
@@ -349,13 +432,28 @@ public class RootController {
 							staff5.setBachelorNumber(bachelorNumber);
 							general.put(ksDto.getVascularSurgery(),staff5);
 						}				
+					}
 					if(!CommonUtils.isEmpty(general)){	
 						String generalSurgery = general.toJSONString();
 						ks.setGeneralSurgery(generalSurgery);
 					}
 					
 					JSONObject thoracic = new JSONObject();
-					
+					for(int i = 0;i<ksName.length;i++){	
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getThoracicSurgery() != null && ksDto.getThoracicSurgery().equals(name)){
 							StaffDto staff6 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -367,7 +465,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");								
 							staff6.setPhysiciansNumber(physiciansNumber);
-							staff6.setChiefPhysician(chiefPhysician);
+							staff6.setChiefPhysician(fchiefPhysician);
 							staff6.setFchiefPhysician(fchiefPhysician);
 							staff6.setAttendingNumber(attendingNumber);
 							staff6.setResidentNumber(residentNumber);
@@ -376,7 +474,22 @@ public class RootController {
 							staff6.setBachelorNumber(bachelorNumber);
 							thoracic.put(ksDto.getThoracicSurgery(),staff6);
 						}				
-				
+					}
+					for(int i = 0;i<ksName.length;i++){	
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getPtThoracicSurgery() != null && ksDto.getPtThoracicSurgery().equals(name)){
 							StaffDto staff7 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -397,7 +510,22 @@ public class RootController {
 							staff7.setBachelorNumber(bachelorNumber);
 							thoracic.put(ksDto.getPtThoracicSurgery(),staff7);
 						}				
-					
+					}
+					for(int i = 0;i<ksName.length;i++){	
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getCardiacSurgery() != null && ksDto.getCardiacSurgery().equals(name)){
 							StaffDto staff8 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -409,7 +537,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");								
 							staff8.setPhysiciansNumber(physiciansNumber);
-							staff8.setChiefPhysician(chiefPhysician);
+							staff8.setChiefPhysician(fchiefPhysician);
 							staff8.setFchiefPhysician(fchiefPhysician);
 							staff8.setAttendingNumber(attendingNumber);
 							staff8.setResidentNumber(residentNumber);
@@ -418,13 +546,28 @@ public class RootController {
 							staff8.setBachelorNumber(bachelorNumber);
 							thoracic.put(ksDto.getCardiacSurgery(),staff8);
 						}				
+					}
 					if(!CommonUtils.isEmpty(thoracic)){					
 						String thoracicSurgery = thoracic.toJSONString();
 						ks.setThoracicSurgery(thoracicSurgery);
 					}
 					
 					JSONObject urology = new JSONObject();
-					
+					for(int i = 0;i<ksName.length;i++){	
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getUrology() != null && ksDto.getUrology().equals(name)){
 							StaffDto staff9 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -436,7 +579,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");							
 							staff9.setPhysiciansNumber(physiciansNumber);
-							staff9.setChiefPhysician(chiefPhysician);
+							staff9.setChiefPhysician(fchiefPhysician);
 							staff9.setFchiefPhysician(fchiefPhysician);
 							staff9.setAttendingNumber(attendingNumber);
 							staff9.setResidentNumber(residentNumber);
@@ -445,7 +588,22 @@ public class RootController {
 							staff9.setBachelorNumber(bachelorNumber);
 							urology.put(ksDto.getUrology(),staff9);
 						}				
-					
+					}
+					for(int i = 0;i<ksName.length;i++){	
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getUrologicalOncology() != null && ksDto.getUrologicalOncology().equals(name)){
 							StaffDto staff10 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -457,7 +615,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");						
 							staff10.setPhysiciansNumber(physiciansNumber);
-							staff10.setChiefPhysician(chiefPhysician);
+							staff10.setChiefPhysician(fchiefPhysician);
 							staff10.setFchiefPhysician(fchiefPhysician);
 							staff10.setAttendingNumber(attendingNumber);
 							staff10.setResidentNumber(residentNumber);
@@ -466,7 +624,22 @@ public class RootController {
 							staff10.setBachelorNumber(bachelorNumber);
 							urology.put(ksDto.getUrologicalOncology(),staff10);
 						}				
-				
+					}
+					for(int i = 0;i<ksName.length;i++){	
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getStonesBranch() != null && ksDto.getStonesBranch().equals(name)){
 							StaffDto staff11 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -478,7 +651,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");			
 							staff11.setPhysiciansNumber(physiciansNumber);
-							staff11.setChiefPhysician(chiefPhysician);
+							staff11.setChiefPhysician(fchiefPhysician);
 							staff11.setFchiefPhysician(fchiefPhysician);
 							staff11.setAttendingNumber(attendingNumber);
 							staff11.setResidentNumber(residentNumber);
@@ -487,13 +660,28 @@ public class RootController {
 							staff11.setBachelorNumber(bachelorNumber);
 							urology.put(ksDto.getStonesBranch(),staff11);
 						}				
+					}
 					if(!CommonUtils.isEmpty(urology)){				
 						String urologySurgery = urology.toJSONString();
 						ks.setUrology(urologySurgery);
 					}
 					
 					JSONObject women = new JSONObject();
-				
+					for(int i = 0;i<ksName.length;i++){	
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getWomenObstetrics() != null && ksDto.getWomenObstetrics().equals(name)){
 							StaffDto staff12 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -505,7 +693,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");					
 							staff12.setPhysiciansNumber(physiciansNumber);
-							staff12.setChiefPhysician(chiefPhysician);
+							staff12.setChiefPhysician(fchiefPhysician);
 							staff12.setFchiefPhysician(fchiefPhysician);
 							staff12.setAttendingNumber(attendingNumber);
 							staff12.setResidentNumber(residentNumber);
@@ -514,7 +702,22 @@ public class RootController {
 							staff12.setBachelorNumber(bachelorNumber);
 							women.put(ksDto.getWomenObstetrics(),staff12);
 						}				
-				
+					}
+					for(int i = 0;i<ksName.length;i++){		
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getGynecologicOncology() != null && ksDto.getGynecologicOncology().equals(name)){
 							StaffDto staff13 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -526,7 +729,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");								
 							staff13.setPhysiciansNumber(physiciansNumber);
-							staff13.setChiefPhysician(chiefPhysician);
+							staff13.setChiefPhysician(fchiefPhysician);
 							staff13.setFchiefPhysician(fchiefPhysician);
 							staff13.setAttendingNumber(attendingNumber);
 							staff13.setResidentNumber(residentNumber);
@@ -535,7 +738,22 @@ public class RootController {
 							staff13.setBachelorNumber(bachelorNumber);
 							women.put(ksDto.getGynecologicOncology(),staff13);
 						}				
-					
+					}
+					for(int i = 0;i<ksName.length;i++){	
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getPtGynaecology() != null && ksDto.getPtGynaecology().equals(name)){
 							StaffDto staff14 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -547,7 +765,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");								
 							staff14.setPhysiciansNumber(physiciansNumber);
-							staff14.setChiefPhysician(chiefPhysician);
+							staff14.setChiefPhysician(fchiefPhysician);
 							staff14.setFchiefPhysician(fchiefPhysician);
 							staff14.setAttendingNumber(attendingNumber);
 							staff14.setResidentNumber(residentNumber);
@@ -556,12 +774,28 @@ public class RootController {
 							staff14.setBachelorNumber(bachelorNumber);
 							women.put(ksDto.getPtGynaecology(),staff14);
 						}				
+					}
 					if(!CommonUtils.isEmpty(women)){				
 						String womenObstetrics = women.toJSONString();
 						ks.setWomenObstetrics(womenObstetrics);
 					}
 					
 					JSONObject orthopaedic = new JSONObject();
+					for(int i = 0;i<ksName.length;i++){	
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getOrthopaedic() != null && ksDto.getOrthopaedic().equals(name)){
 							StaffDto staff15 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -573,7 +807,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");								
 							staff15.setPhysiciansNumber(physiciansNumber);
-							staff15.setChiefPhysician(chiefPhysician);
+							staff15.setChiefPhysician(fchiefPhysician);
 							staff15.setFchiefPhysician(fchiefPhysician);
 							staff15.setAttendingNumber(attendingNumber);
 							staff15.setResidentNumber(residentNumber);
@@ -582,7 +816,22 @@ public class RootController {
 							staff15.setBachelorNumber(bachelorNumber);								
 							orthopaedic.put(ksDto.getOrthopaedic(),staff15);
 						}				
-				
+					}
+					for(int i = 0;i<ksName.length;i++){	
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getSpineSurgery() != null && ksDto.getSpineSurgery().equals(name)){
 							StaffDto staff16 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -594,7 +843,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");							
 							staff16.setPhysiciansNumber(physiciansNumber);
-							staff16.setChiefPhysician(chiefPhysician);
+							staff16.setChiefPhysician(fchiefPhysician);
 							staff16.setFchiefPhysician(fchiefPhysician);
 							staff16.setAttendingNumber(attendingNumber);
 							staff16.setResidentNumber(residentNumber);
@@ -603,7 +852,22 @@ public class RootController {
 							staff16.setBachelorNumber(bachelorNumber);	
 							orthopaedic.put(ksDto.getSpineSurgery(),staff16);
 						}				
-				
+					}
+					for(int i = 0;i<ksName.length;i++){	
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getJointSurgery() != null && ksDto.getJointSurgery().equals(name)){
 							StaffDto staff17 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -615,7 +879,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");								
 							staff17.setPhysiciansNumber(physiciansNumber);
-							staff17.setChiefPhysician(chiefPhysician);
+							staff17.setChiefPhysician(fchiefPhysician);
 							staff17.setFchiefPhysician(fchiefPhysician);
 							staff17.setAttendingNumber(attendingNumber);
 							staff17.setResidentNumber(residentNumber);
@@ -624,12 +888,28 @@ public class RootController {
 							staff17.setBachelorNumber(bachelorNumber);
 							orthopaedic.put(ksDto.getJointSurgery(),staff17);
 						}				
+					}
 					if(!CommonUtils.isEmpty(orthopaedic)){				
 						String orthopae = orthopaedic.toJSONString();
 						ks.setOrthopaedic(orthopae);
 					}
 					
 					JSONObject radioactive = new JSONObject();
+					for(int i = 0;i<ksName.length;i++){		
+						String name = ksName[i].replace("[", "").replace("]", "").replace("\"", "");
+						if (name.indexOf("\\u") == -1){
+							//如果不是unicode码则原样返回 
+						}else{
+							StringBuffer string = new StringBuffer();  
+						    String[] hex = name.split("\\\\u");  
+						    for (Integer j = 1; j < hex.length; j++) {  
+						        // 转换出每一个代码点  
+						        int data = Integer.parseInt(hex[j], 16);  
+						        // 追加成string  
+						        string.append((char) data);  
+						        name=string.toString();
+						    }  
+						}
 						if(ksDto.getRadioactive() != null && ksDto.getRadioactive().equals(name)){
 							StaffDto staff18 = new StaffDto();
 							physiciansNumber = ksStaffDto.getPhysiciansNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
@@ -641,7 +921,7 @@ public class RootController {
 							masterNumber = ksStaffDto.getMasterNumber()[i].replace("[", "").replace("]", "").replace("\"", "");
 							bachelorNumber = ksStaffDto.getBachelorNumber()[i].replace("[", "").replace("]", "").replace("\"", "");						
 							staff18.setPhysiciansNumber(physiciansNumber);
-							staff18.setChiefPhysician(chiefPhysician);
+							staff18.setChiefPhysician(fchiefPhysician);
 							staff18.setFchiefPhysician(fchiefPhysician);
 							staff18.setAttendingNumber(attendingNumber);
 							staff18.setResidentNumber(residentNumber);
@@ -650,14 +930,15 @@ public class RootController {
 							staff18.setBachelorNumber(bachelorNumber);
 							radioactive.put(ksDto.getRadioactive(),staff18);
 						}				
+					}
 					if(!CommonUtils.isEmpty(radioactive)){				
 						String radio = radioactive.toJSONString();
 						ks.setRadioactive(radio);
 					}
-						
-				 }
-				 ks.setHospitalId(hospital.getId());
-				 ksService.addKs(ks);	
+					ks.setHospitalId(hospital.getId());
+					ksService.addKs(ks);			
+								
+				}
 				if(!CommonUtils.isEmpty(equipmentDto)){	
 					Equipment equipment = new Equipment();
 					json.put("qNumber", equipmentDto.getqNumber());
@@ -767,7 +1048,7 @@ public class RootController {
 					clinicalApplication.setHospitalId(hospital.getId());
 					clinicalApplicationService.addClinicalApplication(clinicalApplication);							
 				}
-		      }	
+				
 			}else{
 				flag = 2;
 				json.put("flag", flag);

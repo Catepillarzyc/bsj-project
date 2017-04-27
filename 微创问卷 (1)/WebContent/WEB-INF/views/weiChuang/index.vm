@@ -47,7 +47,7 @@
 								#if($!li.themeId==1)
 									 <li><img src="#printUrl/img/${velocityCount}.png" alt=""/><a href="#printUrl/weiChuang/centerTrendsDetail.html?newsId=$li.id&userName=$!{user.userName}">$li.title</a> </li>
 								#elseif($li.themeId==5)
-									 <li><img src="#printUrl/img/${velocityCount}.png" alt=""/><a href="#printUrl/weiChuang/noticeDetail.html?newsId=$li.id&userName=$!{user.userName}">$li.title</a> </li>
+									 <li><img src="#printUrl/${velocityCount}.png" alt=""/><a href="#printUrl/weiChuang/noticeDetail.html?newsId=$li.id&userName=$!{user.userName}">$li.title</a> </li>
 								#end	
 							#end
                         </ul>

@@ -53,7 +53,6 @@
         <p class="f-xjwz-tips dn f-line d_errorMsg"></p >
         <p class="f-xj-buttons f-line"><img src="#printUrl/weiChuangManage/img/xjwzfb.png" class="f-xjwz-fb f-xj-button  d_sub"/><img src="#printUrl/weiChuangManage/img/xjwzqk.png" class="f-xj-button f-xjwz-qk d_clean"/></p >
     </div>
-	<input  type="hidden"  name="imgName" id="imgName"/>
 </form>		
     <div class="f-return dn">
         <h1 class="create-success">操作成功！</h1>
@@ -67,7 +66,7 @@
     var editor = new wangEditor('editor-trigger');
     editor.config.uploadImgUrl = '#printUrl/weiChuangManage/uploadImag.html';
 	editor.config.uploadImgFileName = 'myFileName';
-	//editor.config.imgLinkUrl ='#printUrl/weiChuangManage/deletePic.html'
+	editor.config. imgLink ='#printUrl/weiChuangManage/deletePic.html'
     editor.config.uploadParams = {
         // token1: 'abcde',
         // token2: '12345'
@@ -125,7 +124,6 @@ $(function(){
   }
 })		
 
- var webRoot= "$!{link.contextPath}";
 var subFlag = false;
 $(".d_sub").click(function(){
    var sel = $(".d_selectTheme").children('option:selected').val();
@@ -158,7 +156,6 @@ $(".d_clean").click(function(){
   $('.f-xjwz-kind').change(function(){
         var txt = $(this).children('option:selected').val();
         if(txt == '2') {
-		  $(".f-tag1").removeClass("dn");
             $('.f-tag1').html("<span class='f-text'>类别</span>" +
                 "<input type='radio' name='flfg' value='11' checked='checked' class='f-radio d_loyal'>法律" +
                 "<input type='radio' name='flfg' value='12' class='f-radio f-xjwz-fg d_loyal'>法规");
@@ -166,7 +163,6 @@ $(".d_clean").click(function(){
             $('.f-xjwz-tips').text('标题不能为空');
 			
         } else if(txt=='1'|| txt=='5') {
-		  $(".f-tag1").removeClass("dn");
 			$("input[name=themeId]").val(txt);
             $('.f-tag1').html("<span class='f-text'>级别</span>" +
                 "<input type='radio' name='isImport' value='0' checked class='f-radio'>普通" +
@@ -175,26 +171,11 @@ $(".d_clean").click(function(){
             $('.f-xjwz-tips').text('标题不能为空');
 
         }else{
-	     $(".f-tag1").addClass("dn");
+	     $(".f-tag1").html("");
 		}
     })
 	$("input[name=title],#editor-trigger").focus(function(){
 		$(".d_errorMsg").text("");
-	})
-	$(document).delegate(".wangeditor-menu-img-trash-o","click",function(){
-		var  fileName = $("#imgName").val();
-			jQuery.ajax({
-				url:webRoot+"/weiChuangManage/deletePic.html",
-			    type: "POST",
-			    cache: false,
-			    async: true,
-			    data: {
-					"fileName": fileName,
-				},
-				dataType: "json",
-				success: function(data, text) {
-				}
-		})
 	})
 	
 

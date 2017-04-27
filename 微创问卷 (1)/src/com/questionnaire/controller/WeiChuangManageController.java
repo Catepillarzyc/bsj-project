@@ -303,11 +303,10 @@ public class WeiChuangManageController {
 	}
 	//删除上传的图片
 	@RequestMapping("deletePic")
-	public String deletePic(Map<String, Object> out,HttpServletResponse response, HttpServletRequest request,String fileName){
-		fileName =fileName.substring(fileName.lastIndexOf("/")+1);
-		String path = request.getRealPath("/")+"upload/"+fileName ;
-		DeleteFileUtil.DeleteFolder(path);
-		return "json";
+	public String deletePic(Map<String, Object> out,HttpServletResponse response, HttpServletRequest request){
+		String path = request.getRealPath("/") ;
+	//	DeleteFileUtil.DeleteFolder(path);
+		return null;
 	}
 	
 }

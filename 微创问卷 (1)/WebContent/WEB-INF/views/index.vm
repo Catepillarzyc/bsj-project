@@ -26,7 +26,7 @@
 <script>
     var height = $(window).height()-100;
     $(".ifr").height(height);
-	var errorMsg =0;
+	var errorMsg ="";
 	var webRoot = '${link.contextPath}';
 	$(document).delegate(".block","click",function(){
 	      var flag = $(this).find(".submit").attr("flag");
@@ -232,197 +232,162 @@
 		  		  
 		  if(hospitalName == ""){
 		       alert("医院名称不能为空");
-			   errorMsg =1;
 			   return false;
+		  }
+		  if(errorMsg!=""){
+		   alert(errorMsg);
+		    return false;
 		  }
 		  else if(flag4 == false && telephoneFax != ""){
 			   alert("电话传真输入不合法，只能输入数字 或特殊符号  - 或 /");	
-			    errorMsg =1;
 			   return false;
 	      }
 		  else if(flag2 == false && email != ""){
 			   alert("邮箱不合法");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(flag3 == false && contactPhone !=""){
 		       alert("联系电话输入不合法，只能输入数字 或特殊符号  - 或 /");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(eflag1 == false && qNumber != ""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(eflag2 == false && qImportNumber != ""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(eflag3 == false && qDomesticNumber != ""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(eflag4 == false && gfqNumber != ""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(eflag5 == false && gfqImportNumber != ""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(eflag6 == false && standardfq != ""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(eflag7 == false && domesticsfq != ""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(eflag8 == false && treeYeanfqNumber != ""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(eflag9 == false && daySurNumber != ""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(eflag10 == false && commonlyNumber != ""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(eflag11 == false && standbyNumber != ""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(eflag12 == false && freeNumber != ""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(gndgProportion<0||gndgProportion>100 && gndgProportion !="" ){
 		       alert("肝内胆管结石数值范围只能为:>0和<=100！");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(/^[1-9]\d*(\.\d{1,2})?$/.test(gndgProportion)==false && gndgProportion !=""){
 		       alert("肝内胆管结石数据不合法！");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(gzlProportion<0||gzlProportion>100 && gzlProportion !=""){
 		       alert("肝脏肿瘤数值范围只能为:>0和<=100！");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(/^[1-9]\d*(\.\d{1,2})?$/.test(gzlProportion)==false && gzlProportion !=""){
 		      alert("肝脏肿瘤数据不合法！");
-			   errorMsg =1;
 			  return false;
 		  }
 		  else if(proportion<0||proportion>100 && proportion !=""){
 		       alert("康复外科数值范围只能为:>0和<=100！");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(/^[1-9]\d*(\.\d{1,2})?$/.test(proportion)==false && proportion !=""){
 		       alert("康复外科数据不合法！");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(zkfProportion<0||zkfProportion>100 && zkfProportion !=""){
 		       alert("中转开腹手术数值范围只能为:>0和<=100！");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(/^[1-9]\d*(\.\d{1,2})?$/.test(zkfProportion)==false && zkfProportion !=""){
 		       alert("中转开腹手术数据不合法");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(cflag2 == false && fqldNumber !=""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(cflag3 == false && ddssNumber !=""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(cflag4 == false && bleedingNumber !=""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(cflag5 == false && dzgjsNumber !=""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(cflag6 == false && otherNumber !=""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(cflag7 == false && operationTime !=""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(cflag8 == false && bleedingMl !=""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(cflag9 == false && portazsNumber !=""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(cflag12 == false && portazsTime !=""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(cflag13 == false && twoSurgeryNumber !=""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(cflag14 == false && bfzBleedingNumber !=""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(cflag15 == false && bfzFistulaNumber !=""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(cflag16 == false && bfzQkgrNumber !=""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(cflag17 == false && bfzFqgrNumber !=""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  }
 		  else if(cflag18 == false && bfzOtherNumber !=""){
 		       alert("输入不合法，只能输入正整数");
-			    errorMsg =1;
 			   return false;
 		  } 
 		  else{
@@ -432,7 +397,7 @@
 			   $(this).find("a").attr("class","now");
 	      	   $(this).siblings().find("a").attr("class","unfinished");
 		  }		  
-		  if(flag == 1 &&  errorMsg ==0){	
+		  if(flag == 1){	
 		      jQuery.ajax({
     			url:webRoot + "/indexSubmit.html",
     			type:"POST",
@@ -532,6 +497,7 @@
     			dataType:"json",
     			success:function(data,text){				     
 					 alert("提交成功");
+				 //parent.location.reload();
 				  parent.location.href=webRoot+"/index.html";
        	       }        
 		    });

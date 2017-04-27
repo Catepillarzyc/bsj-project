@@ -7751,6 +7751,7 @@ _e(function (E, $) {
 
             // 删除
             $delete.click(function (e) {
+            	alert($currentImg);
                 // 删除之前先unlink
                 imgLink(e, '');
 
@@ -8005,7 +8006,6 @@ _e(function (E, $) {
                 return;
             }
             $currentImg.addClass('clicked');
-          $("#imgName").val($currentImg.context.currentSrc);
             var imgPosition = $currentImg.position();
             var imgTop = imgPosition.top;
             var imgLeft = imgPosition.left;
