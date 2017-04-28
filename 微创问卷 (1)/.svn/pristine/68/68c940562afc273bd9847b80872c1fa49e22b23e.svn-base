@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.questionnaire.dao.UserDao">
-	<resultMap id="UserMap"  type="com.questionnaire.pojo.User">
+<mapper namespace="com.questionnaire.dao.ConsumerDao">
+	<resultMap id="ConsumerMap"  type="com.questionnaire.pojo.Consumer">
 		<result column="id" property="id" />
 		<result column="userName"   property="userName"   />
 		<result column="password"  property="password"/>
@@ -14,44 +14,45 @@
 	</resultMap>
 	
 	<sql id="allColumn">
-	  id, userName,password,is_del,gmt_created,gmt_modified,type
+	  id, userName,password,is_del,gmt_created,gmt_modified,type,hosptial_name, is_block
 	</sql>
 	
-	<select id="queryUserByUserName"  resultMap="UserMap">
+	<select id="queryUserByUserName"  resultMap="ConsumerMap">
 		select 
 		<include refid="allColumn"/>
-		from user
-		where is_del=0 and userName= #{userName}
+		from consumer
+		where is_del=0 and userName= #{userName} and is_block =0
 	</select>
 	
-	<!-- 查询所有用户 -->
-	<select id="queryAllUser" resultMap="UserMap">
+	<!-- 查询问卷用户 -->
+	<select id="queryQuestionUser" resultMap="ConsumerMap">
 		select
 		<include refid="allColumn"/>
-		from user
-		where is_del =0
-		order by gmt_created desc
+		from consumer
+		where is_del =0 and (type=2 or type=3)
+		order by gmt_modified desc
 		<if test="size != null and start != null" >
 		    limit #{start},#{size}
    	 	</if>	
 	</select>
-	<!-- 统计所有用户的数量 -->
-	<select id="countAllUser" resultType="Integer">
+	<!-- 统计问卷用户的数量 -->
+	<select id="countQuestionUser" resultType="Integer">
 		select count(id)
-		 from user
-		where is_del =0
+		 from consumer
+		where is_del =0 and (type=2 or type=3)
 	</select>
 	
 	<!-- 修改密码 -->
 	<update id="updatePswByUserName" >
-	   update user
-	   set password=#{newPsw}
+	   update consumer
+	   set password=#{newPsw},
+	   gmt_modified = now()
 	   where is_del =0 and userName= #{userName} and is_block=0
 	</update>
 	
 	<!-- 新添用户 -->
-	<insert id="insertUser" parameterType="com.questionnaire.pojo.User">
-	  insertUser user
+	<insert id="insertUser" parameterType="com.questionnaire.pojo.Consumer">
+	  insert into consumer
 	  (
 		  	userName, 
 		  	password,
@@ -63,11 +64,11 @@
 		  	gmt_modified
 	  )values
 	  (
-		  {user.userName},
-		  {user.password},
-		  {user.type},
+		  #{user.userName},
+		  #{user.password},
+		  #{user.type},
 		  0,
-		  {user.hosptialName},
+		  #{user.hosptialName},
 		  0,
 		  now(),
 		  now()
@@ -75,8 +76,14 @@
 	</insert>
 	<!-- 启用停用用户 -->
 	<update id="updateIsBlock">
-		 update user
-		 set　is_block=#{isBlock}
-		 where is_del=0
+		 update consumer
+		 set is_block=#{isBlock}
+		 where id=#{id} and is_del=0
+	</update>
+	<!-- 删除用户 -->
+	<update id="deleteUser">
+	    update consumer 
+	    set is_del = 1
+	    where id =#{id}
 	</update>
 </mapper>

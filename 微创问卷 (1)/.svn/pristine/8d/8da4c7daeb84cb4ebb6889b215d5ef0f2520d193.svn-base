@@ -1,0 +1,313 @@
+.headerWrap {
+    width: 1006px;
+    margin:0 auto;
+    min-width:1006px;
+    background: url("../img/header_back.png") no-repeat 0 0;
+}
+.header-top {
+    height: 150px;
+    position: relative;
+}
+.header-top img {
+    position: absolute;
+    left: 50px;
+    top: 30px;
+}
+.header-top p {
+    position: absolute;
+    font-size:18px;
+    color:#fafafa;
+    cursor: default;
+}
+.header .logo-msg1 {
+    right:240px;
+    top: 110px;
+}
+.header .logo-msg2 {
+    right:380px;
+    top: 70px;
+}
+.header-nav {
+    border-bottom:2px solid #76b24d;
+}
+.header .nav {
+    text-align: justify;
+    height: 42px;
+}
+.header .nav:after,.header .nav b {
+    content:"";
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    z-index:-1;
+    *zoom:1;
+}
+.header .nav li {
+    width: 132px;
+    display: inline-block;
+    _zoom:1;
+    *display:inline;
+}
+.header .nav .dh1 {
+    width: 96px;
+}
+.header .dh  a {
+    display: inline-block;
+    line-height: 42px;
+    font-size: 18px;
+    color:#76b24d;
+    padding-right:10px;
+    padding-left: 40px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.dh .dh1 a {
+    background:url("../img/index1.png") no-repeat 11px 11px;
+}
+.dh .dh1 a:hover{
+    background:url("../img/index2.png") no-repeat 11px 11px;
+}
+.dh .dh2 a {
+    background:url("../img/jj1.png") no-repeat 11px 11px;
+}
+.dh .dh2 a:hover{
+    background:url("../img/jj2.png") no-repeat 11px 11px;
+}
+.dh .dh3 a {
+    background:url("../img/zxdt1.png") no-repeat 11px 11px;
+}
+.dh .dh3 a:hover{
+    background:url("../img/zxdt2.png") no-repeat 11px 11px;
+}
+.dh .dh4 a {
+    background:url("../img/tzgg1.png") no-repeat 11px 11px;
+}
+.dh .dh4 a:hover{
+    background:url("../img/tzgg2.png") no-repeat 11px 11px;
+}
+.dh .dh5 a {
+    background:url("../img/zkgf1.png") no-repeat 11px 11px;
+}
+.dh .dh5 a:hover{
+    background:url("../img/zkgf2.png") no-repeat 11px 11px;
+}
+.dh .dh6 a {
+    background:url("../img/jkzt1.png") no-repeat 11px 11px;
+}
+.dh .dh6 a:hover{
+    background:url("../img/jkzt2.png") no-repeat 11px 11px;
+}
+.dh .dh7 a {
+    background:url("../img/bzfg1.png") no-repeat 11px 11px;
+}
+.dh .dh7 a:hover{
+    background:url("../img/bzfg2.png") no-repeat 11px 11px;
+}
+.header .dh  a:hover {
+    background-color:#76b24d;
+    color:#FFF;
+}
+
+.main {
+    width:1006px;
+    margin:0 auto;
+    clear:both;
+    overflow:hidden;
+}
+.main-part {
+    clear:both;
+    padding: 0;
+}
+.main-part-content {
+    float: left;
+    display: inline;
+    width: 748px;
+}
+.main-part-content a{
+	color:#74b249;
+}
+.mod {
+	border-radius:4px;
+    margin-bottom:15px;
+    overflow: hidden;
+    float: left;
+    display: inline;
+    border: 1px solid #b8d4a7;
+}
+.mod-title {
+    font-size:15px;
+    color:#74b249;
+    cursor: default;
+    font-weight:bold;
+}
+.mod-hb {
+    margin:0 auto;
+    height: 35px;
+    line-height: 35px;
+    border-bottom:1px solid #DDD;
+}
+.mod-hb a ,.mod-hb a:visited{
+    float: right;
+    color:#73B3FA;
+}
+.mod-hb a span 
+{
+	color:#73b3fa;
+}
+.mod-hb a:hover {
+    color: #73B3FA;
+}
+.mod-lr {
+    width: 241px;
+}
+.mod-lr .mod-hb {
+    width:211px;
+}
+.mod-lr .mod-bd{
+	text-align:center;
+    margin:0 auto;
+    width:211px;
+}
+.input-type1{
+    height: 30px;
+    line-height: 30px;
+}
+
+.mod-bd .input-span {
+    display: inline-block;
+    width:56px;
+    color:#3c3c3c;
+    height:30px;
+    line-height:30px;
+    float:left;
+}
+.mod-bd input[type=text],.mod-bd input[type=password]{
+	border:1px solid #ddd;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding:0;
+    width:151px;
+    padding:6px 2px;
+    text-indent:0;
+    vertical-align:middle;
+    font-size:14px;
+    float:left;
+}
+.mod-bd .username,.mod-bd .type {
+    margin: 20px 0 15px 0;
+}
+.mod-bd .f-index-forgetPsw {
+    display: inline-block;
+    color:#73B3FA;
+    text-decoration: underline;
+    font-size:14px;
+    margin: 8px 0 8px 140px;
+}
+.letter-blank {
+    display: inline-block;
+    width: 1em;
+}
+
+.f-index-forgetPsw:hover {
+    color:#c06000;
+}
+.f-index-button {
+    display: block;
+    width: 211px;
+    color:#FFF;
+    border:none;
+    height:27px;
+    line-height:27px;
+    cursor: pointer;
+    font-size:18px;
+    letter-spacing: 1em;
+    margin-bottom:6px;
+    background:url("../img/button.png") repeat-x 0 0;
+}
+.f-index-button:hover {
+    background:url('../img/button2.png') repeat-x 0 0;
+}
+.footer {
+    width:1006px;
+    margin:20px auto 0;
+    clear: both;
+    overflow: hidden;
+    font-size:12px;
+    text-align: center;
+    color:#939393;
+    padding-bottom: 20px;
+}
+.footer-nav {
+    text-align: center;
+    margin-bottom:20px;
+    background-color:#CBE1BB;
+}
+.footer-nav-list li {
+    display: inline;
+    zoom:1;
+}
+.footer-nav-list li a {
+    display: inline-block;
+    line-height: 35px;
+    height: 35px;
+    font-size:18px;
+    color:#76b24d;
+    padding: 0 20px;
+}
+.footer-nav-list li a:hover { 
+    text-decoration: underline;   
+}
+
+.footer p {
+    line-height: 20px;
+}
+.footer p a {
+    display: inline-block;
+    margin:0 5px;
+}
+.footer p a:link,.footer p a:visited{
+
+    color:#939393;
+    text-decoration: none;
+}
+.footer p a:hover {
+    color:#76b24d;
+    text-decoration: underline;
+}
+.blacnk-count {
+    height: 25px;
+    clear: both;
+    overflow: hidden;
+    display: block;
+}
+.detailBodyDiv h3 {
+    border-bottom:1px solid #999;
+    font-size:18px;
+    height: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.detailBodyDiv p{
+    text-indent:0em;
+    font-size:14px;
+    line-height:25px ;
+    margin:auto;
+}
+
+#login-succeed .welcome {
+	padding:60px 0;
+    text-align:center;
+    font-size:16px;
+   
+}
+#login-succeed #last-login-time {
+    text-align: center;
+}
+#login-succeed .welcome span{
+	display:block;
+	 height: 165px;
+    line-height: 16 5px;
+    margin: 5px auto;
+    
+}

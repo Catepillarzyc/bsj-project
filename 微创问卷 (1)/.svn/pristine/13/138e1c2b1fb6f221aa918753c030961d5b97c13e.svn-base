@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
 import com.questionnaire.dao.ConsumerDao;
 import com.questionnaire.pojo.Consumer;
 import com.questionnaire.pojo.dto.PageDto;
-import com.questionnaire.service.UserService;
+import com.questionnaire.service.ConsumerService;
 import com.questionnaire.util.MD5Utils;
 
 
 
-@Component("UserService")
-public class UserServiceImpl  implements UserService {
+@Component("ConsumerService")
+public class ConsumerServiceImpl  implements ConsumerService {
 	@Autowired
 	private ConsumerDao userDao;
 

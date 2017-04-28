@@ -86,7 +86,7 @@
 	</select>
 	<!-- 添加新闻 -->
 	<insert id="insertNews"  parameterType="com.questionnaire.pojo.News">
-		 insert  news
+		 insert into  news
 		( theme_id,
 		  title,
 		  content,
@@ -100,9 +100,7 @@
 		   #{news.themeId},
 		   #{news.title},
 		   #{news.content},
-		   <if test="news.isImport!=null and news.isImport!=''">
 		   #{news.isImport},
-		   </if>
 		   0,
 		   now(),
 		   now(),

@@ -76,7 +76,7 @@
                             <td>$!{staff.chiefPhysician}</td>
                             <td>$!{staff.fchiefPhysician}</td>
                             <td>$!{staff.attendingNumber}</td>
-                            <td>$!{staff.attendingNumber}</td>
+                            <td>$!{staff.residentNumber}</td>
                             <td>$!{staff.drNumber}</td>
                             <td>$!{staff.masterNumber}</td>
                             <td>$!{staff.bachelorNumber}</td>
@@ -87,7 +87,7 @@
         </div>
         <div class="block">
             <div class="tag">设备信息</div>
-            <p>1.医院现有腔镜机组数量<span class="center">$!{equipment.qNumber}</span>套，其中进口机组<span class="center">$!{equipment.qImportNumber}</span>套，产地（或品牌）<span class="qImportBrand" style="display:inline"></span>。国产机组<span class="center">$!{equipment.qDomesticNumber}</span>套，产地（或品牌）<span class="qDomesticBrand" style="display:inline"></span></p>
+            <p>1.医院现有腔镜机组数量<span class="center">$!{equipment.qNumber}</span>套，其中进口机组<span class="center">$!{equipment.qImportNumber}</span>套，产地（或品牌）<span class="qImportBrand" >$!{equipment.qImportBrand}</span>。国产机组<span class="center">$!{equipment.qDomesticNumber}</span>套，产地（或品牌）<span class="qDomesticBrand" >$!{equipment.qDomesticBrand}</span></p>
             <p>2.现有高清腹腔镜机组<span class="center">$!{equipment.gfqNumber}</span>套，进口<span class="center">$!{equipment.gfqImportNumber}</span>套；标清腹腔镜机组<span class="center">$!{equipment.standardfq}</span>套，国产<span class="center">$!{equipment.domesticsfq}</span>套。</p>
             <p>3.近3年新购置腹腔镜机组数量<span class="center">$!{equipment.treeYeanfqNumber}</span>套。</p>
             <p>4.日均腔镜手术台次<span class="center">$!{equipment.daySurNumber}</span>次，常用腔镜机组<span class="center">$!{equipment.commonlyNumber}</span>台，备用<span class="center">$!{equipment.standbyNumber}</span>台，空闲/缺口<span class="center">$!{equipment.freeNumber}</span>台。</p>
@@ -112,13 +112,14 @@
 					$!{clinicalApplication.medical}
 				</span>。
 			</p>
-			
+			 
 			<p>5.中转开腹手术比例<span class="center">$!{clinicalApplication.zkfProportion}</span>%，中转原因：腹腔粘连<span class="center">$!{clinicalApplication.fqldNumber}</span>例，胆道损伤<span class="center">$!{clinicalApplication.ddssNumber}</span>例，出血<span class="center">$!{clinicalApplication.bleedingNumber}</span>例，胆总管结石嵌顿<span class="center">$!{clinicalApplication.dzgjsNumber}</span>例，其他<span class="center">$!{clinicalApplication.otherNumber}</span>例。</p>
             <p>6.手术时间<span class="center">$!{clinicalApplication.operationTime}</span>min，出血<span class="center">$!{clinicalApplication.bleedingMl}</span>ml。肝门阻断次数<span class="center">$!{clinicalApplication.portazsNumber}</span>次，时间<span class="center">$!{clinicalApplication.portazsTime}</span>min。</p>
             <p>7.并发症：二次手术<span class="center">$!{clinicalApplication.twoSurgeryNumber}</span class="center">例，出血<span class="center">$!{clinicalApplication.bfzBleedingNumber}</span>例，胆瘘<span class="center">$!{clinicalApplication.bfzFistulaNumber}</span>例，切口感染<span class="center">$!{clinicalApplication.bfzQkgrNumber}</span>例，腹腔感染<span class="center">$!{clinicalApplication.bfzFqgrNumber}</span>例，其他<span class="center">$!{clinicalApplication.bfzOtherNumber}</span>例。</p>
        </div>
 	   <div class="print">导   出</div>
    </div>
+  
    <input type="hidden" name="hid1" value="$!{equipment.qImportBrand}"/>
    <input type="hidden" name="hid2" value="$!{equipment.qDomesticBrand}"/>
    <form action="exportWord.html" method="post" id="form">
@@ -133,7 +134,7 @@
 		  jQuery("#form").submit();
 	 });
 
-     $(function(){
+  /*   $(function(){
 	       if("$!{equipment.qImportBrand}"==""){
 		       $(".qImportBrand").html("　　");
 		   }else{
@@ -144,6 +145,6 @@
 		   }else{
 		       $(".qDomesticBrand").html('$!{equipment.qDomesticBrand}');
 		   }
-	 })
+	 })*/
 </script>
 </html>

@@ -1,0 +1,98 @@
+#header {
+    width:845px;
+    margin:20px auto;
+    font-weight: normal;
+    color:#777;
+    letter-spacing:0.1em;
+    font-size:24px;
+}
+#main {
+    background:url("../img/login-bg.png") no-repeat 0 0;
+    height: 548px;
+    min-width: 1000px;
+    margin:0 auto;
+    max-width: 1900px;
+}
+#f-login-box {
+    width:1000px;
+    height: 100%;
+    margin:0 auto;
+    position: relative;
+}
+.f-menu {
+    display: block;
+    width:520px;
+    height: 423px;
+    background: url("../img/loginback.png") no-repeat 0 0;
+    position: absolute;
+    top: 50%;
+    margin-top: -217px;
+    right: 30px;
+    letter-spacing: 0.1em;
+}
+ul li {
+    display: block;
+    margin:0 80px;
+}
+#f-login-header {
+    line-height: 120px;
+    height: 120px;
+    font-size: 18px;
+}
+.f-login-input {
+	position:relative;
+	
+}
+.f-login-text{
+	display:inline-block;
+	width:40px;
+	text-align:left;
+	font-size:16px;
+	position:absolute;
+	top:12px;
+	left:0;
+	
+}
+.f-login-input input {
+	box-sizing:border-box;
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding:11px 4px;
+    vertical-align:middle;
+    width:290px;
+    font-size:16px;
+    max-width: 290px;
+    text-indent:0;
+    letter-spacing:1px;
+    margin-left:50px;
+    zoom:1;
+    outline:none;
+}
+#login-psw {
+    margin-top: 40px;
+}
+#f-tips {
+    color:red;
+    height: 45px;
+    line-height: 45px;
+    margin-left:130px;
+}
+#f-login-button {
+    background:url("../img/login.png") no-repeat 50px 0;
+    height: 40px;
+    cursor: pointer;
+}
+#f-login-button:hover {
+    background:url("../img/login2.png") no-repeat 50px 0;
+}
+.f-copyright {
+    margin-top: 20px;
+    text-align: center;
+}
+.f-copyright p {
+    line-height: 20px;
+}
+.f-copyright p a {
+    display: inline-block;
+    margin:0 5px;
+}

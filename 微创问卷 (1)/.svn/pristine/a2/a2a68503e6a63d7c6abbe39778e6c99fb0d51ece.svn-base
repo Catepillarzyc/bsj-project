@@ -1,0 +1,88 @@
+#macro(pagemodel $url $element $page)
+	<div class="f-nav clearfix">
+		    #set($upPage = $!{page.currentPage} - 1)
+		    #if($upPage < 1)
+		    	#set($upPage = 1)
+		    #end
+            <a href="$url?$element&index=$upPage"><span class="nav-left" ></span></a>
+            <span class="f-nowPage"> $!{page.currentPage}/$!{page.totalPage}</span>
+			    #set($nextPage = $!{page.currentPage} + 1)
+		    #if($nextPage > $!{page.totalPage})
+		    	#set($nextPage = $!{page.totalPage})
+		    #end
+            <a href="$url?$element&index=$nextPage"><span class="nav-right"></span></a>
+            <input type="text" class="f-pageNub"  name="page">
+            <span class="f-turnto"><a class="go">跳转</a></span>
+        </div>
+	
+	<script>
+	var totalPage='$!{page.totalPage}';
+	$(".go").hover(function(){
+		$(this).css("cursor","pointer");
+	})
+		$(function(){
+			if(sessionStorage.getItem("page")&&sessionStorage.getItem("page")!=""){
+			 $("#pagelist input[name='page']").val(sessionStorage.getItem("page"));
+			}
+		})
+		$("#pagelist .go").on("click",function(){
+			var pageNo;
+			nowPage=parseInt($("#pagelist input[name='page']").val());
+			if(totalPage<=nowPage){
+				pageNo=totalPage;
+			}else{
+				pageNo=$("#pagelist input[name='page']").val();
+			}
+			if(pageNo<=0){
+				pageNo=1;
+			}
+			sessionStorage.setItem("page",pageNo);
+		})
+		$("a").on("click",function(){
+			if(sessionStorage.getItem("page")){
+				sessionStorage.removeItem("page");
+			}
+		})
+		 $(".search").on("click",function(){
+		 	if(sessionStorage.getItem("page")){
+				sessionStorage.removeItem("page");
+			}	
+		 })
+		//$(self.parent.frames["left"].document).find("a").click(function(){
+			//sessionStorage.removeItem("page");
+		//})
+		$(self.parent.document).find("a").click(function(){
+    		if(sessionStorage&&sessionStorage.getItem("page")){
+    			sessionStorage.removeItem("page");
+    		}
+		})
+		$(document).delegate('.go','click',function(){
+    		var num = jQuery("input[name=page]").val();
+    		if(num <= 0){
+    			num = 1;
+    		}
+    		if(num > $!{page.totalPage}){
+    			num = $!{page.totalPage};
+    		}
+    		if(isNaN(num) || num <= 0){
+    			return false;	
+    		}
+	    	jQuery("input[name=page]").val(num);
+	    		window.location.href="$url?$element&index="+num;
+	    	});
+    	
+	    	$("input[name=page]").keydown(function(e){
+				var e = e || event,
+				keycode = e.which || e.keyCode;
+				if (keycode==13) {
+					$(".go").trigger("click");
+	      }
+  
+	 });
+	</script>
+#end
+#macro(printUrl $path)
+#set($a = "${link.contextPath}"+"$!{path}")$a#end
+###set($a = "http://120.27.197.95:9083/huashan")$a#end
+
+

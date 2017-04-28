@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="#printUrl/css/normalize.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/css/weiChuangIndex.css" type="text/css" rel="stylesheet">
+    <link href="#printUrl/css/common.css" type="text/css" rel="stylesheet">
+    <script src="#printUrl/js/jquery-1.12.2.js" type="text/javascript"></script>
+    <script src="#printUrl/js/main.js" type="text/javascript"></script>
+    <title>浙江省微创手术质量控制中心</title>
+</head>
+<body>
+    <div class="header">
+        <div class="headerWrap">
+            <div class="header-top">
+                <img src="#printUrl/img/title.png" class="header-logo">
+                <p class="logo-msg1">团结<span class="letter-blank"></span>求实</p>
+                <p class="logo-msg2">规范<span class="letter-blank"></span>创新</p>
+            </div>
+            <div class="header-nav clearfix dh">
+            	<ul class="nav">
+                        <li class="dh1"><a href="#printUrl/weiChuang/index.html" class="index_on" >首页</a></li>
+                        <li class="dh2"><a href="#printUrl/weiChuang/centerIntroduce.html?themeId=7">中心简介</a></li>
+                        <li class="dh3"><a href="#printUrl/weiChuang/centerTrends.html?themeId=1&index=0" >中心动态</a></li>
+                        <li class="dh4"><a href="#printUrl/weiChuang/notice.html?themeId=5&index=0">通知公告</a></li>
+                        <li class="dh5 "><a href="#printUrl/weiChuang/qualityStandard.html?themeId=6&index=0">质控规范</a></li>
+                        <li class="dh6"><a href="#printUrl/weiChuang/healthTheme.html?themeId=3&index=0" >健康主题</a></li>
+                        <li class="dh7"><a href="#printUrl/weiChuang/regulation.html?themeId=2&index=0">标准法规</a></li>
+						<!--[if lte IE 7]>
+                <b></b><![endif]--><!-- 兼容不支持伪元素的 ie678 -->
+                 </ul>
+            </div>
+        </div>
+    </div>
+    <div class="blank-cont" style="height: 15px;"></div>
+    <div class="main">
+        <div class="main-part clearfix">
+            <div class="main-part-l">
+                <div class="mod-lr mod">
+                    <div class="mod-hb" style="border-bottom:none">
+                        <span class="mod-title">最新动态</span>
+                        <a href="#" class="hidden"><span>更多>></span></a>
+                    </div>
+                    <div class="mod-bd slideContainer">
+                        <ul class="slideList">
+							#foreach($!li in $importList)
+								#if($!li.themeId==1)
+									 <li><img src="#printUrl/img/${velocityCount}.jpg" alt=""/><a href="#printUrl/weiChuang/centerTrendsDetail.html?newsId=$li.id&userName=$!{user.userName}">$li.title</a> </li>
+								#elseif($li.themeId==5)
+									 <li><img src="#printUrl/img/${velocityCount}.jpg" alt=""/><a href="#printUrl/weiChuang/noticeDetail.html?newsId=$li.id&userName=$!{user.userName}">$li.title</a> </li>
+								#end	
+							#end
+                        </ul>
+                        <div class="slide-dots">
+						#foreach($!li in $importList)	
+                            <span class="dotItem d_imagItem" title=""></span>
+						#end	
+                        </div>
+                        <!--<a href="javascript:;" class="slide-prev"> </a>-->
+                        <!--<a href="javascript:;" class="slide-next"></a>-->
+                    </div>
+                </div>
+#parse("/weiChuang/commonLogin.vm")
+                <div class="mod-lr mod yqlj">
+                    <div class="mod-hb">
+                        <span class="mod-title">友情链接</span>
+                        <a href="#"><span>更多>></span></a>
+                    </div>
+                    <div class="mod-bd">
+                        <a href="#"><img src="#printUrl/img/youqinglianjie.png"></a>
+                        <a><img src="#printUrl/img/youqinglianjie2.png"></a>
+                        <a><img src="#printUrl/img/youqiangliangjie3.png"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="main-part-m">
+                <div class="mod-m mod zxdt">
+                    <div class="mod-hb">
+                        <span class="mod-title">中心动态</span>
+                        <a href="#printUrl/weiChuang/centerTrends.html?themeId=1&index=0&userName=$!{user.userName}"><span>更多>></span></a>
+                    </div>
+                    <div class="mod-bd">
+                        <div class="zxdt_nav">
+                            <ul class="list-a dt-list">
+							 #foreach($li in $trendList)							
+                                 <li><a target="_blank" href="centerTrendsDetail.html?newsId=$li.id">$li.title</a><span>$!date.format("yyyy-MM-dd",$li.newsDate)</span></li>
+                               #end
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mod-m mod bzfg">
+                    <div class="mod-hb">
+                        <span class="mod-title">标准法规</span>
+                        <a href="#printUrl/weiChuang/regulation.html?themeId=2&index=0&userName=$!{user.userName}"><span>更多>></span></a>
+                    </div>
+                    <div class="mod-bd">
+                        <div class="bzfg-nav clearfix">
+                            <a href="#" class="bzfz-imglink">
+                                <img src="#printUrl/img/bzfglogo.png">
+                            </a>
+                            <ul class="list-a dt-list">
+								#foreach($li in $reList)
+									<li><a href="regulationDetail.html?newsId=$li.id&themeId=2" target="_blank">$li.title</a><span>$!date.format("yyyy-MM-dd",$li.newsDate)</span></li>
+                                #end
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mod-m mod jkzt">
+                    <div class="mod-hb">
+                        <span class="mod-title">健康主题</span>
+                        <a href="#printUrl/weiChuang/healthTheme.html?themeId=3&index=0&userName=$!{user.userName}"><span>更多>></span></a>
+                    </div>
+                    <div class="mod-bd">
+                        <div class="jkzt_nav">
+                            <ul class="list-a dt-list">
+								#foreach($li in $healthList)
+                                 <li><a href="#printUrl/weiChuang/healthThemeDetail.html?newsId=$li.id" target="_blank">$li.title</a><span>$!date.format("yyyy-MM-dd",$li.newsDate)</span></li>
+                               #end
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-part-r">
+                <div class="mod-lr mod wlzb">
+                    <div class="mod-hb">
+                        <span class="mod-title">网络直报系统</span>
+                    </div>
+                    <div class="mod-bd">
+						#if($!{user.userName}&&$!{user.type}==3)
+								<a href="#printUrl/index.html" target="_blank" id="wlzbLink">进入网络直报系统</a>
+						#elseif($!{user.userName}&&$!{user.type}==2)
+								<a href="#printUrl/question/questionList.html" target="_blank" id="wlzbLink">进入网络直报系统</a>
+						#else
+							  <a href="#printUrl/weiChuang/questionLogin.html" target="_blank" id="wlzbLink">进入网络直报系统</a>
+						#end	
+                    </div>
+                </div>
+                <div class="mod-lr mod znss">
+                    <div class="mod-hb">
+                        <span class="mod-title">站内搜索</span>
+                    </div>
+                        <div class="mod-bd">
+                            <div class="type input-type1">
+								<input  type="hidden"  name="themeId" id="hidThemeId"/>
+                                <span class="input-span">类<span class="letter-blank"></span>型:</span><select class="f-typesel" id="selectTheme" >
+    									<option value="">请选择</option>
+    									#foreach($ps in $list)
+                                           <option value=$ps.id >$ps.theme</option>
+    									#end
+                                    </select>
+                            </div>
+                            <div class="keyWord input-type1"><span class="input-span">关键字:</span><input type="text" class="f-keyInput" name="serchKey"   ></div><input type="button"  id="searchBut" class="f-index-button znss-search" value="搜索">
+                        </div>
+                </div>
+                <div class="mod-lr mod zxfw">
+                    <div class="mod-hb">
+                        <span class="mod-title">咨询服务</span>
+                    </div>
+                    <div class="mod-bd">
+                        <div class="zx-items">
+                            <div class="zx-phone zx-item">
+                                <h4>专家热线</h4>
+                                <p><a>0576-12324552</a></p>
+                            </div>
+                            <div class="zx-online zx-item">
+                                <h4>网上咨询</h4>
+                                <p><a>www.sina.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="footer" class="footer">
+        <div class="footer-nav clearfix">
+            <ul class="footer-nav-list">
+                    <li><a href="#printUrl/weiChuang/centerIntroduce.html?themeId=7&userName=$!{user.userName}">中心简介</a></li>
+                    <li><a href="#printUrl/weiChuang/centerTrends.html?themeId=1&index=0&userName=$!{user.userName}">中心动态</a></li>
+                    <li><a href="#printUrl/weiChuang/notice.html?themeId=5&index=0&userName=$!{user.userName}">通知公告</a></li>
+                    <li><a href="#printUrl/weiChuang/qualityStandard.html?themeId=6&index=0&userName=$!{user.userName}">质控规范</a></li>
+                    <li><a href="#printUrl/weiChuang/healthTheme.html?themeId=3&index=0&userName=$!{user.userName}">健康主题</a></li>
+                    <li><a href="#printUrl/weiChuang/regulation.html?themeId=2&index=0&userName=$!{user.userName}">标准法规</a></li>
+             </ul>         
+        </div>
+        <p>浙江省微创手术质量控制中心 </span><a>版权所有</a></p>
+        <p>电 话：0571-8888888/88888888<span class="letter-blank"></span>传 真：0571-88888888</p>
+        <p>地 址：浙江省杭州市xx路xx号<span class="letter-blank"></span>邮 编：888888 <a> 浙ICP备88888号</a></p>
+    </div>
+    <script>
+	 var webRoot = '${link.contextPath}';
+	$("#searchBut").click(function(){
+		var themeId =  $("#selectTheme").val();
+		$("#hidThemeId").val(themeId);
+		var serchKey=jQuery.trim($("input[name=serchKey]").val());
+		if(themeId!=''){
+			jQuery.ajax({
+				url:webRoot+"/weiChuang/searchTheme.html",
+			    type: "POST",
+			    cache: false,
+			    async: true,
+			    data: {
+					"themeId": themeId,
+					"serchKey":serchKey
+				},
+				dataType: "json",
+				success: function(data, text) {
+					if(data.themeId==1){
+						window.location.href="${link.contextPath}/weiChuang/centerTrends.html?themeId=1&serchKey="+data.serchKey;
+					}else if(data.themeId==3){
+						 window.location.href="${link.contextPath}/weiChuang/healthTheme.html?themeId=3&serchKey="+data.serchKey;
+					}else if(data.themeId==5){
+					   window.location.href="${link.contextPath}/weiChuang/notice.html?themeId=5&serchKey="+data.serchKey;
+					}else if(data.themeId==6){
+						  window.location.href="${link.contextPath}/weiChuang/qualityStandard.html?themeId="+data.themeId+"&serchKey="+data.serchKey;
+					}
+				}
+			})
+		}else{
+		 alert("请选择类型");
+		}
+	})
+	$(function(){
+	 	$(".d_imagItem").eq(0).addClass("dotItemOn");
+	})
+	
+	
+    </script>
+</body>
+</html>

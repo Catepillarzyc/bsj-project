@@ -1,0 +1,139 @@
+.hou {
+    background-color:#FFF;
+    position: absolute;
+    z-index:89;
+    left:0;
+    top: 0;
+    width:100%;
+    display: none;
+    opacity: 0.5;
+    filter:alpha(opacity=50);
+    -moz-opacity: 0.5;
+}
+.ts{
+    position: absolute;
+    max-width: 250px;
+    line-height: 18px;
+    z-index: 150;
+    border: 1px solid #999;
+    background: #F8F8F8;
+    padding:3px;
+    word-break: break-all;
+    display: none;
+}
+.f-xj-header {
+    line-height: 40px;
+    height: 40px;
+    font-size:16px;
+    padding-top:20px;
+    border-bottom:1px solid #e7e7eb;
+    padding-left: 50px;
+    position: relative;
+}
+.f-xj-header img {
+    position: absolute;
+    left:12px;
+    top: 24px;
+    cursor: pointer;
+}
+.f-xj-main .f-line,.f-xjzh-main p{
+    height: 30px;
+    line-height: 30px;
+    position: relative;
+    margin-bottom:20px;
+}
+.f-xj-main {
+    position: relative;
+}
+.f-xj-main .f-xj-first{
+    margin-top:40px;
+}
+.f-xj-main .f-text {
+    display: inline-block;
+    letter-spacing: 0.1em;
+    text-align: right;
+    width:105px;
+    margin-right: 10px;
+    float: left;
+}
+.f-xj-input {
+    width:250px;
+    height: 30px;
+    line-height: 30px;
+    font-size:14px;
+    padding:0;
+    float: left;
+}
+.f-xj-main input {
+    border:1px solid #c7c8c9;
+    padding-left:4px;
+}
+.f-xj-main input:focus {
+    border:1px solid #00a0e9;
+}
+.f-xj-button {
+    margin-left:20px;
+    cursor: pointer;
+}
+.f-xj-main .f-xjwz-fb {
+    margin-left:115px;
+}
+.f-super,.f-xjwz-fg {
+    margin-left: 20px;
+}
+.f-radio{
+    margin-right: 10px;
+    border:none !important;
+    vertical-align:text-top;
+}
+.f-xj-buttons {
+    margin-top: 35px;
+}
+.f-xjwz-main .f-xj-buttons {
+    margin-top: 20px;
+}
+.f-return .return-menu {
+    width:151px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin:50px auto 0;
+    cursor: pointer;
+    background: url("../img/xjzhkuang.png") no-repeat 0 0;
+}
+.f-return .return-menu a {
+    color:#00a0e9;
+    letter-spacing: 0.1em;
+}
+.f-return .return-menu:hover > a{
+    color:#fa3e3e;
+    text-decoration:underline;
+}
+.f-return .create-success {
+    color:#fa3e3e;
+    font-weight: normal;
+    text-align: center;
+    margin: 150px auto 0;
+}
+.f-xj-main .f-xjzh-tips {
+    position: absolute;
+    left: 110px;
+    top: 184px;
+    color:#fa3e3e;
+}
+#div1 {
+
+    height: 500px;
+}
+#div1 p {
+    height: 20px;
+    line-height: 20px;
+    margin: 0;
+}
+#f-right-items {
+    border-left: 1px solid #e7e7eb;
+    border-right: none;
+}
+#iframe1{
+    min-height:902px;
+}

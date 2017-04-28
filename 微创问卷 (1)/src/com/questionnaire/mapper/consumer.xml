@@ -30,7 +30,7 @@
 		<include refid="allColumn"/>
 		from consumer
 		where is_del =0 and (type=2 or type=3)
-		order by gmt_created desc
+		order by gmt_modified desc
 		<if test="size != null and start != null" >
 		    limit #{start},#{size}
    	 	</if>	
@@ -45,7 +45,8 @@
 	<!-- 修改密码 -->
 	<update id="updatePswByUserName" >
 	   update consumer
-	   set password=#{newPsw}
+	   set password=#{newPsw},
+	   gmt_modified = now()
 	   where is_del =0 and userName= #{userName} and is_block=0
 	</update>
 	
